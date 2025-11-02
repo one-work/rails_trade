@@ -4,10 +4,6 @@ module Trade
     include Controller::Application
     include Org::Controller::In if defined? RailsOrg
 
-    included do
-      layout -> { turbo_frame_body? ? 'frame_body' : 'admin' }
-    end
-
     def set_new_item
       @item = @cart.init_cart_item(params)
     end
