@@ -10,18 +10,12 @@
         path_fail: url_for(action: 'payment_types', id: @order.id, only_path: false)
       }.to_json
     %>"
-    class="media"
   ></div>
 <% elsif @wxpay_order && @wxpay_order[:package].present? %>
   <div
     data-controller="wxpay"
     data-wxpay-options-value="<%= current_wechat_user.app.js_config(session[:enter_url]).to_json %>"
     data-wxpay-params-value="<%= @wxpay_order.slice(:timeStamp, :nonceStr, :package, :signType, :paySign, :appId).to_json %>"
-    data-action="click->wxpay#onBridgeReady"
-    class="media"
-  >
-    <div class="media-left"><%= image_tag 'icons/wxpay.svg', class: 'image is-24x24' %></div>
-    <div class="media-content text-primary">微信支付</div>
-    <div class="media-right text-danger"><%= @order.unreceived_amount.to_money.format.html_safe %></div>
-  </div>
+    data-wxpay-auto-value="true"
+  ></div>
 <% end %>
