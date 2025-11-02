@@ -15,7 +15,7 @@
 <% elsif @wxpay_order && @wxpay_order[:package].present? %>
   <div
     data-controller="wxpay"
-    data-wxpay-options-value="<%= current_oauth_user.app.js_config(session[:enter_url]).to_json %>"
+    data-wxpay-options-value="<%= current_wechat_user.app.js_config(session[:enter_url]).to_json %>"
     data-wxpay-params-value="<%= @wxpay_order.slice(:timeStamp, :nonceStr, :package, :signType, :paySign, :appId).to_json %>"
     data-action="click->wxpay#onBridgeReady"
     class="media"
