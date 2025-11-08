@@ -3,15 +3,11 @@
   <div class="control">
   <% if item.number > 1 %>
     <button data-action="modify#minus" class="button">
-      <span class="icon">
-        <i class="fa-solid fa-minus"></i>
-      </span>
+      <%= svg_tag 'minus', class: 'icon' %>
     </button>
   <% else %>
     <%= button_to({ controller: item_con, action: 'destroy', id: item.id }, method: :delete, params: { current_cart_id: cart.id, 'replace[][partial]': 'cart_item_show', 'replace[][layout]': 'cart_item_show_layout' }, class: 'button') do %>
-      <span class="icon">
-        <%= svg_tag 'xmark' %>
-      </span>
+      <%= svg_tag 'xmark', class: 'icon' %>
     <% end %>
   <% end %>
   </div>
@@ -25,9 +21,7 @@
   </div>
   <div class="control">
     <button data-action="modify#plus" class="button is-link">
-      <span class="icon">
-        <%= svg_tag 'plus' %>
-      </span>
+      <%= svg_tag 'plus', class: 'icon' %>
     </button>
   </div>
 <% end %>
