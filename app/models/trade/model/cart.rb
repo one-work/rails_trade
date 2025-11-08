@@ -420,7 +420,7 @@ module Trade
           create_options = ([:user_id, :member_id, :member_organ_id, :client_id, :contact_id, :agent_id] & column_names.map(&:to_sym)).each_with_object({}) { |i,h| h.merge! i => nil }.merge! options
           options.with_defaults! ([:agent_id, :contact_id, :client_id, :desk_id, :station_id] & column_names.map(&:to_sym)).each_with_object({}) { |i, h| h.merge! i => nil }
 
-          cart = find_by(options) || create_or_find_by(create_options)
+          cart = find_by(options) || create_or_find_by!(create_options)
         end
         cart.compute_amount! unless cart.fresh
         logger.debug "\e[35m  Current Cart: #{cart.id}, Find Options: #{options}, Create Options: #{create_options}  \e[0m"
