@@ -6,7 +6,6 @@ module Trade
     private
     def set_cart
       @cart = Cart.get_cart(params, good_type: nil, user_id: current_user.id, **default_form_params)
-      logger.debug "my cart #{@cart.id}"
     end
 
     def set_lawful_wallet

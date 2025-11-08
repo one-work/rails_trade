@@ -49,7 +49,6 @@ module Trade
       has_one :lawful_wallet, ->(o) { where(o.simple_filter_hash) }, foreign_key: :organ_id, primary_key: :organ_id
 
       validates :deposit_ratio, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }, allow_nil: true
-      validates :good_type, presence: true
 
       before_validation :sync_original_amount, if: -> { (changes.keys & ['item_amount', 'overall_additional_amount', 'overall_reduced_amount']).present? }
       after_validation :sum_amount, if: -> { (changes.keys & ['item_amount', 'overall_additional_amount', 'overall_reduced_amount']).present? }
