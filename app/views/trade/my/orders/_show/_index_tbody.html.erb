@@ -19,3 +19,10 @@
 </td>
 <td class="text-danger"><%= model.amount.to_money.format.html_safe %></td>
 <td><%= model.note %></td>
+<td>
+  <div data-show-target="item" class="visibility-hidden">
+    <%= button_to({ controller: 'order/items', action: 'edit', order_id: model.order_id, id: model.id }, aria: { label: t('.order.items.edit.title') }, class: 'button is-small is-borderless') do %>
+      <%= svg_tag 'pencil', class: 'icon text-link' %>
+    <% end %>
+  </div>
+</td>
