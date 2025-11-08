@@ -15,3 +15,10 @@
     <%= svg_tag 'pencil' %>
   <% end %>
 </td>
+<td>
+  <div data-show-target="item" class="visibility-hidden">
+    <%= button_to({ action: 'destroy', id: model.id }, method: :delete, aria: { label: t('.destroy.title') }, form: { data: { turbo_confirm: t('.destroy.confirm') } }, class: 'button is-small is-borderless') do %>
+      <%= svg_tag 'trash', class: 'icon text-danger' %>
+    <% end %>
+  </div>
+</td>
