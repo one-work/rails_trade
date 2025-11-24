@@ -99,7 +99,7 @@ module Trade
     end
 
     def set_order
-      @order = Order.default_where(default_params).find params[:order_id]
+      @order = Order.find params[:order_id]
     end
 
     def payment_params
