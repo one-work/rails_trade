@@ -37,10 +37,13 @@ module Trade
     def wxpay
       @payment = @order.to_payment
       #@payment.extra_params.merge! 'profit_sharing' => true
-      @payment.seller_identifier = current_payee&.mch_id
-      @payment.appid = current_wechat_user&.appid
-      @payment.buyer_identifier = current_wechat_user&.uid
-      @wxpay_order = @payment.js_pay
+      payee = @order.organ.payees.take
+      if payee
+        @payment.seller_identifier = payee.mch_id
+        @payment.appid = current_wechat_user&.appid
+        @payment.buyer_identifier = current_wechat_user&.uid
+        @wxpay_order = @payment.js_pay
+      end
 
       if @wxpay_order['code'].present? || @wxpay_order.blank?
         respond_to do |format|
