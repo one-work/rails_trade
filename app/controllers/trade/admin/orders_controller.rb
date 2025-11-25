@@ -141,8 +141,8 @@ module Trade
 
     def print_data
       esc = BaseEsc.new
-      data = @order.to_esc(esc)
-      render json: data.render
+      @order.to_esc(esc)
+      render json: esc.render
     end
 
     def print
