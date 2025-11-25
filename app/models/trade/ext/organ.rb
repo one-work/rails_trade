@@ -6,6 +6,7 @@ module Trade
       attribute :counters, :json, default: {}
       attribute :dispatches, :string, array: true, default: []
       attribute :dispatch, :string
+      attribute :print_note, :string
 
       has_many :card_templates, class_name: 'Trade::CardTemplate'
 

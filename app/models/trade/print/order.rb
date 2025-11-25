@@ -70,8 +70,9 @@ module Trade
       pr.text "#{self.class.human_attribute_name(:amount)}：#{amount.to_money.to_s}"
       pr.text "#{self.class.human_attribute_name(:payment_status)}：#{payment_status_i18n}"
       pr.break_line
-      pr.text "感谢您的惠顾！"
-      pr.text "订餐电话：0717-6788808"
+      organ.print_note.split("\n").each do |note|
+        pr.text note
+      end
       pr.text "#{created_at.to_fs(:wechat)}"
     end
 

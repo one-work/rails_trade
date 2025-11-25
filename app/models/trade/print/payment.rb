@@ -34,8 +34,9 @@ module Trade
       pr.text "#{self.class.human_attribute_name(:orders_amount)}：#{orders_amount.to_money.to_s}"
       pr.text "#{self.class.human_attribute_name(:total_amount)}：#{total_amount.to_money.to_s}"
       pr.break_line
-      pr.text "感谢您的惠顾！"
-      pr.text "订餐电话：#{'0717-6788808'}"
+      organ.print_note.split("\n").each do |note|
+        pr.text note
+      end
       pr.text "#{self.class.human_attribute_name(:created_at)}：#{created_at.to_fs(:wechat)}"
       pr.text "#{self.class.human_attribute_name(:state)}：#{state_i18n}"
       pr.break_line
