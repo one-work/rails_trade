@@ -57,6 +57,7 @@ module Trade
 
     def to_esc(pr)
       pr.text_big_center organ.name
+      pr.set_pad
       pr.qrcode(qrcode_show_url, y: 20)
       pr.text "#{self.class.human_attribute_name(:serial_number)}：#{serial_str}" if serial_number
       pr.text '已下单：'
