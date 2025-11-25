@@ -224,3 +224,5 @@ zh:
         max: 最大值
         contain_min: 包含最小值
         contain_max: 包含最大值
+      org/organ:
+        print_note: 打印备注
