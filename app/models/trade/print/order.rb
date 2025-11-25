@@ -53,7 +53,6 @@ module Trade
       if paid_at
         ts.text("#{paid_at.to_fs}", x: 10)
       end
-      ts.render
     end
 
     def to_esc(pr)
@@ -73,7 +72,6 @@ module Trade
       pr.text "感谢您的惠顾！"
       pr.text "订餐电话：0717-6788808"
       pr.text "#{created_at.to_fs(:wechat)}"
-      pr
     end
 
     def to_prepare_esc(pr)
@@ -82,9 +80,7 @@ module Trade
         pr.break_line
         pr.text "#{item.class.human_attribute_name(:desk_id)}：#{item.desk.name}" if item.desk
         pr.text "#{item.class.human_attribute_name(:created_at)}：#{item.created_at.to_fs(:wechat)}"
-        pr.render
       end
-      pr
     end
 
   end

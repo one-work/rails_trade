@@ -40,8 +40,6 @@ module Trade
       pr.text "#{self.class.human_attribute_name(:state)}：#{state_i18n}"
       pr.break_line
       pr.qrcode(qrcode_show_url, y: 20)
-      pr.render
-      pr
     end
 
   end
