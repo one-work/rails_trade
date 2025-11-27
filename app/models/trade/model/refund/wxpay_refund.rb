@@ -12,7 +12,7 @@ module Trade
     end
 
     def do_refund(**options)
-      _params = {
+      params = {
         out_refund_no: self.refund_uuid,
         amount: {
           total: (payment.total_amount * 100).to_i,
@@ -22,16 +22,9 @@ module Trade
         transaction_id: self.payment.payment_uuid
       }
 
-      begin
-        result = payment.payee_app.payee.api.invoke_refund(**_params, **options)
-        store_refund_result!(result)
-      rescue StandardError => e
-        err = {}
-        err['return_code'] = e.message.truncate(225)
-        store_refund_result!(err)
-      ensure
-        return result
-      end
+      result = payment.payee_app.payee.api.invoke_refund(**params, **options)
+      store_refund_result!(result)
+      result
     end
 
     def store_refund_result!(result = {})
