@@ -5,7 +5,7 @@ module Trade
     included do
       attribute :appid, :string
 
-      belongs_to :payee_app, ->(o) { where(appid: o.appid) }, class_name: 'Wechat::PayeeApp', foreign_key: :seller_identifier, primary_key: :mch_id, optional: true
+      belongs_to :payee_app, class_name: 'Wechat::PayeeApp', foreign_key: [:seller_identifier, :appid], primary_key: [:mch_id, :appid], optional: true
       belongs_to :buyer, ->(o) { where(app_payee_id: o.app_payee_id) }, class_name: 'Wechat::Receiver', foreign_key: :buyer_identifier, primary_key: :account, optional: true
       belongs_to :app, class_name: 'Wechat::App', foreign_key: :appid, primary_key: :appid, optional: true
       belongs_to :agency, class_name: 'Wechat::Agency', foreign_key: :appid, primary_key: :appid, optional: true
@@ -103,7 +103,7 @@ module Trade
       self.pay_status = params['trade_state']
       self.verified = true if self.pay_status == 'SUCCESS'
       self.buyer_identifier = params.dig('payer', 'openid') || params.dig('payer', 'sub_openid')
-      self.seller_identifier = params['mchid'] || params['sub_mchid']
+      self.seller_identifier = params['sub_mchid'].presence || params['mchid']
       self.appid = params['appid'] || params['sub_appid']
       self.buyer_bank = params['bank_type']
       self.total_amount = params.dig('amount', 'total').to_i / 100.0
