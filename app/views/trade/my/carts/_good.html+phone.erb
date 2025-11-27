@@ -1,6 +1,8 @@
-<p class="truncate"><%= model.good_name %></p>
-<p class="mt-1">
-  <span class="tag"><%= model.dispatch_i18n %></span>
+<p class="truncate">
+  <span><%= model.good_name %></span>
+  <% if model.dispatch.present? %>
+    <span class="tag ml-1"><%= model.dispatch_i18n %></span>
+  <% end %>
 </p>
 <% if model.good.respond_to?(:parts) && model.good.parts.size > 0 %>
   <ul class="media-info mt-1">

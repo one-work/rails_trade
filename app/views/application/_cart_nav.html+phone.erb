@@ -1,11 +1,10 @@
 <div id="cart_nav" class="flex justify-content-space-between as-bottom px-3">
   <%= link_to({ controller: cart_con, action: 'show', id: @cart.id }, text: true, class: 'flex text-grey') do %>
-    <div class="has-column-centered">
+    <div class="button is-borderless">
       <div class="right-badge">
         <%= svg_tag 'bag-shopping', class: 'icon text-primary' %>
         <span class="weui-badge"><%= @cart.items.count %></span>
       </div>
-      <div class="size-7 text-grey">购物车</div>
     </div>
     <div class="align-items-baseline align-self-center">
       <% if @cart.amount != @cart.item_amount %>
