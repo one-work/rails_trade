@@ -29,9 +29,9 @@ module Trade
         err = {}
         err['return_code'] = e.message.truncate(225)
         store_refund_result!(err)
+      ensure
+        return result
       end
-
-      result
     end
 
     def store_refund_result!(result = {})
