@@ -11,7 +11,7 @@ module Trade
       self.origin&.payment_entity_no
     end
 
-    def do_refund
+    def do_refund(**options)
       _params = {
         out_refund_no: self.refund_uuid,
         amount: {
@@ -23,7 +23,7 @@ module Trade
       }
 
       begin
-        result = payment.payee_app.payee.api.invoke_refund(**_params)
+        result = payment.payee_app.payee.api.invoke_refund(**_params, **options)
       rescue StandardError => e
         result = {}
         result['return_code'] = e.message.truncate(225)
