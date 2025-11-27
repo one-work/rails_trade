@@ -24,11 +24,11 @@ module Trade
 
       begin
         result = payment.payee_app.payee.api.invoke_refund(**_params, **options)
-      rescue StandardError => e
-        result = {}
-        result['return_code'] = e.message.truncate(225)
-      ensure
         store_refund_result!(result)
+      rescue StandardError => e
+        err = {}
+        err['return_code'] = e.message.truncate(225)
+        store_refund_result!(err)
       end
 
       result
