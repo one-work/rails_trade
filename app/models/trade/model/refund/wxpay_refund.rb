@@ -23,7 +23,9 @@ module Trade
       }
 
       result = payment.payee_app.payee.api.invoke_refund(**params, **options)
-      store_refund_result!(result)
+      if result.is_a?(Hash)
+        store_refund_result!(result)
+      end
       result
     end
 
