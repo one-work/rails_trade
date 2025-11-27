@@ -103,7 +103,7 @@ module Trade
       self.pay_status = params['trade_state']
       self.verified = true if self.pay_status == 'SUCCESS'
       self.buyer_identifier = params.dig('payer', 'openid') || params.dig('payer', 'sub_openid')
-      self.seller_identifier = params['sub_mchid'].presence || params['mchid']
+      self.seller_identifier = params['sub_mch_id'].presence || params['mch_id']
       self.appid = params['appid'] || params['sub_appid']
       self.buyer_bank = params['bank_type']
       self.total_amount = params.dig('amount', 'total').to_i / 100.0
