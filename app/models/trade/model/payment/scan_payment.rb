@@ -24,7 +24,7 @@ module Trade
       self.pay_status = params['result_code']
       self.verified = true if self.pay_status == 'SUCCESS'
       self.buyer_identifier = params['openid']
-      self.seller_identifier = params['mch_id']
+      self.seller_identifier = params['sub_mch_id'].presence || params['mch_id']
       self.buyer_bank = params['bank_type']
       self.total_amount = params['total_fee'].to_i / 100.0
       self.currency = params['cash_fee_type']
