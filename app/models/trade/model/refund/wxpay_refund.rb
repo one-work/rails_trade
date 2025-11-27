@@ -31,7 +31,7 @@ module Trade
         store_refund_result!(result)
       end
 
-      self
+      result
     end
 
     def store_refund_result!(result = {})
