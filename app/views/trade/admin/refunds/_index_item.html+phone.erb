@@ -6,6 +6,7 @@
   <span><%= model.refund_uuid %></span>
   <span class="tag"><%= model.state_i18n %></span>
 </p>
-
 <p><%= model.total_amount.to_money(model.currency).format.html_safe %></p>
-<p class="text-success"><time data-controller="time" data-format="human"><%= model.refunded_at.to_fs(:iso8601) if model.refunded_at %></time></p>
+<p class="text-success">
+  <time data-controller="time" data-format="human"><%= model.refunded_at.to_fs(:iso8601) if model.refunded_at %></time>
+</p>

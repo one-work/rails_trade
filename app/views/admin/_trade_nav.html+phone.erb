@@ -16,6 +16,10 @@
         <%= svg_tag 'receipt', class: 'icon is-medium text-primary' %>
         <div class="text-grey size-7 mt-1"><%= t('trade.admin.payments.index.title') %></div>
       <% end %>
+      <%= link_to({ controller: 'trade/admin/refunds' }, class: 'cell has-column-centered') do %>
+        <%= svg_tag 'arrow-right-arrow-left', class: 'icon is-medium text-primary' %>
+        <div class="text-grey size-7 mt-1"><%= t('trade.admin.refunds.index.title') %></div>
+      <% end %>
       <%= link_to({ controller: 'trade/admin/scan_payments', action: 'new' }, class: 'cell has-column-centered') do %>
         <%= svg_tag 'cash-register', class: 'icon is-medium text-primary' %>
         <div class="text-grey size-7 mt-1"><%= t('trade.admin.scan_payments.new.title') %></div>
