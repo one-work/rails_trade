@@ -18,16 +18,10 @@
     </button>
   <% end %>
   <% if @order.can_pay? %>
-    <div
-      data-controller="scan"
-      data-scan-params-value="<%= { ids: @order.id }.to_json %>"
-      data-action="click->scan#report"
-      data-report-url="<%= url_for(controller: 'scan_payments', action: 'batch') %>"
-      class="button is-link"
-    >
+    <%= button_to({ controller: 'scan_payments', action: 'batch' }, params: { ids: @order.id }, class: 'button is-link') do %>
       <%= svg_tag 'credit-card' %>
       <span class="ml-1"><%= t('.scan_payments.batch.title') %></span>
-    </div>
+    <% end %>
   <% end %>
   <%= link_to({ controller:'space/admin/desks', action: 'all' }, class: 'button is-link') do %>
     <%= svg_tag 'grid-dividers' %>
