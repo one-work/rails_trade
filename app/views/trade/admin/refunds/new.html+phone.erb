@@ -1,5 +1,5 @@
-<%= render layout: 'index_table' do %>
-  <%= render partial: 'index_tbody', layout: 'index_tr', collection: @refund.payment.refunds, as: :model %>
+<%= render layout: 'index_list' do %>
+  <%= render partial: 'index_item', layout: 'index_item_actions', collection: @refund.payment.refunds, as: :model %>
 <% end %>
 
 <div class="flex-grow-1 mt-4" id="form_wrapper">
