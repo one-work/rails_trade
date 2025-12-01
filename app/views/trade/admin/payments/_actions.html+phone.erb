@@ -12,6 +12,12 @@
 <% end %>
 <%= link_to({ controller: 'refunds', action: 'new', payment_id: model.id }, class: 'cell has-column-centered') do %>
   <%= svg_tag 'thumbs-down' %>
-  <span><%= t('.refunds.new.title') %></span>
-  <span><%= model.refunds_count %></span>
+  <span>
+    <span><%= t('.refunds.new.title') %></span>
+    <span class="text-grey">（<%= model.refunds_count %>）</span>
+  </span>
+<% end %>
+<%= link_to({ action: 'print' }, class: 'cell has-column-centered') do %>
+  <%= svg_tag 'print' %>
+  <span><%= t('.print.title') %></span>
 <% end %>
