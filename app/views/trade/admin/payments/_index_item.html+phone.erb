@@ -7,7 +7,7 @@
   <span class="tag"><%= model.state_i18n %></span>
 </p>
 <p class="size-7">
-  <time data-controller="time">
+  <time data-controller="time" data-format="human">
   <% if model.notified_at.present? %>
     <%= model.notified_at.to_fs(:iso8601) %>
   <% else %>
