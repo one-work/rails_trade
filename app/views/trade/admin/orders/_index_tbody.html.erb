@@ -18,14 +18,15 @@
     <span class="tag"><%= model.payment_strategy.from_pay_i18n %></span>
   </div>
   <% end %>
+  <p class="text-grey"><time data-controller="time" data-format="human"><%= model.paid_at&.to_fs(:iso8601) %></time></p>
 </td>
 <td>
   <p><%= model.amount.to_money.format.html_safe %></p>
   <% if model.unreceived_amount.to_d > 0 %><p class="text-danger"><%= model.unreceived_amount.to_money.format.html_safe %></p><% end %>
+  <p class="<%= model.received_amount.to_d > 0 ? 'text-success' : 'text-grey' %>"><%= model.received_amount.to_money.format.html_safe %></p>
 </td>
 <td>
-  <p class="<%= model.received_amount.to_d > 0 ? 'text-success' : 'text-grey' %>"><%= model.received_amount.to_money.format.html_safe %></p>
-  <p class="text-grey"><time data-controller="time"><%= model.paid_at&.to_fs(:iso8601) %></time></p>
+  <p></p>
 </td>
 <td>
   <p><%# link_to model.user_name, { action: 'user', user_id: model.user_id } if model.user_id %></p>
