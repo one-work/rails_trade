@@ -85,7 +85,7 @@ module Trade
     end
 
     def set_payment
-      @payment = Payment.find params[:id]
+      @payment = current_user.payments.find params[:id]
     end
 
     def set_new_payment
