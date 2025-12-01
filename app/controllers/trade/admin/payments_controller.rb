@@ -38,7 +38,6 @@ module Trade
 
     def print
       @payment.print
-      render 'alert_message', locals: { message: '打印指令已发送' }
     end
 
     private
