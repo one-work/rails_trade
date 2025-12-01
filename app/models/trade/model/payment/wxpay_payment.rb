@@ -9,6 +9,7 @@ module Trade
       belongs_to :buyer, ->(o) { where(app_payee_id: o.app_payee_id) }, class_name: 'Wechat::Receiver', foreign_key: :buyer_identifier, primary_key: :account, optional: true
       belongs_to :app, class_name: 'Wechat::App', foreign_key: :appid, primary_key: :appid, optional: true
       belongs_to :agency, class_name: 'Wechat::Agency', foreign_key: :appid, primary_key: :appid, optional: true
+      belongs_to :wechat_user, class_name: 'Wechat::WechatUser', foreign_key: :buyer_identifier, primary_key: :uid, optional: true
 
       has_many :refunds, class_name: 'WxpayRefund', foreign_key: :payment_id
     end

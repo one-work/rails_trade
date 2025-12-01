@@ -1,6 +1,16 @@
 module Trade
   module Model::Payment::ScanPayment
 
+    included do
+      before_save :sync_from_wechat_user
+    end
+
+    def sync_from_wechat_user
+      if wechat_user
+        self.user_id = wechat_user.user_id
+      end
+    end
+
     def micro_pay!(auth_code:, spbill_create_ip:)
       opts = {
         out_trade_no: payment_uuid.presence || UidHelper.nsec_uuid('ScanPAY'),
