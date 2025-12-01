@@ -1,5 +1,6 @@
 module Trade
   module Model::Payment::ScanPayment
+    extend ActiveSupport::Concern
 
     included do
       before_save :sync_from_wechat_user
