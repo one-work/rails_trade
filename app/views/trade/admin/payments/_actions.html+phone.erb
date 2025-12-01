@@ -17,7 +17,7 @@
     <span class="text-grey">（<%= model.refunds_count %>）</span>
   </span>
 <% end %>
-<%= link_to({ action: 'print' }, class: 'cell has-column-centered') do %>
+<%= button_to({ action: 'print' }, class: 'cell has-column-centered') do %>
   <%= svg_tag 'print' %>
   <span><%= t('.print.title') %></span>
 <% end %>
