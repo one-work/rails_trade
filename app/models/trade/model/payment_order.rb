@@ -40,6 +40,11 @@ module Trade
       payment.compute_checked_amount
       order.compute_received_amount
 
+      # 扫码收款之后会拿到用户信息，同步至订单
+      if order.user_id.blank?
+        order.user_id = payment.user_id
+      end
+
       self.class.transaction do
         self.save
         order.save
