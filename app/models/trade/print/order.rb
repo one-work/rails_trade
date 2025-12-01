@@ -57,14 +57,17 @@ module Trade
 
     def to_esc(pr)
       pr.text_big_center organ.name
-      pr.set_pad
+      pr.dash
+      pr.break_line
       pr.qrcode(qrcode_show_url, y: 20)
       pr.text "#{self.class.human_attribute_name(:serial_number)}：#{serial_str}" if serial_number
       pr.text '已下单：'
-      items.includes(:good).each do |item|
-        pr.text(" #{item.good_name} #{item.number.to_human} x #{item.amount.to_money.to_s}") if item.good
+      cols = items.includes(:good).map do |item|
+        [item.good_name, item.number.to_human, item.amount.to_money.to_s]
       end
+      pr.table_3(cols: cols)
       pr.break_line
+      pr.dash
       pr.text "#{self.class.human_attribute_name(:item_amount)}：#{item_amount.to_money.to_s}" if item_amount != amount
       pr.text "#{self.class.human_attribute_name(:adjust_amount)}：#{adjust_amount.to_money.to_s}" if adjust_amount.to_d != 0
       pr.text "#{self.class.human_attribute_name(:amount)}：#{amount.to_money.to_s}"
