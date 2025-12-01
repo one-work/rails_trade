@@ -70,7 +70,7 @@ module Trade
       pr.text "#{self.class.human_attribute_name(:amount)}：#{amount.to_money.to_s}"
       pr.text "#{self.class.human_attribute_name(:payment_status)}：#{payment_status_i18n}"
       pr.break_line
-      organ.print_note.split("\n").each do |note|
+      organ.print_note.to_s.split("\n").each do |note|
         pr.text note
       end
       pr.text "#{created_at.to_fs(:wechat)}"

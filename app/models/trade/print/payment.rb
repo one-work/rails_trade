@@ -34,7 +34,7 @@ module Trade
       pr.text "#{self.class.human_attribute_name(:orders_amount)}：#{orders_amount.to_money.to_s}"
       pr.text "#{self.class.human_attribute_name(:total_amount)}：#{total_amount.to_money.to_s}"
       pr.break_line
-      organ.print_note.split("\n").each do |note|
+      organ.print_note.to_s.split("\n").each do |note|
         pr.text note
       end
       pr.text "#{self.class.human_attribute_name(:created_at)}：#{created_at.to_fs(:wechat)}"
