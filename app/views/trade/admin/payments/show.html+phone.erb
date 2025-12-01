@@ -4,12 +4,14 @@
 
 <%= render layout: 'index_list' do %>
   <%= render partial: 'trade/admin/payment_orders/index_item', layout: 'trade/admin/payment_orders/index_item_actions', collection: @payment.payment_orders, as: :model %>
-  <tr>
-    <td colspan="2" class="text-right text-grey">合计：</td>
-    <td><%= @payment.orders_amount.to_money.format.html_safe %></td>
-    <td><%= @payment.total_amount.to_money.format.html_safe %></td>
-  </tr>
+
 <% end %>
+
+<div>
+  <span class="text-right text-grey">合计：</span>
+  <span><%= @payment.orders_amount.to_money.format.html_safe %></span>
+  <span><%= @payment.total_amount.to_money.format.html_safe %></span>
+</div>
 
 <%= render layout: 'refund_table' do %>
   <%= render partial: 'refund_tbody', layout: 'refund_tr', collection: @payment.refunds, as: :model %>
