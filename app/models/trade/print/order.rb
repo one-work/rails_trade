@@ -3,6 +3,8 @@ module Trade
     extend ActiveSupport::Concern
 
     included do
+      attribute :print_info, :json, default: {}
+
       after_create_commit :print_later
       #after_save_commit :print, if: -> { paid_at.present? && paid_at_previously_was.blank? }
     end

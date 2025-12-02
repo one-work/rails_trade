@@ -26,7 +26,12 @@
   <p class="<%= model.received_amount.to_d > 0 ? 'text-success' : 'text-grey' %>"><%= model.received_amount.to_money.format.html_safe %></p>
 </td>
 <td>
-  <p></p>
+<% model.print_info.each do |info, time| %>
+  <p>
+    <span><%= info %></span>
+    <time data-controller="time"><%= time %></time>
+  </p>
+<% end %>
 </td>
 <td>
   <p><%# link_to model.user_name, { action: 'user', user_id: model.user_id } if model.user_id %></p>
