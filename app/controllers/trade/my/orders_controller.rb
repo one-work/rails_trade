@@ -24,7 +24,7 @@ module Trade
       if @order.user_id == current_user.id
         render 'show'
       elsif current_user.members.pluck(:organ_id).include? @order.organ_id
-        redirect_to controller: 'trade/admin/orders', action: 'show', id: @order.id, host: @order.organ.admin_host, allow_other_host: true
+        redirect_to({ controller: 'trade/admin/orders', action: 'show', id: @order.id, host: @order.organ.admin_host }, allow_other_host: true)
       else
         render 'err_not_found'
       end
