@@ -1,5 +1,5 @@
 <p>
-  <%= link_to model.payment_uuid, { controller: 'payment_orders', payment_id: model.id }, class: 'family-monospace' %>
+  <%= link_to model.payment_uuid, { action: 'show', id: model.id }, class: 'family-monospace' %>
 </p>
 <p>
   <strong class="text-danger"><%= model.total_amount.to_money.format.html_safe %></strong>
