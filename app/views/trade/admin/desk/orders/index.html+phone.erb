@@ -1,7 +1,7 @@
 <div class="mt-3">
 <% @orders.each do |order| %>
   <%= render partial: 'order_item', locals: { model: order } %>
-  <%= render layout: 'index_list' do %>
+  <%= render layout: 'index_list', locals: { order: order } do %>
     <%= render partial: 'index_item', layout: 'index_item_actions', collection: order.items, as: :model %>
   <% end %>
 <% end %>
