@@ -1,7 +1,7 @@
 module Trade
   class My::PaymentsController < My::BaseController
     before_action :set_order, only: [:wxpay]
-    before_action :set_payment, only: [:show, :edit, :update, :destroy]
+    before_action :set_payment, only: [:edit, :update, :destroy]
     before_action :set_new_payment, only: [:new, :create]
 
     def index
@@ -21,6 +21,18 @@ module Trade
         render 'create', locals: { url: url }
       else
         render 'create', locals: { url: url_for(controller: 'orders') }
+      end
+    end
+
+    def show
+      @payment = Payment.find(params[:id])
+
+      if @payment.user_id == current_user.id
+        render 'show'
+      elsif current_user.members.pluck(:organ_id).include? @payment.organ_id
+        redirect_to controller: 'trade/admin/payments', action: 'show', id: @payment.id, host: @payment.organ.admin_host
+      else
+        render 'err_not_found'
       end
     end
 
