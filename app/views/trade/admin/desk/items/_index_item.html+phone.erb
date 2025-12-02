@@ -1,0 +1,14 @@
+<p>
+  <span><%= model.good_name %></span>
+  <% if ['rent', 'invest'].include?(model.aim) %>
+    <span class="tag"><%= model.aim_i18n %></span>
+  <% end %>
+</p>
+<p>
+  <span class="text-danger"><%= model.single_price.to_money.format.html_safe %></span>
+  <span class="text-grey">x</span>
+  <span><%= model.number.to_human %></span>
+</p>
+<% if model.order_id.blank? %>
+  <p><time data-controller="time" data-format="human" class="text-grey"><%= model.created_at.to_fs(:iso8601) %></time></p>
+<% end %>
