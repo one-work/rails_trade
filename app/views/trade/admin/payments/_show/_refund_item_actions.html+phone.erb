@@ -1,0 +1,15 @@
+<div class="media">
+  <div class="media-content">
+    <%= yield %>
+  </div>
+  <div class="media-right as-x">
+    <% if model.can_refund? %>
+      <%= button_to({ controller: 'refunds', action: 'confirm', id: model.id }, method: :patch, data: { turbo_confirm: t('.refunds.confirm.title') }, class: 'button is-small is-primary') do %>
+        <span><%= t('.refunds.confirm.title') %></span>
+      <% end %>
+      <%= button_to({ controller: 'refunds', action: 'deny', id: model.id }, method: :patch, data: { turbo_confirm: t('.refunds.deny.title') }, class: 'button is-small is-danger mt-1') do %>
+        <span><%= t('.refunds.deny.title') %></span>
+      <% end %>
+    <% end %>
+  </div>
+</div>

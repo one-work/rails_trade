@@ -12,6 +12,6 @@
   <span><%= @payment.total_amount.to_money.format.html_safe %></span>
 </div>
 
-<%= render layout: 'refund_table' do %>
-  <%= render partial: 'refund_tbody', layout: 'refund_tr', collection: @payment.refunds, as: :model %>
+<%= render layout: 'refund_list' do %>
+  <%= render partial: 'refund_item', layout: 'refund_item_actions', collection: @payment.refunds, as: :model %>
 <% end if @payment.refunds.present? %>
