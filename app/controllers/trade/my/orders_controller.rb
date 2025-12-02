@@ -19,7 +19,7 @@ module Trade
     end
 
     def show
-      @order = Organ.find(id: params[:id])
+      @order = Order.find(params[:id])
 
       if @order.user_id = current_user.id
         render 'show'
