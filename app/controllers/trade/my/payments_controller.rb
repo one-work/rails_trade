@@ -30,7 +30,7 @@ module Trade
       if @payment.user_id == current_user.id
         render 'show'
       elsif current_user.members.pluck(:organ_id).include? @payment.organ_id
-        redirect_to controller: 'trade/admin/payments', action: 'show', id: @payment.id, host: @payment.organ.admin_host
+        redirect_to controller: 'trade/admin/payments', action: 'show', id: @payment.id, host: @payment.organ.admin_host, allow_other_host: true
       else
         render 'err_not_found'
       end
