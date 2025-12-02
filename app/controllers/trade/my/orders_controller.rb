@@ -1,7 +1,7 @@
 module Trade
   class My::OrdersController < My::BaseController
     before_action :set_order, only: [
-      :show, :edit, :update, :destroy, :actions,
+      :edit, :update, :destroy, :actions,
       :refund, :finish, :payment_types, :payment_wxpay, :payment_pending, :payment_confirm, :payment_frozen, :wait, :cancel, :wxpay_pc_pay, :package
     ]
     before_action :set_cart, only: [:cart, :cart_create]
@@ -16,6 +16,18 @@ module Trade
       @orders = current_user.orders
                             .includes(:payment_strategy, :items, :payment_orders, address: :area, from_address: :area)
                             .default_where(q_params).order(id: :desc).page(params[:page]).per(params[:per])
+    end
+
+    def show
+      @order = Organ.find(id: params[:id])
+
+      if @order.user_id = current_user.id
+        render 'show'
+      elsif current_user.members.pluck(:organ_id).include? @order.organ_id
+        render 'admin'
+      else
+        render 'err_not_found'
+      end
     end
 
     def cart
