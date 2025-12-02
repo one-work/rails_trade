@@ -1,9 +1,5 @@
 <p>
-  <% if model.good %>
-    <%= link_to model.good_name, { action: 'show', id: model.id } %>
-  <% else %>
-    <span><%= model.good_name %></span>
-  <% end %>
+  <span><%= model.good_name %></span>
   <% if ['rent', 'invest'].include?(model.aim) %>
     <span class="tag"><%= model.aim_i18n %></span>
   <% end %>
