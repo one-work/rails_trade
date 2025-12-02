@@ -5,13 +5,13 @@
   <div class="media-right">
   <% if model.state_confirmed? %>
     <%= button_to({ controller: 'payment_orders', action: 'cancel', payment_id: @payment, id: model.id }, class: 'button is-small is-warning') do %>
-      <i class="fa-solid fa-clock-rotate-left"></i>
-      <span class="pl-1">撤销</span>
+      <%= svg_tag 'clock-rotate-left' %>
+      <span class="ml-1">撤销</span>
     <% end %>
   <% else %>
     <%= button_to({ controller: 'payment_orders', action: 'update', id: model.id }, method: :patch, class: 'button is-small is-success', form: { id: "edit_payment_order_#{model.id}" }) do %>
-      <i class="fa-solid fa-clock-rotate-left"></i>
-      <span class="pl-1">核销</span>
+      <%= svg_tag 'clock-rotate-left' %>
+      <span class="ml-1">核销</span>
     <% end %>
   <% end %>
   </div>
