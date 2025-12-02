@@ -35,7 +35,7 @@ module Trade
     end
 
     def confirm
-      @payment_order.confirmed!
+      @payment_order.confirm!
     end
 
     def cancel
