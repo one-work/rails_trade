@@ -27,5 +27,13 @@ module Trade::Admin
       @desk = Space::Desk.default_where(default_params).find params[:desk_id]
     end
 
+    def item_params
+      params.fetch(:item, {}).permit(
+        :number,
+        :desk_id,
+        :rent_estimate_finish_at
+      )
+    end
+
   end
 end
