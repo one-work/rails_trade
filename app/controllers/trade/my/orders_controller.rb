@@ -21,7 +21,7 @@ module Trade
     def show
       @order = Order.find(params[:id])
 
-      if @order.user_id = current_user.id
+      if @order.user_id == current_user.id
         render 'show'
       elsif current_user.members.pluck(:organ_id).include? @order.organ_id
         render 'admin'
