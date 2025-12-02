@@ -3,7 +3,7 @@
     <%= yield %>
   </div>
   <div class="media-right">
-    <%= button_to({ controller: 'items', action: 'actions', id: model.id }, class: 'button is-borderless') do %>
+    <%= button_to({ controller: 'desk/items', action: 'actions', id: model.id }, class: 'button is-borderless') do %>
       <%= svg_tag 'ellipsis-vertical' %>
     <% end %>
   </div>
