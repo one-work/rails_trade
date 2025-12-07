@@ -1,12 +1,7 @@
-require 'active_support/configurable'
-
 module RailsTrade
-  include ActiveSupport::Configurable
+  mattr_accessor :config, default: ActiveSupport::OrderedOptions.new
 
-  configure do |config|
-    config.default_currency = 'CNY'
-    config.disabled_models = []
-    config.expire_after = 2.hour
-  end
-
+  config.default_currency = 'CNY'
+  config.disabled_models = []
+  config.expire_after = 2.hour
 end
