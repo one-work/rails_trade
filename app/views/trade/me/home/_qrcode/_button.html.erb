@@ -2,10 +2,10 @@
   <div
     data-controller="mini-program"
     data-mini-program-nav-value="true"
-    data-mini-program-url-value="/pages/download/index"
+    data-mini-program-url-value="/pages/download_image/index"
     data-mini-program-data-value="<%= { url: url_for(action: 'qrcode_file', only_path: false) }.to_json %>"
     data-action="click->mini-program#link"
-    class="button"
+    class="button is-primary"
   >
     <%= svg_tag 'download' %>
     <span class="ml-1"><%= t('.qrcode_file.title') %></span>
