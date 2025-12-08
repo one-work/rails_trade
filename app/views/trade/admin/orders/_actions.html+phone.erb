@@ -34,7 +34,7 @@
     data-mini-program-url-value="/pages/print/index"
     data-mini-program-data-value="<%=
       {
-        url: url_for(action: 'print_data', id: model.id, only_path: false, auth_token: Current.session&.id, **Rails.application.routes.default_url_options),
+        url: url_for(action: 'print_data', id: model.id, only_path: false, auth_token: Current.session&.id),
         device: current_organ.bluetooth_device
       }.to_json
     %>"
