@@ -1,6 +1,7 @@
 module Trade
   class Me::HomeController < Me::BaseController
     before_action :set_url, only: [:qrcode, :qrcode_file]
+    skip_before_action :require_org_member, only: [:qrcode_file]
 
     def qrcode
     end
