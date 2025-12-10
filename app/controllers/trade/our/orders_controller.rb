@@ -1,5 +1,9 @@
 module Trade
   class Our::OrdersController < My::OrdersController
+    before_action :set_order, only: [
+      :show, :edit, :update, :destroy, :actions,
+      :refund, :finish, :payment_types, :payment_wxpay, :payment_pending, :payment_confirm, :payment_frozen, :wait, :cancel, :wxpay_pc_pay, :package
+    ]
 
     def index
       q_params = { organ_id: current_organ.id }
@@ -17,6 +21,9 @@ module Trade
 
     def new
       @order = Order.new(current_cart_id: params[:current_cart_id])
+    end
+
+    def show
     end
 
     def refund
