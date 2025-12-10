@@ -61,7 +61,6 @@ module Trade
       pr.text_big_center organ.name
       pr.dash
       pr.break_line
-      pr.qrcode(qrcode_show_url, y: 20)
       pr.text "#{self.class.human_attribute_name(:serial_number)}：#{serial_str}" if serial_number
       pr.text '已下单：'
       pr.dash
@@ -76,6 +75,7 @@ module Trade
       pr.text "#{self.class.human_attribute_name(:amount)}：#{amount.to_money.to_s}"
       pr.text "#{self.class.human_attribute_name(:payment_status)}：#{payment_status_i18n}"
       pr.break_line
+      pr.qrcode(qrcode_show_url, y: 20)
       organ.print_note.to_s.split("\n").each do |note|
         pr.text note
       end
