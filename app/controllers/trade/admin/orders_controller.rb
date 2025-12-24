@@ -265,5 +265,12 @@ module Trade
       )
     end
 
+    def set_filter_columns
+      @filter_columns = set_filter_i18n(
+        ['uuid'],
+        'uuid' => 'search'
+      )
+    end
+
   end
 end
