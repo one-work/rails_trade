@@ -49,6 +49,14 @@ module Trade
       @payment = Payment.new(payment_params)
     end
 
+    def set_filter_columns
+      @filter_columns = set_filter_i18n(
+        state: { type: 'dropdown', default: true },
+        type: { type: 'dropdown', default: true },
+        payment_uuid: 'search'
+      )
+    end
+
     def payment_params
       p = params.fetch(:payment, {}).permit(
         :type,
