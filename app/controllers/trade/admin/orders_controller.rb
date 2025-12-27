@@ -10,6 +10,7 @@ module Trade
     before_action :set_cart, only: [:cart, :cart_create]
     before_action :set_payment_strategies, only: [:unpaid, :new, :create]
     before_action :state_skip_back, only: [:cart]
+    before_action :set_filter_columns, only: [:index, :unpaid]
     skip_before_action :require_user, only: [:print_data] if whether_filter :require_user
     skip_before_action :require_role, only: [:print_data] if whether_filter :require_role
 
@@ -267,7 +268,10 @@ module Trade
 
     def set_filter_columns
       @filter_columns = set_filter_i18n(
-        'uuid' => { type: 'search', default: true }
+        'state' => { type: 'dropdown', default: true },
+        'payment_status' => { type: 'dropdown', default: true },
+        'uuid' => { type: 'search', default: true },
+        'created_at' => 'datetime'
       )
     end
 
