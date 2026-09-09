@@ -1,21 +1,4 @@
 <div class="buttons are-small as-bottom">
-  <% if request.variant.include?(:mini_program) %>
-    <div
-      data-controller="mini-program"
-      data-mini-program-url-value="/pages/service/index"
-      data-mini-program-data-value="<%= { url: url_for(only_path: false) }.to_json %>"
-      data-action="click->mini-program#link"
-      class="button is-rounded"
-    >
-      <%= svg_tag 'headset' %>
-      <span>联系客服</span>
-    </div>
-  <% else %>
-    <%= link_to current_organ.service_url, rel: 'nofollow', class: 'button is-rounded is-primary' do %>
-      <%= svg_tag 'headset' %>
-      <span>联系客服</span>
-    <% end if current_organ && current_organ.service_url.present? %>
-  <% end %>
   <button
     data-controller="history"
     data-action="history#back"
@@ -23,10 +6,6 @@
   >
     <span>继续点单</span>
   </button>
-  <%= button_to({ controller: 'orders', action: 'cancel', id: @order.id }, method: :patch, class: 'button is-rounded') do %>
-    <%= svg_tag 'ban' %>
-    <span>取消订单</span>
-  <% end if @order.can_cancel? %>
   <%= button_to({ action: 'payment_types', id: @order.id }, class: 'button is-rounded is-primary') do %>
     <%= svg_tag 'credit-card' %>
     <span>支付</span>
@@ -35,4 +14,8 @@
     <%= svg_tag 'credit-card' %>
     <span>支付</span>
   <% end if @order.aim_rent? && @order.can_pay? %>
+  <%= button_to({ action: 'actions', id: @order.id }, class: 'button is-rounded is-primary') do %>
+    <%= svg_tag 'ellipsis' %>
+    <span><%= t('.actions.title') %></span>
+  <% end %>
 </div>
