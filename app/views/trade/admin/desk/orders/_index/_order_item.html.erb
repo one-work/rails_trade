@@ -1,10 +1,22 @@
-<%= link_to({ controller: 'orders', action: 'show', id: model.id }, class: 'flex align-items-center pl-2 pb-1') do %>
-  <time data-controller="time" data-format="HH:mm" class="text-weight-bold"><%= model.created_at.to_fs(:iso8601) %></time>
-  <% if model.agent %>
-    <div class="tags has-addons mb-0 ml-2">
-      <span class="tag is-info">下单人</span>
-      <span class="tag is-link"><%= model.agent.name %></span>
-    </div>
+<%= link_to({ controller: 'orders', action: 'show', id: model.id }, class: 'has-block-space-between pl-2 mb-2') do %>
+  <div class="has-block-left">
+    <time data-controller="time" data-format="HH:mm" class="text-weight-bold"><%= model.created_at.to_fs(:iso8601) %></time>
+    <% if model.agent %>
+      <div class="tags has-addons mb-0">
+        <span class="tag is-info">下单人</span>
+        <span class="tag is-link"><%= model.agent.name %></span>
+      </div>
+    <% end %>
+    <span class="tag"><%= model.payment_status_i18n %></span>
+  </div>
+  <%=
+    button_to(
+      { controller: 'print/admin/home', action: 'inner' },
+      params: { gid: model.to_gid.to_s, aim: 'receipt' },
+      id: 'print-button',
+      data: { controller: 'print-pos' }
+    ) do
+  %>
+    <%= svg_tag 'print' %>
   <% end %>
-  <span class="tag ml-1"><%= model.payment_status_i18n %></span>
 <% end %>
