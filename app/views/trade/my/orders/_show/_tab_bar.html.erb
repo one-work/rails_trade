@@ -11,12 +11,19 @@
       <span>联系客服</span>
     </div>
   <% else %>
-    <%= link_to current_organ.service_url, rel: 'nofollow', class: 'button is-rounded' do %>
+    <%= link_to current_organ.service_url, rel: 'nofollow', class: 'button is-rounded is-primary' do %>
       <%= svg_tag 'headset' %>
       <span>联系客服</span>
     <% end if current_organ && current_organ.service_url.present? %>
   <% end %>
-  <%= button_to({ controller: 'orders', action: 'cancel', id: @order.id }, method: :patch, class: 'button is-rounded', form: { class: '' }) do %>
+  <button
+    data-controller="history"
+    data-action="history#back"
+    class="button is-rounded is-primary flex-grow-1"
+  >
+    <span>继续点单</span>
+  </button>
+  <%= button_to({ controller: 'orders', action: 'cancel', id: @order.id }, method: :patch, class: 'button is-rounded') do %>
     <%= svg_tag 'ban' %>
     <span>取消订单</span>
   <% end if @order.can_cancel? %>

@@ -9,6 +9,12 @@
       </div>
     </dd>
   </div>
+  <% if model.desk %>
+    <div>
+      <dt><%= Trade::Order.human_attribute_name(:desk_id) %></dt>
+      <dd><%= model.desk.name %></dd>
+    </div>
+  <% end %>
   <% if model.serial_str.present? %>
     <div>
       <dt><%= Trade::Order.human_attribute_name(:serial_str) %></dt>
