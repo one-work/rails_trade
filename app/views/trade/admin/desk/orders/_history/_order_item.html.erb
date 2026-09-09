@@ -1,4 +1,4 @@
-<%= link_to({ controller: 'orders', action: 'show', id: model.id }, class: 'mx-3 mt-3') do %>
+<%= link_to({ controller: 'orders', action: 'show', id: model.id }, class: 'px-2') do %>
   <p class="pl-2"><time data-controller="time"><%= model.created_at.to_fs(:iso8601) %></time></p>
   <div class="pl-2 flex">
     <% if model.agent %>
