@@ -13,14 +13,12 @@
   <div class="card-header">
     <span class="size-7 text-grey has-border-left-primary">详情</span>
   </div>
-  <div class="card-content">
-    <dl class="as-show">
-      <div>
-        <dt>待收款</dt>
-        <dd><%= @desk.counters['unreceived_amount'].to_money.format.html_safe %></dd>
-      </div>
-    </dl>
-  </div>
+  <dl class="card-content as-show">
+    <div>
+      <dt><%= Trade::Order.human_attribute_name(:unreceived_amount) %></dt>
+      <dd><%= @desk.counters['unreceived_amount'].to_money.format.html_safe %></dd>
+    </div>
+  </dl>
 </div>
 
 <%= paginate @orders %>
