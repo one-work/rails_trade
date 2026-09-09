@@ -9,4 +9,18 @@
   </div>
 <% end %>
 
+<div class="card as-transparent">
+  <div class="card-header">
+    <span class="size-7 text-grey has-border-left-primary">详情</span>
+  </div>
+  <div class="card-content">
+    <dl class="as-show">
+      <div>
+        <dt>待收款</dt>
+        <dd><%= @desk.counters['unreceived_amount'].to_money.format.html_safe %></dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
 <%= paginate @orders %>
