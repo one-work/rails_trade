@@ -1,4 +1,4 @@
-<%= link_to({ controller: 'orders', action: 'show', id: model.id }, class: 'has-block-space-between px-2 mb-2') do %>
+<%= link_to({ controller: 'orders', action: 'show', id: model.id }, class: 'has-block-left px-2 mb-2') do %>
   <time data-controller="time"><%= model.created_at.to_fs(:iso8601) %></time>
   <% if model.agent %>
     <div class="tags has-addons mb-0">
