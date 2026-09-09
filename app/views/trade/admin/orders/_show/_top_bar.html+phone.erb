@@ -1,12 +1,22 @@
 <%= render 'top_bar_left' do %>
   <div class="bar-title"><%= @order.uuid %></div>
   <% if @order.desk %>
-    <%= link_to({ controller: 'space/admin/desks', action: 'all' }, class: 'right') do %>
-      <%= svg_tag 'grid-dividers' %>
-    <% end %>
+    <button
+      data-controller="history"
+      data-history-url-value="<%= url_for(controller: 'space/admin/desks', action: 'all', only_path: false) %>"
+      data-action="history#direct"
+      class="right"
+    >
+      <%= svg_tag 'grid-dividers', class: 'icon is-small text-link' %>
+    </button>
   <% else %>
-    <%= link_to({ controller: '/me/home' }, class: 'right') do %>
-      <%= svg_tag 'user', kind: 'regular' %>
-    <% end %>
+    <button
+      data-controller="history"
+      data-history-url-value="<%= url_for(controller: '/me/home', only_path: false) %>"
+      data-action="history#direct"
+      class="right"
+    >
+      <%= svg_tag 'user', class: 'icon is-small text-link' %>
+    </button>
   <% end %>
 <% end %>
