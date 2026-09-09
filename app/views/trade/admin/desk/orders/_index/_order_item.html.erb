@@ -1,5 +1,5 @@
-<%= link_to({ controller: 'orders', action: 'show', id: model.id }, class: 'has-block-space-between pl-2 mb-2') do %>
-  <div class="has-block-left">
+<div class="has-block-space-between px-2 mb-2">
+  <%= link_to({ controller: 'orders', action: 'show', id: model.id }, class: 'has-block-left') do %>
     <time data-controller="time" data-format="HH:mm" class="text-weight-bold"><%= model.created_at.to_fs(:iso8601) %></time>
     <% if model.agent %>
       <div class="tags has-addons mb-0">
@@ -8,7 +8,7 @@
       </div>
     <% end %>
     <span class="tag"><%= model.payment_status_i18n %></span>
-  </div>
+  <% end %>
   <%=
     button_to(
       { controller: 'print/admin/home', action: 'inner' },
@@ -17,6 +17,6 @@
       data: { controller: 'print-pos' }
     ) do
   %>
-    <%= svg_tag 'print' %>
+    <%= svg_tag 'print', class: 'icon is-small text-link' %>
   <% end %>
-<% end %>
+</div>
