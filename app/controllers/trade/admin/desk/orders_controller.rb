@@ -21,7 +21,7 @@ module Trade
       q_params.merge! params.permit(:cart_id, :order_id, :good_type, :good_id, :desk_id, :aim, :address_id, :status, 'created_at-gte', 'created_at-lte')
 
       @order_s = Order.default_where(q_params)
-      @orders = @order_s.includes(:user, :items).order(id: :desc).page(params[:page]).per(params[:per])
+      @orders = @order_s.includes(:user, items: { good: { logo_attachment: :blob } }).order(id: :desc).page(params[:page]).per(params[:per])
     end
 
     def done
