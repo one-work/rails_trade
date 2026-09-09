@@ -1,3 +1,16 @@
 <div class="buttons as-bottom">
-  <%= submit_tag t('.create.title'), class: 'button is-rounded is-fullwidth is-primary', form: 'new_order' %>
+  <button
+    data-controller="history"
+    data-action="history#back"
+    class="button is-rounded is-primary flex-grow-1"
+  >
+    <span>加菜</span>
+  </button>
+  <%=
+    submit_tag(
+      t('.create.title'),
+      class: 'button is-rounded is-primary flex-grow-1',
+      form: 'new_order'
+    )
+  %>
 </div>
