@@ -23,17 +23,17 @@
     </dd>
   </div>
   <div>
-    <% if request.variant.any?(:mini_program) %>
-    <button
-      data-controller="mini-program"
-      data-mini-program-url-value="/pages/print/index"
-      data-mini-program-data-value="<%= { url: url_for(controller: 'ship/admin/packages', action: 'print_data', id: package.id, only_path: false, **Rails.app.routes.default_url_options) }.to_json %>"
-      data-action="click->mini-program#link"
-      class="weui-form-preview__btn weui-form-preview__btn_primary"
-    >
+    <%=
+      button_to(
+        { controller: 'print/admin/home', action: 'inner' },
+        params: { gid: package.to_gid.to_s, aim: 'label' },
+        id: 'print-button',
+        data: { controller: 'print-pos' },
+        class: 'cell has-column-centered'
+      ) do
+    %>
       <%= svg_tag 'print' %>
-      <span>打印包裹</span>
-    </button>
+      <span><%= t('print.admin.home.inner.title') %></span>
     <% end %>
     <%= link_to({ controller: 'packages', action: 'show', order_id: @order.id, id: package.id }, class: 'weui-form-preview__btn weui-form-preview__btn_primary', text: true) do %>
       <span>详情</span>
