@@ -1,7 +1,8 @@
 <div class="buttons as-bottom">
   <button
     data-controller="history"
-    data-action="history#back"
+    data-action="history#direct"
+    data-history-url-value="<%= url_for(controller: 'factory/productions', only_path: false) %>"
     class="button is-rounded is-primary flex-grow-1"
   >
     <span>加菜</span>
