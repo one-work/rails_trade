@@ -23,11 +23,11 @@
       <% end %>
     </div>
     <% model.print_info.each do |key, time| %>
-      <p>
+      <div>
         <span><%= Trade::Order.enum_i18n(:print_info, key) %></span>
         <span>：</span>
         <time data-controller="time" data-format="human" class="text-grey"><%= time %></time>
-      </p>
+      </div>
     <% end %>
   </div>
   <%= render layout: 'index_list', locals: { order: model } do %>
