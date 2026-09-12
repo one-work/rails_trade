@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-header">
+  <div class="card-header flex-direction-column">
     <div class="has-block-space-between flex-grow-1 px-3 py-2">
       <%= link_to({ controller: 'orders', action: 'show', id: model.id }, class: 'has-block-left') do %>
         <time data-controller="time" data-format="HH:mm" class="text-weight-bold"><%= model.created_at.to_fs(:iso8601) %></time>
@@ -23,8 +23,8 @@
       <% end %>
     </div>
     <% model.print_info.each do |key, time| %>
-      <div>
-        <span><%= Trade::Order.enum_i18n(:print_info, key) %></span>
+      <div class="px-3 mb-2">
+        <span><%= Trade::Order.enum_i18n(:print_info_enum, key) %></span>
         <span>：</span>
         <time data-controller="time" data-format="human" class="text-grey"><%= time %></time>
       </div>

@@ -37,7 +37,7 @@ zh:
           use: 使用
           invest: 投资
           rent: 租用
-        print_info:
+        print_info_enum:
           dine_prepare: 备菜单已打印
       trade/payment:
         type:
