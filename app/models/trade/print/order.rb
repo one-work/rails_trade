@@ -63,7 +63,7 @@ module Trade
           pr.text "#{item.class.human_attribute_name(:created_at)}：#{item.created_at.to_fs(:wechat)}"
           [item.good_name, item.number.to_human]
         end
-        pr.table_big(headers: { '品名' => 8, '数量' => nil }, cols: cols)
+        pr.table_big(headers: { '品名' => 8, '数量' => 2 }, cols: cols)
       when 'delivery_prepare'
         items.where(dispatch: [nil, 'delivery']).each do |item|
           pr.text_big("#{item.good_name} x #{item.number.to_human}") if item.good
