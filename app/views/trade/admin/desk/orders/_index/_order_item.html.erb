@@ -1,22 +1,35 @@
-<div class="has-block-space-between px-2 mb-2">
-  <%= link_to({ controller: 'orders', action: 'show', id: model.id }, class: 'has-block-left') do %>
-    <time data-controller="time" data-format="HH:mm" class="text-weight-bold"><%= model.created_at.to_fs(:iso8601) %></time>
-    <% if model.agent %>
-      <div class="tags has-addons mb-0">
-        <span class="tag is-info">下单人</span>
-        <span class="tag is-link"><%= model.agent.name %></span>
-      </div>
-    <% end %>
-    <span class="tag"><%= model.payment_status_i18n %></span>
+<div class="card">
+  <div class="card-header">
+    <div class="has-block-space-between flex-grow-1 px-3 py-2">
+      <%= link_to({ controller: 'orders', action: 'show', id: model.id }, class: 'has-block-left') do %>
+        <time data-controller="time" data-format="HH:mm" class="text-weight-bold"><%= model.created_at.to_fs(:iso8601) %></time>
+        <% if model.agent %>
+          <div class="tags has-addons mb-0">
+            <span class="tag is-info">下单人</span>
+            <span class="tag is-link"><%= model.agent.name %></span>
+          </div>
+        <% end %>
+        <span class="tag"><%= model.payment_status_i18n %></span>
+      <% end %>
+      <%=
+        button_to(
+          { controller: 'print/admin/home', action: 'inner' },
+          params: { gid: model.to_gid.to_s, aim: 'receipt' },
+          id: 'print-button',
+          data: { controller: 'print-pos' }
+        ) do
+      %>
+        <%= svg_tag 'print', class: 'icon is-small text-link' %>
+      <% end %>
+    </div>
+  </div>
+  <% model.print_info.each do |key, time| %>
+    <p>
+      <span><%= key %></span>
+      <time data-controller="time"><%= time.to_fs(:iso8601) %></time>
+    </p>
   <% end %>
-  <%=
-    button_to(
-      { controller: 'print/admin/home', action: 'inner' },
-      params: { gid: model.to_gid.to_s, aim: 'receipt' },
-      id: 'print-button',
-      data: { controller: 'print-pos' }
-    ) do
-  %>
-    <%= svg_tag 'print', class: 'icon is-small text-link' %>
+  <%= render layout: 'index_list', locals: { order: model } do %>
+    <%= render partial: 'index_item', layout: 'index_item_actions', collection: model.items, as: :model %>
   <% end %>
 </div>
