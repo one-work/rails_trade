@@ -26,7 +26,7 @@
       <% if model.print_info.key?('dine_prepare') %>
         <span><%= Trade::Order.enum_i18n(:print_info_enum, 'dine_prepare') %></span>
         <span>：</span>
-        <time data-controller="time" data-format="human" class="text-grey"><%= time %></time>
+        <time data-controller="time" data-format="human" class="text-grey"><%= model.print_info['dine_prepare'] %></time>
       <% else %>
         <%=
           button_to(
