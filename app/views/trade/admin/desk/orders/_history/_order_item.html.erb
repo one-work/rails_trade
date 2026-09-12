@@ -1,13 +1,17 @@
-<%= link_to({ controller: 'orders', action: 'show', id: model.id }, class: 'has-block-left px-2 mb-2') do %>
-  <time data-controller="time"><%= model.created_at.to_fs(:iso8601) %></time>
-  <% if model.agent %>
-    <div class="tags has-addons mb-0">
-      <span class="tag text-grey">下单人</span>
-      <span class="tag is-warning"><%= model.agent.name %></span>
-    </div>
+<div class="card">
+  <div class="card-header">
+    <%= link_to({ controller: 'orders', action: 'show', id: model.id }, class: 'has-block-left px-3 py-2') do %>
+      <time data-controller="time"><%= model.created_at.to_fs(:iso8601) %></time>
+      <% if model.agent %>
+        <div class="tags has-addons mb-0">
+          <span class="tag text-grey">下单人</span>
+          <span class="tag is-warning"><%= model.agent.name %></span>
+        </div>
+      <% end %>
+      <span class="tag"><%= model.payment_status_i18n %></span>
+    <% end %>
+  </div>
+  <%= render layout: 'index_list', locals: { order: model } do %>
+    <%= render partial: 'index_item', layout: 'index_item_actions', collection: model.items, as: :model %>
   <% end %>
-  <span class="tag"><%= model.payment_status_i18n %></span>
-<% end %>
-<%= render layout: 'index_list', locals: { order: order } do %>
-  <%= render partial: 'index_item', layout: 'index_item_actions', collection: order.items, as: :model %>
-<% end %>
+</div>
