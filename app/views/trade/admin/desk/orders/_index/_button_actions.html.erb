@@ -9,7 +9,7 @@
 <%=
   button_to(
     { controller: 'print/admin/home', action: 'inner' },
-    params: { gid: @desk.to_gid.to_s, aim: 'order' },
+    params: { gid: @desk.to_gid.to_s, aim: 'checklist' },
     id: 'print-button',
     data: { controller: 'print-pos' },
     class: 'button is-rounded is-primary'
