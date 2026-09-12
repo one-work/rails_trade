@@ -39,6 +39,7 @@ zh:
           rent: 租用
         print_info_enum:
           dine_prepare: 备菜单已打印
+          receipt: 预结单已打印
       trade/payment:
         type:
           Trade::HandPayment: 后台支付

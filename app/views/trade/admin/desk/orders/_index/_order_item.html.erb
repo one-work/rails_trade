@@ -22,13 +22,26 @@
         <%= svg_tag 'print', class: 'icon is-small text-link' %>
       <% end %>
     </div>
-    <% model.print_info.each do |key, time| %>
-      <div class="px-3 mb-2">
+    <div class="px-3 mb-2">
+      <% if model.print_info.key?('dine_prepare') %>
         <span><%= Trade::Order.enum_i18n(:print_info_enum, key) %></span>
         <span>：</span>
         <time data-controller="time" data-format="human" class="text-grey"><%= time %></time>
-      </div>
-    <% end %>
+      <% else %>
+        <%=
+          button_to(
+            { controller: 'print/admin/home', action: 'inner' },
+            params: { gid: model.to_gid.to_s, aim: 'dine_prepare' },
+            id: 'print-button',
+            data: { controller: 'print-pos' },
+            class: 'button is-small is-rouned is-primary'
+          ) do
+        %>
+          <%= svg_tag 'print' %>
+          <span><%= Trade::Order.enum_i18n(:print_info_enum, key) %></span>
+        <% end %>
+      <% end %>
+    </div>
   </div>
   <%= render layout: 'index_list', locals: { order: model } do %>
     <%= render partial: 'index_item', layout: 'index_item_actions', collection: model.items, as: :model %>
