@@ -87,7 +87,7 @@ module Trade
         pr.table_big(headers: { '品名' => 24, '数量' => 12 }, cols: cols)
         pr.dash
         pr.text "#{self.class.human_attribute_name(:created_at)}：#{created_at.to_fs(:wechat)}"
-        pr.text address.detail
+        pr.text address.detail if address
       when 'address'
         pr.bar(y: 0, height: 20)
         pr.qrcode_right(qrcode_show_url, y: 30, cell_width: 5)
