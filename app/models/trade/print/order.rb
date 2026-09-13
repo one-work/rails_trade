@@ -6,7 +6,7 @@ module Trade
       attribute :print_info, :json, default: {}
 
       after_create_commit :print_dine_prepare, if: -> { desk_id.present? && organ&.auto_prepare }
-      after_save_commit :print_delivery_prepare, if: -> { paid_at.present? && paid_at_previously_was.blank? }
+      after_save_commit :print_delivery_prepare, if: -> { desk_id.blank? && (paid_at.present? && paid_at_previously_was.blank?) }
       after_save_commit :send_to_print_info, if: -> { saved_change_to_print_info? }
     end
 
