@@ -56,13 +56,16 @@ module Trade
           pr.text note
         end
         pr.text "#{created_at.to_fs(:wechat)}"
-      when 'dine_prepare'
-        #pr.text_big item.desk.name if item.desk
-        pr.text "#{self.class.human_attribute_name(:created_at)}：#{created_at.to_fs(:wechat)}"
-        cols = items.where(dispatch: ['dine', 'fetch']).map do |item|
-          [item.good_name, item.number.to_human]
+      when 'dine_prepare'  # 后厨分单
+        items.where(dispatch: ['dine', 'fetch']).each do |item|
+          pr.text_center '厨房备菜分单'
+          pr.text_big_center item.desk.name if item.desk
+          pr.dash
+          pr.table_big(headers: { '品名' => 24, '数量' => 12 }, cols: [[item.good_name, item.number.to_human]])
+          pr.dash
+          pr.text "#{self.class.human_attribute_name(:created_at)}：#{created_at.to_fs(:wechat)}"
+          pr.break_line
         end
-        pr.table_big(headers: { '品名' => 24, '数量' => 12 }, cols: cols)
       when 'delivery_prepare'
         items.where(dispatch: [nil, 'delivery']).each do |item|
           pr.text_big("#{item.good_name} x #{item.number.to_human}") if item.good
