@@ -85,7 +85,7 @@ module Trade
           [item.good_name, item.number.to_human]
         end
         pr.table_big(headers: { '品名' => 24, '数量' => 12 }, cols: cols)
-        pr.break_line
+        pr.dash
         pr.text "#{self.class.human_attribute_name(:created_at)}：#{created_at.to_fs(:wechat)}"
         pr.text address.detail
       when 'address'
