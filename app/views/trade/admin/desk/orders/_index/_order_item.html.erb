@@ -24,7 +24,7 @@
     </div>
     <div id="print_info_<%= model.id %>" class="has-block-space-between flex-grow-1 px-3 mb-2">
       <% if model.print_info.key?('dine_prepare') %>
-        <%= render 'order_print_info' %>
+        <%= render partial: 'order_print_info', locals: { model: model } %>
       <% else %>
         <%=
           button_to(
