@@ -78,12 +78,16 @@ module Trade
           pr.break_line
         end
       when 'delivery_prepare'
-        items.where(dispatch: [nil, 'delivery']).each do |item|
-          pr.text_big("#{item.good_name} x #{item.number.to_human}") if item.good
-          pr.break_line
-          pr.text_big item.desk.name if item.desk
-          pr.text "#{item.class.human_attribute_name(:created_at)}：#{item.created_at.to_fs(:wechat)}"
+        pr.text_big_center organ.name
+        pr.text_center '外卖单'
+        pr.text_big "配送站：#{organ.provider.name}"
+        cols = items.where(dispatch: [nil, 'delivery']).map do |item|
+          [item.good_name, item.number.to_human]
         end
+        pr.table_big(headers: { '品名' => 24, '数量' => 12 }, cols: cols)
+        pr.break_line
+        pr.text "#{self.class.human_attribute_name(:created_at)}：#{created_at.to_fs(:wechat)}"
+        pr.text order.address.detail
       when 'address'
         pr.bar(y: 0, height: 20)
         pr.qrcode_right(qrcode_show_url, y: 30, cell_width: 5)
