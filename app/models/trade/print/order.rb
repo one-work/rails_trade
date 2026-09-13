@@ -80,14 +80,14 @@ module Trade
       when 'delivery_prepare'
         pr.text_big_center organ.name
         pr.text_center '外卖单'
-        pr.text_big "配送站：#{organ.provider.name}"
+        pr.text_big "配送站：#{organ.provider.name}" if organ.provider
         cols = items.where(dispatch: [nil, 'delivery']).map do |item|
           [item.good_name, item.number.to_human]
         end
         pr.table_big(headers: { '品名' => 24, '数量' => 12 }, cols: cols)
         pr.break_line
         pr.text "#{self.class.human_attribute_name(:created_at)}：#{created_at.to_fs(:wechat)}"
-        pr.text order.address.detail
+        pr.text address.detail
       when 'address'
         pr.bar(y: 0, height: 20)
         pr.qrcode_right(qrcode_show_url, y: 30, cell_width: 5)
