@@ -57,13 +57,12 @@ module Trade
         end
         pr.text "#{created_at.to_fs(:wechat)}"
       when 'dine_prepare'
+        #pr.text_big item.desk.name if item.desk
+        pr.text "#{self.class.human_attribute_name(:created_at)}：#{created_at.to_fs(:wechat)}"
         cols = items.where(dispatch: ['dine', 'fetch']).map do |item|
-          pr.text_big("#{item.good_name} x #{item.number.to_human}") if item.good
-          pr.text_big item.desk.name if item.desk
-          pr.text "#{item.class.human_attribute_name(:created_at)}：#{item.created_at.to_fs(:wechat)}"
           [item.good_name, item.number.to_human]
         end
-        pr.table_big(headers: { '品名' => 8, '数量' => 2 }, cols: cols)
+        pr.table_big(headers: { '品名' => 24, '数量' => 12 }, cols: cols)
       when 'delivery_prepare'
         items.where(dispatch: [nil, 'delivery']).each do |item|
           pr.text_big("#{item.good_name} x #{item.number.to_human}") if item.good
