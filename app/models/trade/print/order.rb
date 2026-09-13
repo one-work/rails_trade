@@ -34,7 +34,14 @@ module Trade
     end
 
     def send_to_print_info
-
+      broadcast_action_to(
+        "print_info_#{organ_id}",
+        action: :update,
+        target: "print_info_#{id}",
+        partial: 'trade/admin/desk/orders/_index/_order_print_info',
+        variants: [:phone],
+        locals: { model: self }
+      )
     end
 
     def to_esc(pr, aim: 'receipt')

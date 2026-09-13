@@ -9,3 +9,5 @@
 <% end %>
 
 <%= paginate @orders %>
+
+<%= turbo_stream_from "print_info_#{current_organ.id}" %>

@@ -22,23 +22,9 @@
         <%= svg_tag 'print', class: 'icon is-small text-link' %>
       <% end %>
     </div>
-    <div class="has-block-space-between flex-grow-1 px-3 mb-2">
+    <div id="print_info_<%= model.id %>" class="has-block-space-between flex-grow-1 px-3 mb-2">
       <% if model.print_info.key?('dine_prepare') %>
-        <div>
-          <span><%= Trade::Order.enum_i18n(:print_info_enum, 'dine_prepare') %></span>
-          <span>：</span>
-          <time data-controller="time" data-format="human" class="text-grey"><%= model.print_info['dine_prepare'] %></time>
-        </div>
-        <%=
-          button_to(
-            { controller: 'print/admin/home', action: 'inner' },
-            params: { gid: model.to_gid.to_s, aim: 'dine_prepare' },
-            id: 'print-button',
-            data: { controller: 'print-pos' }
-          ) do
-        %>
-          <%= svg_tag 'print', class: 'icon is-small text-link' %>
-        <% end %>
+        <%= render 'order_print_info' %>
       <% else %>
         <%=
           button_to(
