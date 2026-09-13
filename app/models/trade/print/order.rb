@@ -38,8 +38,7 @@ module Trade
         "print_info_#{organ_id}",
         action: :update,
         target: "print_info_#{id}",
-        partial: 'trade/admin/desk/orders/_index/_order_print_info',
-        variants: [:phone],
+        partial: 'trade/admin/desk/orders/_index/order_print_info',
         locals: { model: self }
       )
     end
