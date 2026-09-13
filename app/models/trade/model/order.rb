@@ -257,7 +257,9 @@ module Trade
     end
 
     def can_cancel?
-      init? && ['unpaid', 'to_check'].include?(self.payment_status)
+      init?
+      && ['unpaid', 'to_check'].include?(self.payment_status)
+      && print_info.key?('dine_prepare')
     end
 
     def confirm_paid!
