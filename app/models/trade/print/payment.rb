@@ -32,7 +32,7 @@ module Trade
       cols = items.map do |item|
         [item.good_name, item.single_price.to_money.to_s, item.number.to_human, item.amount.to_money.to_s]
       end
-      pr.table(headers: { '品名' => 16, '单价' => 6, '数量' => 6, '小计' => 6 }, cols: cols)
+      pr.table(headers: { '品名' => 14, '单价' => 7, '数量' => 5, '小计' => 7 }, cols: cols)
       pr.dash
       pr.break_line
       pr.text "#{self.class.human_attribute_name(:orders_amount)}：#{orders_amount.to_money.to_s}"
