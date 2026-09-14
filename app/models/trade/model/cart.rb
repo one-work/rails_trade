@@ -327,23 +327,6 @@ module Trade
       compute_amount!
     end
 
-    def get_item(good_type:, good_id:, aim: 'use', number: 1, **options)
-      args = { good_type: good_type, good_id: good_id, aim: aim, **options.slice(:produce_on, :scene_id) }
-      args.reject!(&->(_, v){ v.blank? })
-      item = find_item(**args) || items.build(args)
-
-      if item.persisted? && item.status_checked?
-        item.number += (number.present? ? number.to_i : 1)
-      elsif item.persisted? && item.status_init?
-        item.status = 'checked'
-        item.number = 1
-      else
-        item.status = 'checked'
-      end
-
-      item
-    end
-
     def init_cart_item(params, **options)
       params.permit!
       args = attr_options(**params, **options)
@@ -362,6 +345,12 @@ module Trade
     def find_items_except_provide(provide_ids, **options)
       args = attr_options(**options)
       cart_items.select { |i| i.attributes.slice(*args.keys) == args && i.provide_id && provide_ids.exclude?(i.provide_id) }
+    end
+
+    def find_item(**options)
+      args = attr_options(**options)
+      logger.debug "\e[35m  Current Cart: #{id}, Options: #{options}, Args: #{args}  \e[0m"
+      cart_items.find(&->(i){ i.attributes.slice(*args.keys) == args })
     end
 
     def find_items(good_ids, **options)
