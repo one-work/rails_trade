@@ -346,7 +346,9 @@ module Trade
 
     def init_cart_item(params, **options)
       params.permit!
-      item = find_item(**params, **options) || build_item(**params, **options)
+      args = attr_options(**params, **options)
+      logger.debug "\e[35m  Current Cart: #{id}, Args: #{args}  \e[0m"
+      item = cart_items.find(&->(i){ i.attributes.slice(*args.keys) == args }) || items.build(args)
       item.status = 'checked'
       if item.new_record?
         item.number = params[:number].presence || 1
@@ -355,17 +357,6 @@ module Trade
       end
       logger.debug "\e[35m  Current Item: #{item.cart_identity}  \e[0m"
       item
-    end
-
-    def find_item(**options)
-      args = attr_options(**options)
-      logger.debug "\e[35m  Current Cart: #{id}, Options: #{options}, Args: #{args}  \e[0m"
-      cart_items.find(&->(i){ i.attributes.slice(*args.keys) == args })
-    end
-
-    def build_item(**options)
-      args = attr_options(**options)
-      items.build(args)
     end
 
     def find_items_except_provide(provide_ids, **options)
