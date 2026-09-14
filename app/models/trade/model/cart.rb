@@ -427,6 +427,7 @@ module Trade
         if cart_id
           cart = find cart_id
         else
+          options.symbolize_keys!
           options.with_defaults! good_type: 'Factory::Production', aim: 'use'
           options.with_defaults! params.permit(:desk_id, :station_id).to_h.to_options # 合并来自 params 的参数，转化为 symbol key
           create_options = ([:user_id, :member_id, :member_organ_id, :agent_id, :client_id] & column_names.map(&:to_sym)).each_with_object({}) { |i,h| h.merge! i => nil }.merge! options
