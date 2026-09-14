@@ -66,7 +66,11 @@ module Trade
 
     private
     def set_cart
-      @cart = Cart.get_cart(params, user_id: current_user.id, **default_form_params)
+      @cart = Cart.get_cart(
+        params,
+        user_id: current_user.id,
+        **default_form_params
+      )
     end
 
     def set_item

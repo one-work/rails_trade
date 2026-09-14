@@ -27,7 +27,11 @@ module Trade
 
     private
     def set_cart
-      @cart = Cart.get_cart(params, member_organ_id: current_organ.id, purchasable: true)
+      @cart = Cart.get_cart(
+        params,
+        member_organ_id: current_organ.id,
+        purchasable: true
+      )
     end
 
     def set_item

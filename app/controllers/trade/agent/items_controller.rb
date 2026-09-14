@@ -18,8 +18,11 @@ module Trade
     end
 
     def set_cart
-      @cart = Cart.get_cart(params, agent_id: current_member.id, **default_form_params)
-      logger.debug "\e[35m  Cart:#{@cart.id}  \e[0m"
+      @cart = Cart.get_cart(
+        params,
+        agent_id: current_member.id,
+        **default_form_params
+      )
     end
 
     def set_cart_item

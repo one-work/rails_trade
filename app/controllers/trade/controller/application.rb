@@ -26,7 +26,12 @@ module Trade
 
     def set_cart
       if current_user
-        @cart = Cart.get_cart(params, user_id: current_user.id, **default_form_params, **session.to_h.slice('desk_id', 'station_id'))
+        @cart = Cart.get_cart(
+          params,
+          user_id: current_user.id,
+          **default_form_params,
+          **session.to_h.slice('desk_id', 'station_id')
+        )
       end
     end
 

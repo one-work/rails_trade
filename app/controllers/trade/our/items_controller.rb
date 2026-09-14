@@ -14,7 +14,11 @@ module Trade
 
     private
     def set_cart
-      @cart = Trade::Cart.get_cart(params, **default_form_params, **client_params)
+      @cart = Trade::Cart.get_cart(
+        params,
+        **default_form_params,
+        **client_params
+      )
     end
 
     def set_new_item

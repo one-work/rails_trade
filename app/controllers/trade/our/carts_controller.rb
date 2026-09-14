@@ -10,7 +10,11 @@ module Trade
 
     private
     def set_cart
-      @cart = Cart.get_cart(params, member_organ_id: current_client.organ_id, **default_form_params)
+      @cart = Cart.get_cart(
+        params,
+        member_organ_id: current_client.organ_id,
+        **default_form_params
+      )
     end
 
     def cart_params

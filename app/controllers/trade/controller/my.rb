@@ -26,7 +26,12 @@ module Trade
     end
 
     def set_cart
-      @cart = Cart.get_cart(params, good_type: nil, user_id: current_user.id, **default_form_params)
+      @cart = Cart.get_cart(
+        params,
+        good_type: nil,
+        user_id: current_user.id,
+        **default_form_params
+      )
     end
 
     def set_lawful_wallet
