@@ -345,12 +345,9 @@ module Trade
     end
 
     def init_cart_item(params, **options)
-      options.with_defaults! params.permit(:good_id, :purchase_id, :provide_id, :dispatch, :produce_on, :scene_id).to_h.to_options
-      options.with_defaults! dispatch: organ.dispatch if organ
-
-      item = find_item(**options) || items.build(options)
+      params.permit!
+      item = find_item(**params, **options) || build_item(**params, **options)
       item.status = 'checked'
-      item.assign_attributes params.permit(*(['station_id', 'desk_id', 'current_cart_id'] & Item.column_names))
       if item.new_record?
         item.number = params[:number].presence || 1
       elsif params[:number].present?
@@ -366,27 +363,31 @@ module Trade
       cart_items.find(&->(i){ i.attributes.slice(*args.keys) == args })
     end
 
+    def build_item(**options)
+      args = attr_options(**options)
+      items.build(args)
+    end
+
     def find_items_except_provide(provide_ids, **options)
       args = attr_options(**options)
       cart_items.select { |i| i.attributes.slice(*args.keys) == args && i.provide_id && provide_ids.exclude?(i.provide_id) }
     end
 
     def find_items(good_ids, **options)
-      options.symbolize_keys!
       args = attr_options(**options)
       cart_items.select { |i| i.attributes.slice(*args.keys) == args && good_ids.include?(i.good_id) }
     end
 
     def find_purchase_items(purchase_ids, **options)
-      options.symbolize_keys!
       args = attr_options(**options)
       cart_items.select { |i| i.attributes.slice(*args.keys) == args && purchase_ids.include?(i.purchase_id) }
     end
 
     def attr_options(**options)
+      options.symbolize_keys!
       options.transform_values! { |i| i.presence }
-      args = { good_type: good_type, aim: aim }
-      args.merge! options.slice(:good_type, :good_id, :aim, :dispatch, :contact_id, :member_id, :provide_id, :purchase_id, :scene_id)
+      args = { good_type: good_type, aim: aim, desk_id: desk_id, station_id: station_id }
+      args.merge! options.slice(:good_type, :good_id, :purchase_id, :aim, :contact_id, :member_id, :provide_id, :dispatch, :scene_id, :desk_id, :station_id)
       args.merge! produce_on: options[:produce_on].to_date if options[:produce_on].present?
       args.stringify_keys!
     end
