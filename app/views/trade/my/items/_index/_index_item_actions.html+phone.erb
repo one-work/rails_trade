@@ -1,6 +1,6 @@
 <div class="media">
   <%= link_to({ action: 'show', id: model.id }, data: { controller: 'empty' }, class: 'media-left') do %>
-    <%= image_tag model.good.logo, class: 'image is-64x64' if model.good && model.good.logo.attached? %>
+    <%= image_tag model.good.logo, class: 'image is-radius is-64x64' if model.good && model.good.logo.attached? %>
   <% end %>
   <div class="media-content">
     <%= yield %>

@@ -8,11 +8,11 @@
   <% end %>
   <% if model.good.respond_to?(:logo) && model.good.logo&.attached? %>
     <div class="media-left">
-      <%= image_tag model.good.logo, class: 'image is-64x64' %>
+      <%= image_tag model.good.logo, class: 'image is-radius is-64x64' %>
     </div>
   <% elsif model.good.respond_to?(:cover) && model.good.cover&.attached? %>
     <div class="media-left">
-      <%= image_tag model.good.cover, class: 'image is-64x64' %>
+      <%= image_tag model.good.cover, class: 'image is-radius is-64x64' %>
     </div>
   <% end %>
   <div class="media-content">

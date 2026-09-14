@@ -1,7 +1,7 @@
 <div class="media">
   <div class="media-left">
   <%= link_to(item.good, text: true) do %>
-    <%= image_tag item.good.logo, class: 'image is-64x64' if item.good && item.good.logo.attached? %>
+    <%= image_tag item.good.logo, class: 'image is-radius is-64x64' if item.good && item.good.logo.attached? %>
   <% end %>
   </div>
   <div class="media-content">
