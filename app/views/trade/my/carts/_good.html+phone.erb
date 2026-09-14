@@ -3,6 +3,9 @@
   <% if model.dispatch.present? %>
     <span class="tag is-info size-7"><%= model.dispatch_i18n %></span>
   <% end %>
+  <% if model.desk_id.present? %>
+    <span class="tag is-info size-7"><%= model.desk.name %></span>
+  <% end %>
 </p>
 <% if model.good.respond_to?(:parts) && model.good.parts.size > 0 %>
   <ul class="media-info mt-1">
