@@ -1,12 +1,12 @@
 <td>
   <div class="is-several">
     <% if model.good_type == 'Factory::Production' %>
-      <%= image_tag model.purchase.logo, class: 'image is-32x32' if model.purchase && model.purchase.logo&.attached? %>
+      <%= image_tag model.purchase.logo.variant(resize_to_limit: [32, 32]), class: 'image is-radius is-32x32' if model.purchase && model.purchase.logo&.attached? %>
       <%= link_to({ controller: 'factory/admin/purchase_items', production_id: model.purchase_id }, target: '_blank') do %>
         <span><%= model.purchase.name %></span>
       <% end %>
     <% elsif model.purchase %>
-      <%= image_tag model.purchase.logo, class: 'image is-32x32' if model.purchase && model.purchase.logo&.attached? %>
+      <%= image_tag model.purchase.logo.variant(resize_to_limit: [32, 32]), class: 'image is-radius is-32x32' if model.purchase && model.purchase.logo&.attached? %>
       <%= link_to model.purchase, target: '_blank' do %>
         <span><%= model.purchase.name %></span>
       <% end %>

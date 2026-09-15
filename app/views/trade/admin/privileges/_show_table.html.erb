@@ -8,5 +8,5 @@
 </div>
 <div>
   <dt><%= Trade::Privilege.human_attribute_name(:logo) %></dt>
-  <dt><%= image_tag @privilege.logo, class: 'image is-32x32' if @privilege.logo.attached? %></dd>
+  <dt><%= image_tag @privilege.logo.variant(resize_to_limit: [32, 32]), class: 'image is-radius is-32x32' if @privilege.logo.attached? %></dd>
 </div>

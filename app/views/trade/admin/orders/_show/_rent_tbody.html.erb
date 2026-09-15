@@ -1,7 +1,7 @@
 <td>
   <div class="is-several">
     <% if model.good %>
-      <%= image_tag model.good.logo, class: 'image is-32x32' if model.good.logo.attached? %>
+      <%= image_tag model.good.logo.variant(resize_to_limit: [32, 32]), class: 'image is-radius is-32x32' if model.good.logo.attached? %>
       <%= link_to model.good, target: '_blank' do %>
         <span><%= model.good_name %></span>
       <% end %>

@@ -3,7 +3,7 @@
     <% cart.cart_items.each do |item| %>
       <div data-id="<%= item.id %>" class="flex justify-content-space-between align-items-center mt-2">
         <div class="is-several">
-          <%= image_tag item.good.logo, class: 'image is-32x32' if item.good.logo.attached? %>
+          <%= image_tag item.good.logo.variant(resize_to_limit: [32, 32]), class: 'image is-radius is-32x32' if item.good.logo.attached? %>
           <span><%= item.good_name %></span>
         </div>
         <div>
