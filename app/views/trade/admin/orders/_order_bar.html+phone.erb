@@ -1,0 +1,9 @@
+<div class="tabs is-toggle is-toggle-rounded as-navbar is-sticky flex-shrink-0 is-fullwidth">
+  <ul>
+    <% [:dine, :fetch, :delivery].each do |status| %>
+      <li class="<%= active_helper(state: status, active: 'is-active') %>">
+        <%= link_to Trade::Order.enum_i18n(:dispatch, status), filter_params(state: status) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
