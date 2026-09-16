@@ -106,6 +106,7 @@ Rails.app.routes.draw do
         get :no_desk
         delete :batch_destroy
         get :new_simple
+        get :delivery
       end
       member do
         match :payment_types, via: [:get, :post]

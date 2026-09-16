@@ -57,6 +57,8 @@ zh:
           title: 销售单
           add_payment: 添加支付流水
           refund_list: 退款详情
+        delivery:
+          title: 外卖单
         user:
           title: 用户订单
         cart:

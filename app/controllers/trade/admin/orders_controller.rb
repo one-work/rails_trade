@@ -24,6 +24,16 @@ module Trade
       @grouped_orders = @orders.group_by { |i| i.created_at.to_date }
     end
 
+    def delivery
+      q_params = search_params
+      q_params.with_defaults! state: ['init', 'produced', 'picked', 'done']
+
+      @common_orders = Order.includes(:items, :user, :member, :member_organ, :payment_strategy, :payment_orders).where(items: { dispatch: 'delivery' }).default_where(q_params)
+      set_count(q_params)
+      @orders = @common_orders.order(id: :desc).page(params[:page]).per(params[:per])
+      @grouped_orders = @orders.group_by { |i| i.created_at.to_date }
+    end
+
     def cart
     end
 
