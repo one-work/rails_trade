@@ -79,8 +79,13 @@ module Trade
         end
       when 'delivery_prepare'
         pr.text_big_center organ.name
-        pr.text_center '外卖单'
+        pr.break_line
+        pr.text_center '【外卖单】'
+        pr.text "订单编号：#{serial_long_str}"
+        pr.text_big "取餐号：#{serial_str}"
+        pr.text_big "手机尾号：#{address.tel[-4..-1]}" if address&.tel
         pr.text_big "配送站：#{organ.provider.name}" if organ.provider
+        pr.break_line
         cols = items.where(dispatch: [nil, 'delivery']).map do |item|
           [item.good_name, item.number.to_human]
         end

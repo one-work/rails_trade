@@ -149,7 +149,7 @@ module Trade
     end
 
     def can_serial_number?
-      items.map(&:dispatch).include?('dine') || (paid_at.present? && paid_at_was.blank?)
+      (items.map(&:dispatch) & ['fetch', 'delivery']).present? || (paid_at.present? && paid_at_was.blank?)
     end
 
     def init_serial_number
