@@ -3,12 +3,15 @@
     <dt><%= Ship::Package.human_attribute_name(:id) %></dt>
     <dd data-controller="clipboard">
       <span data-clipboard-target="source"><%= package.id %></span>
-      <span class="tag"><%= package.state_i18n %></span>
       <span data-action="click->clipboard#copy" class="tag is-badge is-danger">复制</span>
       <div data-clipboard-target="toast" class="tag is-badge is-success display-none">
         <%= svg_tag 'check' %>
       </div>
     </dd>
+  </div>
+  <div>
+    <dt></dt>
+    <dd><span class="tag"><%= package.state_i18n %></span></dd>
   </div>
   <div>
     <dt><%= Ship::Package.human_attribute_name(:expected_on) %></dt>
