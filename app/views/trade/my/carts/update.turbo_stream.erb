@@ -3,7 +3,7 @@
 <% elsif params[:return_to].present? %>
   <%= turbo_stream.visit url: params[:return_to] %>
 <% elsif params.dig('cart', 'address_id') %>
-  <%= turbo_stream.visit url: url_for(action: 'show'), action: 'replace' %>
+  <%= turbo_stream.visit action: 'back' %>
 <% else %>
   <%= turbo_stream.visit %>
 <% end %>
