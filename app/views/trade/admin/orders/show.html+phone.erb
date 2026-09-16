@@ -5,7 +5,7 @@
   <div class="card-header">
     <p class="size-7 text-grey has-border-left-primary">收货地址</p>
   </div>
-  <div class="card-content">
+  <div class="card-content p-0">
     <%= render partial: 'address', locals: { model: @order.address } %>
   </div>
 </div>
@@ -14,9 +14,9 @@
 <% if @order.from_address %>
 <div class="card as-transparent">
   <div class="card-header">
-    <p class="size-7 text-grey has-border-left-primary">收货地址</p>
+    <p class="size-7 text-grey has-border-left-primary">发货地址</p>
   </div>
-  <div class="card-content">
+  <div class="card-content p-0">
     <%= render partial: 'from_address', locals: { model: @order.from_address } %>
   </div>
 </div>
@@ -32,15 +32,19 @@
   <div class="card-header">
     <p class="size-7 text-grey has-border-left-primary">详情</p>
   </div>
-  <div class="card-content">
+  <div class="card-content p-0">
     <%= render partial: 'items', locals: { model: @order } %>
   </div>
 </div>
 
 <% if @order.cart_promotes.present? %>
-<div class="mx-3">
-  <strong class="text-grey pl-3">服务/促销</strong>
-  <%= render partial: 'cart_promote', collection: @order.cart_promotes, as: :cart_promote %>
+<div class="card as-transparent">
+  <div class="card-header">
+    <strong class="size-7 text-grey has-border-left-primary">服务/促销</strong>
+  </div>
+  <div class="card-content p-0">
+    <%= render partial: 'cart_promote', collection: @order.cart_promotes, as: :cart_promote %>
+  </div>
 </div>
 <% end %>
 
@@ -49,7 +53,7 @@
   <div class="card-header">
     <strong class="size-7 text-grey has-border-left-primary">支付</strong>
   </div>
-  <div class="card-content">
+  <div class="card-content p-0">
     <%= render partial: 'payment_order', collection: @order.payment_orders, as: :model %>
   </div>
 </div>
