@@ -136,6 +136,18 @@ module Trade
       r
     end
 
+    def print_aim
+      if need_delivery?
+        'delivery_prepare'
+      else
+        'receipt'
+      end
+    end
+
+    def need_delivery?
+      items.map(&:dispatch).include?('delivery')
+    end
+
     def can_serial_number?
       items.map(&:dispatch).include?('dine') || (paid_at.present? && paid_at_was.blank?)
     end
