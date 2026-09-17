@@ -79,14 +79,13 @@ module Trade
         end
       when 'delivery_prepare'
         pr.text_big_center organ.name
-        pr.break_line
         pr.text_center '【外卖单】'
+        pr.text "由【#{organ.provider.name}】配送" if organ.provider
         pr.text "订单编号：#{serial_long_str}"
         pr.dash
         pr.text_big "取餐号：#{serial_str}"
         pr.text_big "手机尾号：#{address.tel[-4..-1]}" if address&.tel
         pr.text_big address.detail if address
-        pr.text_big "配送站：#{organ.provider.name}" if organ.provider
         pr.dash
         cols = items.where(dispatch: [nil, 'delivery']).map do |item|
           [item.good_name, item.number.to_human]
@@ -94,6 +93,7 @@ module Trade
         pr.table_big(headers: { '品名' => 24, '数量' => 12 }, cols: cols)
         pr.dash
         pr.text "#{self.class.human_attribute_name(:created_at)}：#{created_at.to_fs(:wechat)}"
+        pr.qrcode_center(qrcode_show_url)
       when 'address'
         pr.bar(y: 0, height: 20)
         pr.qrcode_right(qrcode_show_url, y: 30, cell_width: 5)
