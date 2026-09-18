@@ -57,7 +57,7 @@ module Trade
         @wxpay_order = @payment.js_pay
       end
 
-      if @wxpay_order['code'].present? || @wxpay_order.blank?
+      if @wxpay_order.blank? || @wxpay_order['code'].present?
         respond_to do |format|
           format.html { render 'wxpay_err', status: :unprocessable_entity }
           format.json { render json: @wxpay_order.as_json, status: :unprocessable_entity }
