@@ -51,6 +51,7 @@ module Trade
       #@payment.extra_params.merge! 'profit_sharing' => true
       payee = @order.organ.payees.take || @order.organ.domain_payees.take
       if payee
+        logger.debug "\e[35m  Payee: #{payee.id}  \e[0m"
         @payment.seller_identifier = payee.mch_id
         @payment.appid = current_wechat_user&.appid
         @payment.buyer_identifier = current_wechat_user&.uid
