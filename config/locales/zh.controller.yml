@@ -86,6 +86,10 @@ zh:
           title: 修改数量
         edit_address:
           title: 填写地址
+      desk:
+        orders:
+          confirm:
+            title: 确认
     agent:
       title: 销售订单
       carts:

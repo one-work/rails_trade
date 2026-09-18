@@ -412,7 +412,11 @@ Rails.app.routes.draw do
     namespace :my, defaults: { namespace: 'my' } do
       concerns :orderable
       resources :desks, only: [] do
-        resources :orders, controller: 'desk/orders'
+        resources :orders, controller: 'desk/orders' do
+          collection do
+            post :confirm
+          end
+        end
         resources :items, controller: 'desk/items'
       end
       resources :wxpay_payments, only: [:index, :new, :create, :show] do

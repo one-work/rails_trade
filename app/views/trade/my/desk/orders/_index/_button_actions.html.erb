@@ -1,1 +1,6 @@
-
+<%= link_to @desk.product_url, class: 'button is-rounded is-primary' do %>
+  <span>继续下单</span>
+<% end %>
+<%= button_to({ action: 'confirm' }, class: 'button is-rounded is-primary') do %>
+  <span><%= t('.confirm.title') %></span>
+<% end %>
