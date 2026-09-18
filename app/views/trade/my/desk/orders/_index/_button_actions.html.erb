@@ -1,3 +1,3 @@
-<%= link_to @desk.product_url, class: 'button is-rounded is-primary' do %>
+<%= link_to({ controller: 'factory/productions', desk_id: @desk.id, dispatch: 'dine' }, class: 'button is-rounded is-primary') do %>
   <span>继续下单</span>
 <% end %>
