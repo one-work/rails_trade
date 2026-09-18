@@ -16,6 +16,10 @@
         <span class="tag is-info">下单人</span>
         <span class="tag is-link"><%= model.agent.name %></span>
       </div>
+    <% elsif model.user == current_user %>
+      <span>由我下单</span>
+    <% else %>
+      <span>他人下单</span>
     <% end %>
   </div>
 </div>
