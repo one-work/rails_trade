@@ -33,6 +33,7 @@ module Trade
 
       Order.transaction do
         Order.default_where(q_params).update_all state: 'done'
+        @desk.trade_items.status_ordered.update_all status: 'done'
         @desk.reset_counters!
       end
     end
