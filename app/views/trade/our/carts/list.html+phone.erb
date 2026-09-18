@@ -2,22 +2,20 @@
   <%= render 'my/profile_item' %>
 </div>
 
-<div class="box is-padding-less">
-  <div class="box-header">
-    <span class="size-7 has-border-left-primary">选择下单企业</span>
+<div class="card as-transparent">
+  <div class="card-header">
+    <span class="size-7 text-grey has-border-left-primary">选择下单企业</span>
   </div>
-  <div class="p-3 medias">
+  <div class="medias as-boxed">
     <%= render partial: 'organs_cart', collection: @members, as: :model %>
   </div>
 </div>
 
-<div class="box">
-  <div class="medias">
-  <% @roles.each do |role| %>
-    <%= button_to({ controller: 'org/board/organs', action: 'new', role_id: role.id }, class: 'media') do %>
-      <%= svg_tag 'plus' %>
-      <span><%= role.tip %></span>
-    <% end %>
+<div class="medias as-boxed">
+<% @roles.each do |role| %>
+  <%= button_to({ controller: 'org/board/organs', action: 'new', role_id: role.id }, class: 'media') do %>
+    <%= svg_tag 'plus' %>
+    <span><%= role.tip %></span>
   <% end %>
-  </div>
+<% end %>
 </div>
