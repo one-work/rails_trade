@@ -19,9 +19,9 @@
       title: t('auditor.admin.audits.index.title')
     },
     {
-      action: url_for(action: 'print', id: model.id),
+      action: url_for(controller: 'print/admin/home', action: 'inner', gid: model.to_gid, aim: 'receipt'),
       icon: 'print',
-      title: t('.print.title')
+      title: t('print.admin.home.inner.title')
     }
   ) { yield }
 %>
