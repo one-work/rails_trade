@@ -67,6 +67,7 @@ module Trade
           pr.text note
         end
         pr.text "#{created_at.to_fs(:wechat)}"
+        pr.text "备注：#{note}" if note.present?
       when 'dine_prepare'  # 后厨分单
         items.where(dispatch: ['dine', 'fetch']).each do |item|
           pr.text_center '厨房备菜分单'
@@ -86,6 +87,7 @@ module Trade
         pr.text_big "取餐号：#{serial_str}"
         pr.text_big "手机尾号：#{address.tel[-4..-1]}" if address&.tel
         pr.text_big address.detail if address
+        pr.text_big "备注：#{note}" if note.present?
         pr.dash
         cols = items.where(dispatch: [nil, 'delivery']).map do |item|
           [item.good_name, item.number.to_human]
