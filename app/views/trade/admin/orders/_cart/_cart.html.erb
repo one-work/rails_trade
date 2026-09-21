@@ -1,4 +1,16 @@
 <dl class="as-show as-boxed">
+  <% if cart.contact.present? %>
+    <div>
+      <dt><%= Trade::Cart.human_attribute_name(:contact_id) %></dt>
+      <dd><%= cart.contact.title %></dd>
+    </div>
+  <% end %>
+  <% if cart.client.present? %>
+    <div>
+      <dt><%= Trade::Cart.human_attribute_name(:client_id) %></dt>
+      <dd><%= cart.client.name %></dd>
+    </div>
+  <% end %>
   <div>
     <dt><%= Trade::Cart.human_attribute_name(:original_amount) %></dt>
     <dd><%= cart.original_amount.to_money.format.html_safe %></dd>

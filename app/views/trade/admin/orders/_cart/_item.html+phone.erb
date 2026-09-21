@@ -1,13 +1,15 @@
 <div class="media">
   <% if item.good.logo.attached? %>
     <div class="media-left">
-      <%= image_tag item.good.logo, class: 'image is-radius is-64x64' %>
+      <%= image_tag item.good.logo.variant(resize_to_limit: [64, 64]), class: 'image is-radius is-64x64' %>
     </div>
   <% end %>
   <div class="media-content">
     <div>
       <strong><%= item.good_name %></strong>
-      <span class="tag"><%= item.dispatch_i18n %></span>
+      <% if item.dispatch.present? %>
+        <span class="tag"><%= item.dispatch_i18n %></span>
+      <% end %>
     </div>
     <p>
       <span class="text-danger"><%= item.single_price.to_money.format.html_safe %></span>
