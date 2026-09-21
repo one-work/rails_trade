@@ -40,11 +40,11 @@
       <span><%= t('bench.admin.item.facilitatings.index.title') %></span>
     <% end %>
   <% else %>
-    <%= link_to({ controller: 'holds', item_id: item.id }, class: 'button is-small is-default') do %>
+    <%= link_to({ controller: 'trade/admin/holds', item_id: item.id }, class: 'button is-small is-default') do %>
       <i></i>
       <span><%= t('.holds.index.title') %></span>
     <% end %>
-    <%= button_to({ controller: 'items', action: 'edit', id: item.id }, class: 'button is-small is-danger mt-2') do %>
+    <%= button_to({ controller: 'trade/admin/items', action: 'edit', id: item.id }, class: 'button is-small is-danger mt-2') do %>
       <span><%= t('.items.edit.title') %></span>
     <% end if item.changeable? %>
   <% end %>

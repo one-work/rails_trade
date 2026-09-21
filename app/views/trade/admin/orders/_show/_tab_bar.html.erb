@@ -21,11 +21,11 @@
       <span><%= t('.payment_types.title') %></span>
     <% end %>
   <% end %>
-  <%= link_to({ action: 'purchase', id: @order.id }, class: 'button is-rounded is-primary') do %>
+  <%= link_to({ controller: 'trade/admin/orders', action: 'purchase', id: @order.id }, class: 'button is-rounded is-primary') do %>
     <%= svg_tag 'cart-shopping' %>
     <span><%= t('.purchase.title') %></span>
   <% end %>
-  <%= button_to({ action: 'adjust_edit', id: @order.id }, class: 'button is-rounded is-primary') do %>
+  <%= button_to({ controller: 'trade/admin/orders', action: 'adjust_edit', id: @order.id }, class: 'button is-rounded is-primary') do %>
     <%= svg_tag 'pen-clip' %>
     <span><%= t('.adjust_edit.title') %></span>
   <% end %>
