@@ -27,6 +27,14 @@
       </dd>
     </div>
   <% end %>
+  <% if model.client.present? %>
+    <div>
+      <dt><%= Trade::Order.human_attribute_name(:client_id) %></dt>
+      <dd>
+        <%= link_to model.client.name, { controller: 'crm/admin/client/orders', client_id: model.client_id } %>
+      </dd>
+    </div>
+  <% end %>
   <div>
     <dt><%= Trade::Order.human_attribute_name(:created_at) %></dt>
     <dd><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></dd>
