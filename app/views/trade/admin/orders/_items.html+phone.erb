@@ -13,10 +13,20 @@
     <dt><%= Trade::Order.human_attribute_name(:state) %></dt>
     <dd><%= model.state_i18n %></dd>
   </div>
-  <div>
-    <dt><%= Trade::Order.human_attribute_name(:serial_number) %></dt>
-    <dd><%= model.serial_number %></dd>
-  </div>
+  <% if model.serial_number.present? %>
+    <div>
+      <dt><%= Trade::Order.human_attribute_name(:serial_number) %></dt>
+      <dd><%= model.serial_number %></dd>
+    </div>
+  <% end %>
+  <% if model.contact.present? %>
+    <div>
+      <dt><%= Trade::Order.human_attribute_name(:contact_id) %></dt>
+      <dd>
+        <%= link_to model.contact.name, { controller: 'crm/admin/orders', contact_id: model.contact_id } %>
+      </dd>
+    </div>
+  <% end %>
   <div>
     <dt><%= Trade::Order.human_attribute_name(:created_at) %></dt>
     <dd><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></dd>
