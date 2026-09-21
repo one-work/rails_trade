@@ -25,11 +25,9 @@
     <%= f.hidden_field :current_cart_id, value: @cart.id if @cart %>
     <%= f.hidden_field :good_type %>
     <%= f.hidden_field :good_id %>
-    <%= f.hidden_field :dispatch %>
-    <%= f.hidden_field :produce_on %>
-    <%= f.hidden_field :scene_id %>
-    <%= f.hidden_field :station_id %>
-    <%= f.hidden_field :desk_id %>
+    <% [:dispatch, :produce_on, :scene_id, :station_id, :desk_id, :client_id, :contact_id].each do |name| %>
+      <%= f.hidden_field name %>
+    <% end %>
     <button type="submit" class="button is-small is-danger" name="replace[][partial]" value="cart_item_big">
       <%= svg_tag 'cart-plus' %>
       <span><%= t("#{item_con.tr('/', '.')}.create.title") %></span>
