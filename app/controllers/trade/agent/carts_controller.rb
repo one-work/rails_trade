@@ -23,10 +23,6 @@ module Trade
     end
 
     private
-    def set_cart
-      @cart = Cart.find params[:id]
-    end
-
     def set_contact
       @cart.contact || @cart.build_contact
     end
