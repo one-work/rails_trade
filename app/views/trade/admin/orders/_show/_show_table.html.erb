@@ -34,10 +34,12 @@
   <dt><%= Trade::Order.human_attribute_name(:amount) %></dt>
   <dd><%= @order.amount.to_money.format.html_safe %></dd>
 </div>
+<% if @order.contact.present? %>
 <div>
   <dt><%= Trade::Order.human_attribute_name(:contact_id) %></dt>
   <dd><%= link_to @order.contact_id, { controller: 'crm/admin/orders', contact_id: @order.contact_id } %></dd>
 </div>
+<% end %>
 <div>
   <dt><%= Trade::Order.human_attribute_name(:payment_status) %></dt>
   <dd><%= @order.payment_status_i18n %></dd>
