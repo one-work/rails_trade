@@ -1,5 +1,5 @@
 <div class="box is-padding-less">
-  <%= link_to({ controller: 'crm/me/clients', action: 'cart', cart_id: @cart.id }, class: 'media') do %>
+  <%= link_to({ controller: 'crm/me/clients', action: 'cart', cart_id: @cart.id }, text: true, class: 'media') do %>
     <div class="media-left">
       <%= svg_tag 'user', class: 'icon is-small text-danger' %>
       <span>客户</span>
