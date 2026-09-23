@@ -27,14 +27,10 @@
 <% else %>
   <%= form_with theme: nil, model: item, scope: '', url: { controller: item_con, action: 'create' }, id: "cart_item_new_#{item.cart_identity}", class: 'button_to' do |f| %>
     <%= f.hidden_field :current_cart_id, value: cart.id %>
-    <%= f.hidden_field :good_type %>
-    <%= f.hidden_field :good_id %>
-    <%= f.hidden_field :dispatch %>
-    <%= f.hidden_field :produce_on %>
-    <%= f.hidden_field :scene_id %>
-    <%= f.hidden_field :station_id %>
-    <%= f.hidden_field :desk_id %>
-    <button type="submit" name="replace[][partial]" value="cart_item_new" class="button is-warning is-rounded">
+    <% [:good_type, :good_id, :dispatch, :produce_on, :scene_id, :station_id, :desk_id, :client_id, :contact_id].each do |name| %>
+      <%= f.hidden_field name %>
+    <% end %>
+    <button type="submit" name="replace[][partial]" value="cart_item_new" class="button is-rounded is-warning">
       <%= svg_tag 'cart-plus' %>
       <span>加入购物车</span>
     </button>
