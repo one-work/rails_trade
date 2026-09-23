@@ -200,6 +200,10 @@ module Trade
       }
     end
 
+    def valid_columns
+      attributes.slice('good_type', 'good_id', 'dispatch', 'produce_on', 'scene_id', 'station_id', 'desk_id', 'client_id', 'contact_id').compact
+    end
+
     def effective?
       ['checked', 'trial'].include?(status) && !destroyed?
     end

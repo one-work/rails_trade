@@ -18,7 +18,7 @@
 <% else %>
   <%= form_with theme: nil, model: item, scope: '', url: { controller: item_con, action: 'create' }, id: "cart_item_#{item.cart_identity}" do |f| %>
     <%= f.hidden_field :current_cart_id, value: cart.id %>
-    <% [:good_type, :good_id, :dispatch, :produce_on, :scene_id, :station_id, :desk_id, :client_id, :contact_id].each do |name| %>
+    <% f.object.valid_columns.each do |name, _| %>
       <%= f.hidden_field name %>
     <% end %>
     <button type="submit" class="button is-small is-danger" name="replace[][partial]" value="cart_item">

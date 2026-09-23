@@ -21,8 +21,8 @@
 <% else %>
   <%= form_with theme: nil, model: item, scope: '', url: { controller: item_con, action: 'create' }, id: "cart_item_#{item.cart_identity}", class: 'button_to align-self-center' do |f| %>
     <%= f.hidden_field :current_cart_id, value: cart.id %>
-    <% [:good_type, :good_id, :dispatch, :produce_on, :scene_id, :station_id, :desk_id, :client_id, :contact_id].each do |name| %>
-      <%= f.hidden_field name %>
+    <% f.object.valid_columns.each do |name, _| %>
+      <%= f.hidden_field name, id: nil %>
     <% end %>
     <button type="submit" name="replace[][partial]" value="cart_item">
       <%= svg_tag 'circle-plus', class: 'icon text-grey' %>
