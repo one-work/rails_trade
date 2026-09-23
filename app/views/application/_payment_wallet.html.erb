@@ -1,7 +1,7 @@
 <tr>
   <td class="text-right">
     <span class="is-several">
-      <%= image_tag payment_order.payment.wallet.wallet_template.logo, class: 'image is-24x24' if payment_order.payment.wallet.wallet_template.logo.attached? %>
+      <%= image_tag payment_order.payment.wallet.wallet_template.logo, class: 'image is-radius is-24x24' if payment_order.payment.wallet.wallet_template.logo.attached? %>
       <span><%= payment_order.payment.wallet.wallet_template.name %></span>
     </span>
     <span class="tags has-addons is-tag-price display-inline-flex">
