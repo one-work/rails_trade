@@ -2,7 +2,9 @@ module Trade
   class Order < ApplicationRecord
     include Model::Order
     include Print::Order
-    include Crm::Ext::Maintainable if defined? RailsCrm
+    if defined? RailsCrm
+      include Crm::Ext::Maintainable
+    end
     if defined? RailsAudit
       include Auditor::Ext::Discard
       include Auditor::Ext::Audited
