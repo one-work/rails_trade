@@ -25,6 +25,7 @@
         cart: @item.current_cart,
         item_con: controller_path,
         renew: params[:renew],
+        renew_options: params.fetch(:renew_options, {}).permit!.to_h,
         refer_options: params.fetch(:refer_options, {}).permit!.to_h
       }
     )

@@ -22,6 +22,7 @@
         item_con: controller_path,
         order_con: controller_path.sub('items', 'orders'),
         renew: params[:renew],
+        renew_options: params.fetch(:renew_options, {}).permit!.to_h,
         refer_options: params.fetch(:refer_options, {}).permit!.to_h
       }
     )
