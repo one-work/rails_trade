@@ -39,7 +39,8 @@
         item_con: controller_path,
         order_con: controller_path.sub('items', 'orders'),
         options: @item.cart_options,
-        refer_options: params.fetch(:refer_options, {}).permit!.to_h
+        refer_options: params.fetch(:refer_options, {}).permit!.to_h,
+        extra_options: params.fetch(partial, {}).permit!.to_h.to_options
       }
     )
   %>
