@@ -1,4 +1,8 @@
-<%= render 'contacts' %>
+<% if @cart.client.present? %>
+  <%= render 'client' %>
+<% elsif @cart.contact.blank? %>
+  <%= render 'contacts' %>
+<% end %>
 
 <div class="fixed-grid has-2-cols">
   <div class="grid">

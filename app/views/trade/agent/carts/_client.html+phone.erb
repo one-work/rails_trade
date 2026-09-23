@@ -1,0 +1,19 @@
+<div class="box is-padding-less">
+  <%= link_to({ controller: 'crm/me/clients', action: 'cart', cart_id: @cart.id }, class: 'media') do %>
+    <div class="media-left">
+      <%= svg_tag 'user', class: 'icon is-small text-danger' %>
+      <span>客户</span>
+    </div>
+    <div class="media-content">
+    <% if @cart.client %>
+      <p class="is-wrap">
+        <span><%= @cart.client.name %></span>
+      </p>
+    <% end %>
+    </div>
+    <div class="media-right text-grey">
+      <span>选择客户</span>
+      <%= svg_tag 'chevron-right' %>
+    </div>
+  <% end %>
+</div>
