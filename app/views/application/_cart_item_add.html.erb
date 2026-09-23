@@ -13,7 +13,7 @@
     <% end if defined?(renew) && renew %>
     <% renew_options.each do |partial, options| %>
       <% options.each do |key, value| %>
-        <%= hidden_field_tag "#{partial}[#{key}]", value, id: nil %>
+        <%= hidden_field_tag "renew_options[#{partial}][#{key}]", value, id: nil %>
       <% end %>
     <% end if defined?(renew_options) && renew_options %>
     <% refer_options.each do |key, value| %>

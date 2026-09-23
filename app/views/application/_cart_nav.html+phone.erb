@@ -1,26 +1,26 @@
 <div id="cart_nav" class="has-block-space-between as-bottom px-3">
-  <%= link_to({ controller: cart_con, action: 'show', id: @cart.id }, text: true, class: 'flex text-grey') do %>
+  <%= link_to({ controller: cart_con, action: 'show', id: cart.id }, text: true, class: 'flex text-grey') do %>
     <div class="button is-borderless">
       <div class="right-badge">
         <%= svg_tag 'bag-shopping', class: 'icon text-primary', style: 'height: 28.5px' %>
-        <span class="tag is-badge is-danger"><%= @cart.items.count %></span>
+        <span class="tag is-badge is-danger"><%= cart.items.count %></span>
       </div>
     </div>
     <div class="align-items-baseline align-self-center">
-      <% if @cart.amount != @cart.item_amount %>
-        <del class="text-grey ml-4"><%= @cart.item_amount.to_money.format.html_safe %></del>
+      <% if cart.amount != cart.item_amount %>
+        <del class="text-grey ml-4"><%= cart.item_amount.to_money.format.html_safe %></del>
       <% end %>
-      <span class="ml-2"><%= @cart.amount.to_money.format.html_safe %></span>
+      <span class="ml-2"><%= cart.amount.to_money.format.html_safe %></span>
     </div>
   <% end %>
   <div>
-  <% if @cart.can_order? %>
-    <%= link_to({ controller: order_con, action: 'cart', current_cart_id: @cart.id }, class: 'button is-small is-rounded is-primary') do %>
+  <% if cart.can_order? %>
+    <%= link_to({ controller: order_con, action: 'cart', current_cart_id: cart.id }, class: 'button is-small is-rounded is-primary') do %>
       <span class="mr-1"><%= t("#{order_con.tr('/', '.')}.cart.title") %></span>
       <%= svg_tag 'angle-right' %>
     <% end %>
   <% else %>
-    <%= link_to({ controller: cart_con, action: 'show', id: @cart.id }, class: 'button is-small is-rounded is-primary') do %>
+    <%= link_to({ controller: cart_con, action: 'show', id: cart.id }, class: 'button is-small is-rounded is-primary') do %>
       <span class="mr-1"><%= t("#{cart_con.tr('/', '.')}.show.title") %></span>
       <%= svg_tag 'angle-right' %>
     <% end %>
