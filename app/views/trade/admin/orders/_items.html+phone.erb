@@ -1,4 +1,4 @@
-<dl id="order_detail_<%= model.id %>" class="as-show as-boxed is-striped">
+<dl id="order_detail_<%= model.id %>" data-controller="single-input" class="as-show as-boxed is-striped">
   <div>
     <dt><%= Trade::Order.human_attribute_name(:uuid) %></dt>
     <dd data-controller="clipboard">
