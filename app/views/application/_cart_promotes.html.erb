@@ -9,7 +9,7 @@
       <span class="right"></span>
     </header>
     <section id="modal-card-body" class="modal-card-body">
-      <dl class="as-show">
+      <dl class="as-show as-boxed is-striped">
         <div>
           <dt><%= Trade::Cart.human_attribute_name(:original_amount) %></dt>
           <dd class="text-danger"><%= @cart.original_amount.to_money.format.html_safe %></dd>
