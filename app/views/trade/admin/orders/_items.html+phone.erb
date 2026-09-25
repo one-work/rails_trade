@@ -73,6 +73,18 @@
   </div>
   <div>
     <dt><%= Trade::Order.human_attribute_name(:note) %></dt>
-    <dd><%= model.note %></dd>
+    <dd>
+      <%=
+        text_field_tag(
+          'order[note]',
+          model.note,
+          class: 'input',
+          placeholder: '添加备注',
+          form: 'show-form',
+          data: { single_input_target: 'input' }
+        )
+      %>
+      <%# model.note %>
+    </dd>
   </div>
 </dl>
