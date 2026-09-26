@@ -554,36 +554,27 @@ module Trade
 
     def to_payment(type: 'Trade::WxpayPayment', order_amount: computed_payable_amount, payment_amount: order_amount, state: 'init', **options)
       if options.key? :payment_uuid
-        payment = payments.find_by(type: type, payment_uuid: options[:payment_uuid])
-        return payment if payment
+        exist_payment = payments.find_by(type: type, payment_uuid: options[:payment_uuid])
+        return exist_payment if exist_payment
       end
-      init_payment_with_order(
-        type: type,
-        order_amount: order_amount,
-        payment_amount: payment_amount,
-        state: state,
-        **options
-      )
-    end
 
-    def init_payment_with_order(type:, order_amount:, payment_amount:, state: 'init', **options)
-      p = Payment.new(
+      payment = Payment.new(
         type: type,
         organ_id: organ_id,
         user_id: user_id,
-        payment_orders_attributes: [{ order: self,order_amount: order_amount, payment_amount: payment_amount, state: state }],
+        payment_orders_attributes: [{ order: self, order_amount: order_amount, payment_amount: payment_amount, state: state }],
         **options.slice(:wallet_id, :appid, :seller_identifier, :buyer_identifier, :payment_uuid)
       )
-      p.assign_detail options
+      payment.assign_detail options
 
       # 支付成功后，将用户信息赋予支付者
-      if user_id.blank? && p.respond_to?(:wechat_user)
-        logger.debug "#{p.buyer_identifier}"
-        self.user_id = p.wechat_user&.user_id
-        p.user_id = user_id
+      if user_id.blank? && payment.respond_to?(:wechat_user)
+        logger.debug "#{payment.buyer_identifier}"
+        self.user_id = payment.wechat_user&.user_id
+        payment.user_id = user_id
       end
 
-      p
+      payment
     end
 
     def init_params_with_order
