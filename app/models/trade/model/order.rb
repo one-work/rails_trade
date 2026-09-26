@@ -443,9 +443,9 @@ module Trade
     end
 
     def confirm
-      payment_orders.each do |i|
-        i.state = 'confirmed'
-        i.payment.compute_checked_amount
+      payment_orders.each do |po|
+        po.state = 'confirmed'
+        po.payment.compute_checked_amount
       end
 
       self.compute_received_amount
@@ -492,6 +492,13 @@ module Trade
     end
 
     def init_wxpay_url(state: 'init', order_amount: computed_payable_amount, ip: )
+      return if order_amount <= 0
+      payment = WxpayPayment.new(
+        organ_id: organ_id, user_id: user_id, appid: wechat_user.appid, seller_identifier: payee.mch_id, buyer_identifier: wechat_user.uid,
+        payment_orders_attributes: [{ order: self, order_amount: order_amount, payment_amount: order_amount, state: state }],
+        **options.slice(:profit_sharing)
+      )
+
       payment.h5(payer_client_ip: ip)
     end
 
