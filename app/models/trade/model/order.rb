@@ -413,14 +413,10 @@ module Trade
 
     def lawful_wallet_pay
       return unless can_pay?
-      payment = init_payment_with_order(
-        type: 'Trade::WalletPayment',
-        order_amount: unreceived_amount,
-        payment_amount: unreceived_amount,
-        state: 'confirmed',
-        wallet_id: lawful_wallet.id
+      WalletPayment.create(
+        wallet_id: lawful_wallet.id,
+        payment_orders_attributes: [{ order: self, order_amount: unreceived_amount, payment_amount: unreceived_amount, state: 'confirmed' }]
       )
-      payment.save
     end
 
     def payment_types
@@ -478,12 +474,12 @@ module Trade
 
     def init_hand_payment(state: 'init', order_amount: computed_payable_amount)
       return if order_amount <= 0
-      init_payment_with_order(
-        type: 'Trade::HandPayment',
-        order_amount: order_amount,
+      HandPayment.new(payment_orders_attributes: [{
+      order: self,
+      order_amount: order_amount,
         payment_amount: order_amount,
         state: state
-      )
+      }])
     end
 
     def init_wxpay_payment(state: 'init', order_amount: computed_payable_amount, payee:, wechat_user:, ip:)
