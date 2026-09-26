@@ -18,9 +18,13 @@ module Trade
       @payments = Payment.includes(:payment_method, :payment_orders).default_where(q_params).order(id: :desc).page(params[:page])
     end
 
+    def order_new
+      @order = Order.find params[:order_id]
+      @payment = Payment.init_with_order(@order)
+    end
+
     def desk
       order_ids = Order.where(state: 'init', payment_status: ['unpaid', 'part_paid'], desk_id: params[:desk_id]).pluck(:id)
-
       @payment = Payment.init_with_order_ids order_ids
     end
 

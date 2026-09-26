@@ -35,6 +35,10 @@
     </dd>
   </div>
   <div>
+    <dt><%= Trade::PaymentOrder.human_attribute_name(:payment_amount) %></dt>
+    <dd><%= model.payment_amount %></dd>
+  </div>
+  <div>
     <dt><%= Trade::PaymentOrder.human_attribute_name(:state) %></dt>
     <dd><%= model.state_i18n %></dd>
   </div>

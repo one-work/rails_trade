@@ -120,6 +120,8 @@ zh:
           adjust: 平账
         desk:
           title: 收款
+        order_new:
+          title: 收款
       order_payments:
         index:
           title: 订单支付

@@ -145,6 +145,7 @@ Rails.app.routes.draw do
         get :dashboard
         get :uncheck
         post :confirm
+        post 'order/:order_id' => :order_new
         post 'desk/:desk_id' => :desk
       end
       member do

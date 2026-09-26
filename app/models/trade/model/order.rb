@@ -605,6 +605,15 @@ module Trade
       p
     end
 
+    def init_params_with_order
+      {
+        order: self,
+        order_amount: unreceived_amount,
+        payment_amount: unreceived_amount,
+        state: 'pending'
+      }
+    end
+
     def pending_payments
       Payment.to_check.where(organ_id: organ_id, total_amount: amount).default_where('created_at-gte': created_at).order(created_at: :asc)
     end
