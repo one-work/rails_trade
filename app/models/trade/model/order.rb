@@ -479,14 +479,11 @@ module Trade
 
     def init_wxpay_payment(state: 'init', order_amount: computed_payable_amount, payee:, wechat_user:, ip:)
       return if order_amount <= 0
-      payment = init_payment_with_order(
-        type: 'Trade::WxpayPayment',
-        order_amount: order_amount,
-        payment_amount: order_amount,
-        state: state,
+      payment = WxpayPayment.new(
         appid: wechat_user.appid,
         seller_identifier: payee.mch_id,
-        buyer_identifier: wechat_user.uid
+        buyer_identifier: wechat_user.uid,
+        payment_orders_attributes: [{ order: self, order_amount: order_amount, payment_amount: order_amount, state: state }]
       )
       #@payment.extra_params.merge! 'profit_sharing' => true
 
