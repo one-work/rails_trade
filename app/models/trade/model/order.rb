@@ -424,16 +424,16 @@ module Trade
     end
 
     def batch_pending_payments(params)
-      params[:payment_orders_attributes]&.each do |_, po_params|
-        p_params = (po_params.delete(:payment) || {}).merge!(organ_id: organ_id, user_id: user_id)
+      params.fetch(:payment_orders_attributes, {}).each do |_, po_params|
+        wallet_id = po_params.dig(:payment, :wallet_id)
         if po_params[:state] == 'pending'
-          po = self.payment_orders.find_by(wallet_id: p_params[:wallet_id]) || self.payment_orders.build(wallet_id: p_params[:wallet_id])
+          po = self.payment_orders.find_by(wallet_id: wallet_id) || self.payment_orders.build(wallet_id: wallet_id)
           po.order_amount = po_params[:order_amount]
           po.payment_amount = po_params[:payment_amount]
           po.state = 'pending'
-          po.build_payment p_params
+          po.build_payment(organ_id: organ_id, user_id: user_id, **po_params.fetch(:payment, {}))
         else
-          po = self.payment_orders.find_by(wallet_id: p_params[:wallet_id])
+          po = self.payment_orders.find_by(wallet_id: wallet_id)
           self.payment_orders.destroy(po) if po
         end
       end
