@@ -265,7 +265,8 @@ module Trade
     end
 
     def can_pay?
-      ['unpaid', 'to_check', 'part_paid'].include?(self.payment_status) && ['init'].include?(self.state)
+      ['unpaid', 'to_check', 'part_paid'].include?(self.payment_status)
+      && ['init', 'produced', 'picked', 'done'].include?(self.state)
     end
 
     def can_cancel?
