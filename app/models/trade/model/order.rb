@@ -474,7 +474,10 @@ module Trade
 
     def init_hand_payment(state: 'init', order_amount: computed_payable_amount)
       return if order_amount <= 0
-      HandPayment.new(payment_orders_attributes: [{ order: self, order_amount: order_amount, payment_amount: order_amount, state: state }])
+      HandPayment.new(
+        organ_id: organ_id, user_id: user_id,
+        payment_orders_attributes: [{ order: self, order_amount: order_amount, payment_amount: order_amount, state: state }]
+      )
     end
 
     def init_wxpay_payment(state: 'init', order_amount: computed_payable_amount, payee:, wechat_user:, ip:, **options)
@@ -518,8 +521,7 @@ module Trade
         order_amount, _ = partly_wallet_amount(wallet_code, limited_amount)
 
         WalletPayment.new(
-          wallet_id: wallet.id,
-          pay_state: 'paid',
+          organ_id: organ_id, user_id: user_id, wallet_id: wallet.id, pay_state: 'paid',
           payment_orders_attributes: [{ order: self, order_amount: order_amount.round(2), payment_amount: limited_amount, state: 'init' }]
         )
       end
@@ -535,8 +537,7 @@ module Trade
       end
 
       WalletPayment.new(
-        wallet_id: lawful_wallet.id,
-        pay_state: 'paid',
+        organ_id: organ_id, user_id: user_id, wallet_id: lawful_wallet.id, pay_state: 'paid',
         payment_orders_attributes: [{ order: self, order_amount: _order_amount, payment_amount: _order_amount, state: 'init' }]
       )
     end
@@ -557,9 +558,7 @@ module Trade
       end
 
       payment = Payment.new(
-        type: type,
-        organ_id: organ_id,
-        user_id: user_id,
+        type: type, organ_id: organ_id, user_id: user_id,
         payment_orders_attributes: [{ order: self, order_amount: order_amount, payment_amount: payment_amount, state: state }],
       )
       payment.assign_detail options
