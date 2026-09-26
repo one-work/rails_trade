@@ -1,13 +1,32 @@
 <div>
-  <time data-controller="time" data-format="HH:mm" class="family-monospace size-7"><%= model.created_at.to_fs(:iso8601) %></time>
-  <span class="family-monospace size-7"><%= link_to model.uuid, { action: 'show', id: model.id }, text: true %></span>
+  <span>
+    <span class="text-grey"><%= Trade::Order.human_attribute_name(:created_at) %></span>
+    <time data-controller="time" data-format="HH:mm" class="family-monospace"><%= model.created_at.to_fs(:iso8601) %></time>
+  </span>
+  <% if model.serial_number.present? %>
+    <div class="tags has-addons mb-0 display-inline-flex">
+      <span class="tag is-link is-light"><%= Trade::Order.human_attribute_name(:serial_str) %></span>
+      <span class="tag"><%= model.serial_str %></span>
+    </div>
+  <% elsif model.desk %>
+    <div class="tags has-addons mb-0 display-inline-flex">
+      <span class="tag is-link is-light"><%= Trade::Order.human_attribute_name(:desk_id) %></span>
+      <span class="tag"><%= model.desk.name %></span>
+    </div>
+  <% elsif model.contact %>
+    <div class="tags has-addons mb-0 display-inline-flex">
+      <span class="tag is-link is-light"><%= Trade::Order.human_attribute_name(:contact_id) %></span>
+      <span class="tag"><%= model.contact.name %></span>
+    </div>
+  <% elsif model.client %>
+    <div class="tags has-addons mb-0 display-inline-flex">
+      <span class="tag is-link is-light"><%= Trade::Order.human_attribute_name(:client_id) %></span>
+      <span class="tag"><%= model.client.name %></span>
+    </div>
+  <% else %>
+    <span class="family-monospace"><%= model.uuid %></span>
+  <% end %>
 </div>
-<% if model.serial_number.present? %>
-  <div class="tags has-addons mt-1 mb-0">
-    <span class="tag is-link is-light"><%= Trade::Order.human_attribute_name(:serial_str) %></span>
-    <span class="tag"><%= model.serial_str %></span>
-  </div>
-<% end %>
 <div class="mt-1">
   <span class="text-danger"><%= model.amount.to_money.format.html_safe %></span>
   <span class="tag"><%= model.payment_status_i18n %></span>
