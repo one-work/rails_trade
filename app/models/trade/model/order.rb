@@ -519,12 +519,10 @@ module Trade
         end
         order_amount, _ = partly_wallet_amount(wallet_code, limited_amount)
 
-        init_payment_with_order(
-          type: 'Trade::WalletPayment',
-          order_amount: order_amount.round(2),
-          payment_amount: limited_amount,
+        WalletPayment.new(
           wallet_id: wallet.id,
-          pay_state: 'paid'
+          pay_state: 'paid',
+          payment_orders_attributes: [{ order: self, order_amount: order_amount.round(2), payment_amount: limited_amount, state: 'init' }]
         )
       end
     end
@@ -538,12 +536,10 @@ module Trade
         _order_amount = order_amount
       end
 
-      init_payment_with_order(
-        type: 'Trade::WalletPayment',
-        order_amount: _order_amount,
-        payment_amount: _order_amount,
+      WalletPayment.new(
         wallet_id: lawful_wallet.id,
-        pay_state: 'paid'
+        pay_state: 'paid',
+        payment_orders_attributes: [{ order: self,order_amount: _order_amount, payment_amount: _order_amount, state: 'init' }]
       )
     end
 
@@ -571,15 +567,11 @@ module Trade
     end
 
     def init_payment_with_order(type:, order_amount:, payment_amount:, state: 'init', **options)
-      po = payment_orders.build(
-        order_amount: order_amount,
-        payment_amount: payment_amount,
-        state: state
-      )
-      p = po.build_payment(
+      p = Payment.new(
         type: type,
         organ_id: organ_id,
         user_id: user_id,
+        payment_orders_attributes: [{ order: self,order_amount: order_amount, payment_amount: payment_amount, state: state }],
         **options.slice(:wallet_id, :appid, :seller_identifier, :buyer_identifier, :payment_uuid)
       )
       p.assign_detail options
