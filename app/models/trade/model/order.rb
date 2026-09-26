@@ -477,15 +477,15 @@ module Trade
       HandPayment.new(payment_orders_attributes: [{ order: self, order_amount: order_amount, payment_amount: order_amount, state: state }])
     end
 
-    def init_wxpay_payment(state: 'init', order_amount: computed_payable_amount, payee:, wechat_user:, ip:)
+    def init_wxpay_payment(state: 'init', order_amount: computed_payable_amount, payee:, wechat_user:, ip:, **options)
       return if order_amount <= 0
       payment = WxpayPayment.new(
         appid: wechat_user.appid,
         seller_identifier: payee.mch_id,
         buyer_identifier: wechat_user.uid,
-        payment_orders_attributes: [{ order: self, order_amount: order_amount, payment_amount: order_amount, state: state }]
+        payment_orders_attributes: [{ order: self, order_amount: order_amount, payment_amount: order_amount, state: state }],
+        **options.slice(:profit_sharing)
       )
-      #@payment.extra_params.merge! 'profit_sharing' => true
 
       payment.js_pay(payer_client_ip: ip)
     end
@@ -539,7 +539,7 @@ module Trade
       WalletPayment.new(
         wallet_id: lawful_wallet.id,
         pay_state: 'paid',
-        payment_orders_attributes: [{ order: self,order_amount: _order_amount, payment_amount: _order_amount, state: 'init' }]
+        payment_orders_attributes: [{ order: self, order_amount: _order_amount, payment_amount: _order_amount, state: 'init' }]
       )
     end
 
@@ -563,7 +563,6 @@ module Trade
         organ_id: organ_id,
         user_id: user_id,
         payment_orders_attributes: [{ order: self, order_amount: order_amount, payment_amount: payment_amount, state: state }],
-        **options.slice(:wallet_id, :appid, :seller_identifier, :buyer_identifier, :payment_uuid)
       )
       payment.assign_detail options
 

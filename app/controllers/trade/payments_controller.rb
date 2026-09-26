@@ -51,7 +51,6 @@ module Trade
         uuid = notify_params['out_trade_no'].split('_')[0] || notify_params['out_trade_no']
         @order = Order.find_by(uuid: uuid)
         @order.to_payment(
-          type: 'Trade::WxpayPayment',
           payment_uuid: notify_params['transaction_id'],
           order_amount: notify_params.dig('amount', 'total').to_i / 100.0,
           **notify_params
