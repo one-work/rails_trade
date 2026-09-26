@@ -474,12 +474,16 @@ module Trade
 
     def init_hand_payment(state: 'init', order_amount: computed_payable_amount)
       return if order_amount <= 0
-      HandPayment.new(payment_orders_attributes: [{
-      order: self,
-      order_amount: order_amount,
-        payment_amount: order_amount,
-        state: state
-      }])
+      HandPayment.new(
+        payment_orders_attributes: [
+          {
+            order: self,
+            order_amount: order_amount,
+            payment_amount: order_amount,
+            state: state
+          }
+        ]
+      )
     end
 
     def init_wxpay_payment(state: 'init', order_amount: computed_payable_amount, payee:, wechat_user:, ip:)
