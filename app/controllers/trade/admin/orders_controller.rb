@@ -48,6 +48,7 @@ module Trade
 
     def unpaid
       q_params = search_params
+      q_params.with_defaults! state: ['init', 'produced', 'picked', 'done']
       q_params.with_defaults! payment_status: ['unpaid', 'part_paid']
 
       @common_orders = Order.includes(:user, :member, :member_organ, :payment_strategy, :payment_orders).default_where(q_params)
