@@ -33,7 +33,7 @@
         <% refer_options.each do |key, value| %>
           <%= hidden_field_tag "refer_options[#{key}]", value, id: nil %>
         <% end if defined?(refer_options) && refer_options %>
-        <%= hidden_field_tag 'removes[]', "#{remove}_#{item.cart_identity}" if defined?(remove) && remove %>
+        <%= hidden_field_tag 'removes[]', "#{remove}_#{item.cart_identity}", id: nil if defined?(remove) && remove %>
         <%= button_tag do %>
           <%= svg_tag 'circle-xmark', class: 'icon text-grey' %>
         <% end %>
