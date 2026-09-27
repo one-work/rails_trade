@@ -10,7 +10,11 @@
       button_to(
         { controller: item_con, action: 'destroy', id: item.id },
         method: :delete,
-        params: { current_cart_id: cart.id, 'replace[][partial]': 'cart_item_show', 'replace[][layout]': 'cart_item_show_layout' },
+        params: {
+          current_cart_id: cart.id,
+          "replace[cart_item_show_#{item.cart_identity}][partial]": 'cart_item_show',
+          "replace[cart_item_show_#{item.cart_identity}][layout]": 'cart_item_show_layout'
+        },
         class: 'button'
       ) do
     %>
