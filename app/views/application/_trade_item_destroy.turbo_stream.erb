@@ -34,3 +34,7 @@
     )
   %>
 <% end %>
+
+<% params[:removes].each do |remove| %>
+  <%= turbo_stream.remove remove %>
+<% end if params[:removes] %>
