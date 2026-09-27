@@ -3,13 +3,22 @@
     <button class="button is-small is-rounded is-light is-borderless">已加入购物车</button>
   </div>
 <% else %>
-  <%= form_with theme: nil, model: item, scope: '', url: { controller: item_con, action: 'create' }, id: "cart_item_add_#{item.cart_identity}", class: 'button_to' do |f| %>
+  <%=
+    form_with(
+      theme: nil,
+      model: item,
+      scope: '',
+      url: { controller: item_con, action: 'create' },
+      id: "cart_item_add_#{item.cart_identity}",
+      class: 'button_to'
+    ) do |f|
+  %>
     <%= f.hidden_field :current_cart_id, value: cart.id %>
     <% f.object.valid_columns.each do |name, _| %>
       <%= f.hidden_field name %>
     <% end %>
     <% renew.each do |id, partial| %>
-      <%= hidden_field_tag "renew[#{id}]", partial, id: nil %>
+      <%= hidden_field_tag "replace[#{id}][partial]", partial, id: nil %>
     <% end if defined?(renew) && renew %>
     <% renew_options.each do |partial, options| %>
       <% options.each do |key, value| %>
@@ -19,7 +28,7 @@
     <% refer_options.each do |key, value| %>
       <%= hidden_field_tag "refer_options[#{key}]", value, id: nil %>
     <% end if defined?(refer_options) && refer_options %>
-    <button type="submit" name="replace[][partial]" value="cart_item_add" class="button is-small is-warning is-rounded">
+    <button type="submit" name="replace[cart_item_add_<%= item.cart_identity %>][partial]" value="cart_item_add" class="button is-small is-warning is-rounded">
       <%= svg_tag 'cart-plus' %>
       <span>加入购物车</span>
     </button>
