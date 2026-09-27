@@ -61,7 +61,7 @@
       class: 'button_to py-4'
     ) do |f|
   %>
-    <%= f.hidden_field :current_cart_id, value: @cart.id if @cart %>
+    <%= f.hidden_field :current_cart_id, value: cart.id, id: nil if cart %>
     <% f.object.valid_columns.each do |name, _| %>
       <%= f.hidden_field name, id: nil %>
     <% end %>
