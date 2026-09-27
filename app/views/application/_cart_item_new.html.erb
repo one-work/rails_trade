@@ -9,12 +9,21 @@
   >
     <div class="mr-3 text-danger"><%= item.amount.to_money.format.html_safe %></div>
     <% if item.number <= 1 %>
-      <%= form_with theme: nil, model: item, scope: '', url: { controller: item_con, action: 'destroy', id: item.id }, method: :delete, class: 'button_to mr-1' do |f| %>
+      <%=
+        form_with(
+          theme: nil,
+          model: item,
+          scope: '',
+          url: { controller: item_con, action: 'destroy', id: item.id },
+          method: :delete,
+          class: 'button_to mr-1'
+        ) do |f|
+      %>
         <%= f.hidden_field :current_cart_id, value: cart.id %>
-        <%= f.hidden_field 'replace[][partial]', value: 'cart_item_new' %>
-        <%= f.hidden_field 'replace[][partial]', value: 'cart_item_add' %>
+        <%= f.hidden_field "replace[cart_item_new_#{item.cart_identity}][partial]", value: 'cart_item_new', id: nil %>
+        <%= f.hidden_field "replace[cart_item_add_#{item.cart_identity}][partial]", value: 'cart_item_add', id: nil %>
         <% renew.each do |id, partial| %>
-          <%= hidden_field_tag "renew[#{id}]", partial, id: nil %>
+          <%= hidden_field_tag "replace[#{id}]", partial, id: nil %>
         <% end if defined?(renew) && renew %>
         <% renew_options.each do |partial, options| %>
           <% options.each do |key, value| %>
@@ -33,7 +42,16 @@
         <%= svg_tag 'circle-minus', class: 'icon text-grey' %>
       </button>
     <% end %>
-    <%= form_with theme: nil, model: item, scope: '', url: { controller: item_con, action: 'update', id: item.id }, method: :patch, data: { controller: 'input' } do |f| %>
+    <%=
+      form_with(
+        theme: nil,
+        model: item,
+        scope: '',
+        url: { controller: item_con, action: 'update', id: item.id },
+        method: :patch,
+        data: { controller: 'input' }
+      ) do |f|
+    %>
       <%= f.hidden_field :current_cart_id, value: cart.id %>
       <%=
         f.number_field(
@@ -45,7 +63,7 @@
           style: 'width: 30px'
         )
       %>
-      <%= hidden_field_tag 'replace[][partial]', 'cart_item_new' %>
+      <%= hidden_field_tag "replace[cart_item_new_#{item.cart_identity}][partial]", 'cart_item_new' %>
       <% renew.each do |id, partial| %>
         <%= hidden_field_tag "renew[#{id}]", partial, id: nil %>
       <% end if defined?(renew) && renew %>
@@ -63,13 +81,22 @@
     </button>
   </div>
 <% else %>
-  <%= form_with theme: nil, model: item, scope: '', url: { controller: item_con, action: 'create' }, id: "cart_item_new_#{item.cart_identity}", class: 'button_to' do |f| %>
+  <%=
+    form_with(
+      theme: nil,
+      model: item,
+      scope: '',
+      url: { controller: item_con, action: 'create' },
+      id: "cart_item_new_#{item.cart_identity}",
+      class: 'button_to'
+    ) do |f|
+  %>
     <%= f.hidden_field :current_cart_id, value: cart.id %>
     <% f.object.valid_columns.each do |name, _| %>
       <%= f.hidden_field name %>
     <% end %>
     <% renew.each do |id, partial| %>
-      <%= hidden_field_tag "renew[#{id}]", partial, id: nil %>
+      <%= hidden_field_tag "replace[#{id}]", partial, id: nil %>
     <% end if defined?(renew) && renew %>
     <% renew_options.each do |partial, options| %>
       <% options.each do |key, value| %>
@@ -79,7 +106,12 @@
     <% refer_options.each do |key, value| %>
       <%= hidden_field_tag "refer_options[#{key}]", value, id: nil %>
     <% end if defined?(refer_options) && refer_options %>
-    <button type="submit" name="replace[][partial]" value="cart_item_new" class="button is-small is-rounded is-primary">
+    <button
+      type="submit"
+      name="replace[cart_item_new_<%= item.cart_identity %>][partial]"
+      value="cart_item_new"
+      class="button is-small is-rounded is-primary"
+    >
       <%= svg_tag 'cart-plus' %>
       <span>加入购物车</span>
     </button>
