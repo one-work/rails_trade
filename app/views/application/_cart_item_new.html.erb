@@ -5,7 +5,6 @@
       <%= form_with theme: nil, model: item, scope: '', url: { controller: item_con, action: 'destroy', id: item.id }, method: :delete, class: 'button_to mr-1' do |f| %>
         <%= f.hidden_field :current_cart_id, value: cart.id %>
         <%= f.hidden_field 'replace[][partial]', value: 'cart_item_new' %>
-        <%= f.hidden_field 'replace[][partial]', value: 'cart_item_add' %>
         <% renew.each do |id, partial| %>
           <%= hidden_field_tag "renew[#{id}]", partial, id: nil %>
         <% end if defined?(renew) && renew %>
