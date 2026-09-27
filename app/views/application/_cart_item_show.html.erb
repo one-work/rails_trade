@@ -6,7 +6,14 @@
       <%= svg_tag 'minus', class: 'icon' %>
     </button>
   <% else %>
-    <%= button_to({ controller: item_con, action: 'destroy', id: item.id }, method: :delete, params: { current_cart_id: cart.id, 'replace[][partial]': 'cart_item_show', 'replace[][layout]': 'cart_item_show_layout' }, class: 'button') do %>
+    <%=
+      button_to(
+        { controller: item_con, action: 'destroy', id: item.id },
+        method: :delete,
+        params: { current_cart_id: cart.id, 'replace[][partial]': 'cart_item_show', 'replace[][layout]': 'cart_item_show_layout' },
+        class: 'button'
+      ) do
+    %>
       <%= svg_tag 'xmark', class: 'icon' %>
     <% end %>
   <% end %>
