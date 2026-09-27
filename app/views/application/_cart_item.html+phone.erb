@@ -1,30 +1,67 @@
 <% if item.persisted? %>
-  <div id="cart_item_<%= item.cart_identity %>" data-controller="modify" data-modify-submit-value="true" data-modify-step-value="1" class="has-v-centered">
+  <div
+    id="cart_item_<%= item.cart_identity %>"
+    data-controller="modify"
+    data-modify-submit-value="true"
+    data-modify-step-value="1"
+    class="has-v-centered"
+  >
     <% if item.number > 1 %>
       <button data-action="modify#minus" class="button_to mr-1">
         <%= svg_tag 'circle-minus', class: 'icon text-grey' %>
       </button>
     <% else %>
-      <%= button_to({ controller: item_con, action: 'destroy', id: item.id }, method: :delete, params: { current_cart_id: cart.id, 'replace[][partial]': 'cart_item' }, class: 'mr-1') do %>
+      <%=
+        button_to(
+          { controller: item_con, action: 'destroy', id: item.id },
+          method: :delete,
+          params: { current_cart_id: cart.id, "replace[cart_item_#{item.cart_identity}][partial]": 'cart_item' },
+          class: 'mr-1'
+        ) do
+      %>
         <%= svg_tag 'circle-xmark', class: 'icon text-grey' %>
       <% end %>
     <% end %>
-    <%= form_with theme: nil, url: { controller: item_con, action: 'update', id: item.id }, method: :patch, data: { controller: 'input' }, class: '' do |f| %>
+    <%=
+      form_with(
+        theme: nil,
+        url: { controller: item_con, action: 'update', id: item.id },
+        method: :patch,
+        data: { controller: 'input' },
+        class: ''
+      ) do |f|
+    %>
       <%= f.hidden_field :current_cart_id, value: cart.id %>
-      <%= f.number_field :number, value: item.number.to_human, step: 0.01, data: { action: 'change->input#form focus->input#blank', modify_target: 'input' }, class: 'input as-number' %>
-      <%= hidden_field_tag 'replace[][partial]', 'cart_item' %>
+      <%=
+        f.number_field(
+          :number,
+          value: item.number.to_human,
+          step: 0.01,
+          data: { action: 'change->input#form focus->input#blank', modify_target: 'input' },
+          class: 'input as-number'
+        )
+      %>
+      <%= hidden_field_tag "replace[cart_item_#{item.cart_identity}][partial]", 'cart_item' %>
     <% end %>
     <button data-action="modify#plus" class="button_to ml-1">
       <%= svg_tag 'circle-plus', class: 'icon text-grey' %>
     </button>
   </div>
 <% else %>
-  <%= form_with theme: nil, model: item, scope: '', url: { controller: item_con, action: 'create' }, id: "cart_item_#{item.cart_identity}", class: 'button_to align-self-center' do |f| %>
+  <%=
+    form_with(
+      theme: nil,
+      model: item,
+      scope: '',
+      url: { controller: item_con, action: 'create' }, id: "cart_item_#{item.cart_identity}",
+      class: 'button_to align-self-center'
+    ) do |f|
+  %>
     <%= f.hidden_field :current_cart_id, value: cart.id %>
     <% f.object.valid_columns.each do |name, _| %>
       <%= f.hidden_field name, id: nil %>
     <% end %>
-    <button type="submit" name="replace[][partial]" value="cart_item">
+    <button type="submit" name="replace[cart_item_<%= item.cart_identity %>][partial]" value="cart_item">
       <%= svg_tag 'circle-plus', class: 'icon text-grey' %>
     </button>
   <% end %>
