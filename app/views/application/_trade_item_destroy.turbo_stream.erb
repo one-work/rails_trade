@@ -35,6 +35,4 @@
   %>
 <% end %>
 
-<% params[:removes].each do |remove| %>
-  <%= turbo_stream.remove remove %>
-<% end if params[:removes] %>
+<%= turbo_stream.remove "#{params[:remove]}_#{@item.cart_identity}" if params[:remove] %>

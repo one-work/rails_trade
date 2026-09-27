@@ -28,7 +28,7 @@
         renew_options: params.fetch(:renew_options, {}).permit!.to_h,
         refer_options: params.fetch(:refer_options, {}).permit!.to_h,
         extra_options: params.fetch(:renew_options, {}).fetch(replace['partial'], {}).permit!.to_h.to_options,
-        **params.permit(removes: []).to_h.to_options
+        **params.permit(:remove).to_h.to_options
       }
     )
   %>

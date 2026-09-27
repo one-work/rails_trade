@@ -33,7 +33,7 @@
         <% refer_options.each do |key, value| %>
           <%= hidden_field_tag "refer_options[#{key}]", value, id: nil %>
         <% end if defined?(refer_options) && refer_options %>
-        <%= hidden_field_tag 'removes[]', "#{remove}_#{item.cart_identity}", id: nil if defined?(remove) && remove %>
+        <%= hidden_field_tag 'remove', remove, id: nil if defined?(remove) && remove %>
         <%= button_tag do %>
           <%= svg_tag 'circle-xmark', class: 'icon text-grey' %>
         <% end %>
@@ -65,6 +65,7 @@
         )
       %>
       <%= hidden_field_tag "replace[cart_item_new_#{item.cart_identity}][partial]", 'cart_item_new', id: nil %>
+      <%= hidden_field_tag 'remove', remove, id: nil if defined?(remove) && remove %>
       <% renew.each do |id, partial| %>
         <%= hidden_field_tag "replace[#{id}][partial]", partial, id: nil %>
       <% end if defined?(renew) && renew %>
@@ -96,6 +97,7 @@
     <% f.object.valid_columns.each do |name, _| %>
       <%= f.hidden_field name %>
     <% end %>
+    <%= hidden_field_tag 'remove', remove, id: nil if defined?(remove) && remove %>
     <% renew.each do |id, partial| %>
       <%= hidden_field_tag "replace[#{id}][partial]", partial, id: nil %>
     <% end if defined?(renew) && renew %>
