@@ -16,10 +16,10 @@
   <% if params[:payment_id] %>
     <%= form_with theme: nil, model: item, scope: '', url: { controller: item_con, action: 'create' }, class: 'button_to' do |f| %>
       <%= f.hidden_field :current_cart_id, value: cart.id %>
+      <%= f.hidden_field :number, value: (@payment.total_amount / model.price).round(2) if model.price > 0 %>
       <%= f.hidden_field :good_type %>
       <%= f.hidden_field :good_id %>
       <%= f.hidden_field :dispatch %>
-      <%= f.hidden_field :number, value: (@payment.total_amount / model.price).round(2) if model.price > 0 %>
       <%= f.hidden_field :produce_on %>
       <%= f.hidden_field :scene_id %>
       <%= f.hidden_field :station_id %>
