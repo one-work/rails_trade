@@ -65,7 +65,7 @@
       %>
       <%= hidden_field_tag "replace[cart_item_new_#{item.cart_identity}][partial]", 'cart_item_new' %>
       <% renew.each do |id, partial| %>
-        <%= hidden_field_tag "renew[#{id}]", partial, id: nil %>
+        <%= hidden_field_tag "replace[#{id}][partial]", partial, id: nil %>
       <% end if defined?(renew) && renew %>
       <% renew_options.each do |partial, options| %>
         <% options.each do |key, value| %>
