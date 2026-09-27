@@ -58,7 +58,7 @@
       scope: '',
       url: { controller: item_con, action: 'create' },
       id: "cart_item_big_#{item.cart_identity}",
-      class: 'button_to'
+      class: 'button_to py-4'
     ) do |f|
   %>
     <%= f.hidden_field :current_cart_id, value: @cart.id if @cart %>
@@ -67,7 +67,7 @@
     <% end %>
     <button
       type="submit"
-      class="button is-small is-danger"
+      class="button is-rounded is-small is-danger"
       name="replace[cart_item_big_<%= item.cart_identity %>][partial]"
       value="cart_item_big"
     >
