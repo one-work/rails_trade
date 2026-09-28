@@ -1,6 +1,11 @@
 <%= render layout: 'good_layout_with_right', locals: { model: model } do %>
   <div class="media-content">
-    <h4><%= model.good_name %></h4>
+    <div>
+      <strong><%= model.good_name %></strong>
+      <% if model.dispatch %>
+        <span class="tag"><%= model.dispatch_i18n %></span>
+      <% end %>
+    </div>
     <div class="tags">
     <% if model.good.respond_to?(:parts) %>
       <% model.good.parts.each do |part| %>
@@ -12,7 +17,7 @@
       <% if model.vip_code.present? %>
         <div class="tags has-addons is-price control m-0" style="display: inline-flex">
           <div class="tag is-danger">
-            <i class="fa-solid fa-badge-check"></i>
+            <%= svg_tag 'badge-check' %>
             <span style="padding-left: 1px"><%= model.vip_code %></span>
           </div>
           <span class="tag is-right"><%= model.single_price.to_money.format.html_safe %></span>
@@ -24,6 +29,16 @@
     </div>
   </div>
   <div class="media-right as-x">
-    <%= render partial: 'cart_item_big_cart', locals: { item: model, cart: @cart, item_con: controller_path.sub('carts', 'items'), removes: ["item_#{model.id}", 'ss'] } %>
+    <%=
+      render(
+        partial: 'cart_item_big_cart',
+        locals: {
+          item: model,
+          cart: @cart,
+          item_con: controller_path.sub('carts', 'items'),
+          removes: ["item_#{model.id}", 'ss']
+        }
+      )
+    %>
   </div>
 <% end %>
