@@ -25,6 +25,7 @@
         item: @item,
         cart: @item.current_cart,
         item_con: controller_path,
+        renew: params[:replace],
         renew_options: params.fetch(:renew_options, {}).permit!.to_h,
         refer_options: params.fetch(:refer_options, {}).permit!.to_h,
         extra_options: params.fetch(:renew_options, {}).fetch(replace['partial'], {}).permit!.to_h.to_options,

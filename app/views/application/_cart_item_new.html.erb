@@ -23,7 +23,7 @@
         <%= f.hidden_field "replace[cart_item_new_#{item.cart_identity}][partial]", value: 'cart_item_new', id: nil %>
         <%= f.hidden_field "replace[cart_item_add_#{item.cart_identity}][partial]", value: 'cart_item_add', id: nil %>
         <% renew.each do |id, partial| %>
-          <%= hidden_field_tag "replace[#{id}][partial]", partial, id: nil %>
+          <%= hidden_field_tag "replace[#{id}][partial]", partial['partial'], id: nil %>
         <% end if defined?(renew) && renew %>
         <% renew_options.each do |partial, options| %>
           <% options.each do |key, value| %>
@@ -67,7 +67,7 @@
       <%= hidden_field_tag "replace[cart_item_new_#{item.cart_identity}][partial]", 'cart_item_new', id: nil %>
       <%= hidden_field_tag 'remove', remove, id: nil if defined?(remove) && remove %>
       <% renew.each do |id, partial| %>
-        <%= hidden_field_tag "replace[#{id}][partial]", partial, id: nil %>
+        <%= hidden_field_tag "replace[#{id}][partial]", partial['partial'], id: nil %>
       <% end if defined?(renew) && renew %>
       <% renew_options.each do |partial, options| %>
         <% options.each do |key, value| %>
@@ -99,7 +99,7 @@
     <% end %>
     <%= hidden_field_tag 'remove', remove, id: nil if defined?(remove) && remove %>
     <% renew.each do |id, partial| %>
-      <%= hidden_field_tag "replace[#{id}][partial]", partial, id: nil %>
+      <%= hidden_field_tag "replace[#{id}][partial]", partial['partial'], id: nil %>
     <% end if defined?(renew) && renew %>
     <% renew_options.each do |partial, options| %>
       <% options.each do |key, value| %>

@@ -18,7 +18,7 @@
       <%= f.hidden_field name %>
     <% end %>
     <% renew.each do |id, partial| %>
-      <%= hidden_field_tag "replace[#{id}][partial]", partial, id: nil %>
+      <%= hidden_field_tag "replace[#{id}][partial]", partial['partial'], id: nil %>
     <% end if defined?(renew) && renew %>
     <% renew_options.each do |partial, options| %>
       <% options.each do |key, value| %>
