@@ -349,12 +349,13 @@ module Trade
 
     def find_item(**options)
       args = attr_options(**options)
-      logger.debug "\e[35m  Current Cart: #{id}, Options: #{options}, Args: #{args}  \e[0m"
+      logger.debug "\e[35m  Find Item, Cart: #{id}, Options: #{options}, Args: #{args}  \e[0m"
       cart_items.find(&->(i){ i.attributes.slice(*args.keys) == args })
     end
 
     def find_items(good_ids, **options)
       args = attr_options(**options)
+      logger.debug "\e[35m  Find Items, Cart: #{id}, Options: #{options}, Args: #{args}  \e[0m"
       cart_items.select { |i| i.attributes.slice(*args.keys) == args && good_ids.include?(i.good_id) }
     end
 
