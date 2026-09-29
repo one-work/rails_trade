@@ -2,11 +2,11 @@
   <div class="bar-title"><%= @order.uuid %></div>
   <button
     data-controller="history"
-    data-history-url-value="<%= url_for(controller: 'trade/my/orders', only_path: false) %>"
+    data-history-url-value="<%= url_for(controller: '/my/home', only_path: false) %>"
     data-action="history#direct"
     class="right"
   >
     <%= svg_tag 'house', class: 'icon is-small text-link' %>
-    <span><%= t('trade.my.orders.index.title') %></span>
+    <span><%= t('my.home.index.title') %></span>
   </button>
 <% end %>
