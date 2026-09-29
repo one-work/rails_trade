@@ -1,6 +1,6 @@
 <% if item.persisted? %>
   <div id="cart_item_add_<%= item.cart_identity %>" class="inline-flex align-items-center flex-shrink-0">
-    <button class="button is-small is-rounded is-light is-borderless">已加入购物车</button>
+    <button class="button is-small is-rounded is-light">已加入购物车</button>
   </div>
 <% else %>
   <%=
@@ -32,7 +32,7 @@
       type="submit"
       name="replace[cart_item_add_<%= item.cart_identity %>][partial]"
       value="cart_item_add"
-      class="button is-small is-warning is-rounded"
+      class="button is-small is-rounded is-warning"
     >
       <%= svg_tag 'cart-plus' %>
       <span>加入购物车</span>
