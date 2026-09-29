@@ -1,6 +1,12 @@
 <%= render layout: 'top_bar_left' do %>
   <div class="bar-title"><%= t('.title') %></div>
-  <%= link_to({ controller: 'space/admin/desks', action: 'all' }, class: 'right') do %>
-    <%= svg_tag 'grid-dividers' %>
-  <% end %>
+  <button
+    data-controller="history"
+    data-history-url-value="<%= url_for(controller: 'space/admin/desks', action: 'all', only_path: false) %>"
+    data-action="history#direct"
+    class="right"
+  >
+    <%= svg_tag 'grid-dividers', class: 'icon is-small text-link' %>
+    <span><%= t('space.admin.desks.all.title') %></span>
+  </button>
 <% end %>
