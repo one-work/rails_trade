@@ -3,7 +3,7 @@
     <% cart.cart_items.each do |item| %>
       <div data-id="<%= item.id %>" class="flex justify-content-space-between align-items-center mt-2">
         <div class="is-several">
-          <%= image_tag item.good.logo.variant(resize_to_limit: [32, 32]), class: 'image is-radius is-32x32' if item.good.logo.attached? %>
+          <%= image_tag item.good.logo.variant(resize_to_limit: [32, 32]), class: 'image is-32x32' if item.good.logo.attached? %>
           <span><%= item.good_name %></span>
         </div>
         <div>
@@ -20,7 +20,7 @@
   </div>
   <div>
     <div style="margin-right: -5px; margin-left: 5px">
-      <%= link_to({ controller: cart_con, action: 'show', id: cart.id }, class: 'button is-fullwidth is-primary is-radius right-badge') do %>
+      <%= link_to({ controller: cart_con, action: 'show', id: cart.id }, class: 'button is-fullwidth is-primary radius right-badge') do %>
         <span class="mr-1">去购物车</span>
         <%= svg_tag 'angle-right' %>
         <span class="tag is-badge is-danger"><%= cart.cart_items.count %></span>
