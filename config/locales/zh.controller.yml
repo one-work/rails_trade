@@ -1,6 +1,9 @@
 zh:
   trade:
     title: 电商
+    orders:
+      qrcode:
+        title: 查看订单
     my:
       title: 订单
       order:
