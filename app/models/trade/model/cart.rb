@@ -368,7 +368,7 @@ module Trade
       options.symbolize_keys!
       options.transform_values! { |i| i.presence }
       args = { good_type: good_type, aim: aim, desk_id: desk_id, station_id: station_id }
-      args.merge! options.slice(:good_type, :good_id, :purchase_id, :aim, :contact_id, :member_id, :provide_id, :dispatch, :scene_id, :desk_id, :station_id)
+      args.merge! options.slice(:good_type, :good_id, :purchase_id, :aim, :contact_id, :member_id, :provide_id, :dispatch, :scene_id, :station_id, :desk_id)
       args.merge! produce_on: options[:produce_on].to_date if options[:produce_on].present?
       args.stringify_keys!
     end
