@@ -1,14 +1,13 @@
-<div class="box is-padding-less">
-  <div class="box-header">
+<div class="card as-transparent">
+  <div class="card-header">
     <div class="is-several">
-      <%= image_tag @item.good.logo, class: 'image is-64x64' if @item.good.logo.attached? %>
+      <%= image_tag @item.good.logo.variant(resize_to_limit: [64, 64]), class: 'image is-64x64' if @item.good.logo.attached? %>
       <span><%= @item.good_name %></span>
     </div>
   </div>
-  <div class="weui-panel__bd">
+  <div class="card-content">
     <%= render partial: 'item', locals: { model: @item } %>
   </div>
 </div>
 
 <%= render partial: 'hold', collection: @item.holds, as: :model %>
-
