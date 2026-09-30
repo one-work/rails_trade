@@ -330,7 +330,7 @@ module Trade
     def init_cart_item(params, **options)
       params.permit!
       args = attr_options(**params, **options)
-      logger.debug "\e[35m  Current Cart: #{id}, Args: #{args}  \e[0m"
+      logger.debug "\e[35m  Init Cart Item, Cart: #{id}, Args: #{args}  \e[0m"
       item = cart_items.find(&->(i){ i.attributes.slice(*args.keys) == args }) || items.build(args)
       item.status = 'checked'
       if item.new_record?
