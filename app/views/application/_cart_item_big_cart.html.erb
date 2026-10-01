@@ -28,7 +28,7 @@
     <%= hidden_field_tag "replace[cart_item_big_cart_#{item.cart_identity}][partial]", 'cart_item_big_cart' %>
     <% removes.each do |remove| %>
       <%= hidden_field_tag 'removes[]', remove, id: nil %>
-    <% end %>
+    <% end if defined?(removes) %>
   <% end %>
   <div class="has-column-centered xx ml-1">
     <% if item.number > 1 %>
