@@ -1,4 +1,4 @@
-<div class="buttons are-small as-bottom">
+<div id="buttons" class="grid-buttons as-bottom">
   <%= button_to({ controller: 'scan_payments', action: 'desk', desk_id: @desk.id }, class: 'button is-rounded is-primary') do %>
     <span><%= t('.scan_payments.desk.title') %></span>
   <% end %>
