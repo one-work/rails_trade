@@ -1,4 +1,7 @@
-<td><%= link_to model.uuid, { action: 'show', id: model.id }, text: true %></td>
+<td>
+  <p><%= link_to model.uuid, { action: 'show', id: model.id }, text: true %></p>
+  <p><span class="tag"><%= model.organ.name %></span></p>
+</td>
 <td class="text-right">
   <p><%= model.amount.to_money.format.html_safe %></p>
   <p><%= model.received_amount.to_money.format.html_safe %></p>
