@@ -40,7 +40,7 @@
         button_to(
           { controller: item_con, action: 'destroy', id: item.id },
           method: :delete,
-          params: { current_cart_id: cart.id, removes: removes },
+          params: { current_cart_id: cart.id },
           class: 'button is-small is-light is-danger',
           style: 'width: 60px'
         ) do
