@@ -10,7 +10,7 @@
   )
 %>
 
-<% params[:replace].each do |id, replace| %>
+<% params.fetch(:replace, {}).each do |id, replace| %>
   <%=
     turbo_stream.replace(
       id,

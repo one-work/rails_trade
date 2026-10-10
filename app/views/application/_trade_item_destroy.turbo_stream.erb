@@ -1,5 +1,14 @@
 <% if referer_controller.end_with?('carts') %>
-  <%= turbo_stream.replace 'cart_nav', partial: 'cart_footer', locals: { cart: @item.current_cart, cart_con: controller_path.sub('items', 'carts') } %>
+  <%=
+    turbo_stream.replace(
+      'cart_nav',
+      partial: 'cart_footer',
+      locals: {
+        cart: @item.current_cart,
+        cart_con: controller_path.sub('items', 'carts')
+      }
+    )
+  %>
 <% else %>
   <%=
     turbo_stream.replace(
@@ -14,7 +23,7 @@
   %>
 <% end %>
 
-<% params[:replace].each do |id, replace| %>
+<% params.fetch(:replace, {}).each do |id, replace| %>
   <%=
     turbo_stream.replace(
       id,
