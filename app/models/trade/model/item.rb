@@ -336,17 +336,17 @@ module Trade
     def cart_identity
       if purchase_id.present?
         if good_id
-          "cart_#{purchase_id}_#{good_id}"
+          [purchase_id, good_id].join('_')
         else
-          "cart_#{purchase_id}_#{provide_id}"
+          [purchase_id, provide_id].join('_')
         end
       else
         if user_id
-          "cart_#{good_id}_#{user_id}_#{dispatch}"
+          [good_id, user_id, dispatch].join('_')
         elsif member_id
-          "cart_#{good_id}_#{member_id}_#{dispatch}"
+          [good_id, member_id, dispatch].join('_')
         else
-          "cart_#{good_id}_#{dispatch}"
+          [good_id, dispatch].join('_')
         end
       end
     end
