@@ -2,7 +2,7 @@ module Trade
   class OrderCleanJob < ApplicationJob
 
     def perform
-      Order.expired.where(state: ['init']).update(state: 'closed')
+      Order.where(agent_id: nil).expired.where(state: ['init']).update(state: 'closed')
     end
 
   end
