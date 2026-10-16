@@ -33,7 +33,8 @@
     <p class="size-7 text-grey has-border-left-primary">详情</p>
   </div>
   <div class="card-content p-0">
-    <%= render partial: 'items', locals: { model: @order } %>
+    <%= render 'show_table_form' %>
+    <%= render partial: 'order_detail', locals: { model: @order } %>
   </div>
 </div>
 

@@ -9,6 +9,6 @@
     <% end %>
   </div>
   <div class="card-content">
-    <%= render partial: 'item', collection: model.items.includes(:unit), as: :item %>
+    <%= render partial: 'order_item', collection: model.items.includes(:unit), as: :item %>
   </div>
 </div>

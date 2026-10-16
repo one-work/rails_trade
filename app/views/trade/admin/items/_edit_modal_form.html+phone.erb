@@ -4,6 +4,7 @@
     <%= render 'error_messages', target: f.object if f.object.errors.present? %>
     <%= f.number_field :number, step: 0.01, autofocus: true %>
     <%= f.number_field :single_price, step: 0.01 %>
+    <%= f.hidden_field "replace[item_#{@item.id}][partial]", value: 'order_item' %>
   </section>
   <%= f.submit %>
 <% end %>
