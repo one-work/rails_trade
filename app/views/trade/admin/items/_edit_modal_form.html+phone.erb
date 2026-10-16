@@ -5,6 +5,7 @@
     <%= f.number_field :number, step: 0.01, autofocus: true %>
     <%= f.number_field :single_price, step: 0.01 %>
     <%= f.hidden_field "replace[item_#{@item.id}][partial]", value: 'order_item' %>
+    <%= f.hidden_field "replace[order_detail_#{@item.order_id}][partial]", value: 'order_detail' %>
   </section>
   <%= f.submit %>
 <% end %>
