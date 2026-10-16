@@ -1,8 +1,8 @@
-<dl id="order_detail_<%= model.id %>" data-controller="single-input" class="as-show as-boxed is-striped">
+<dl id="order_detail_<%= order.id %>" data-controller="single-input" class="as-show as-boxed is-striped">
   <div>
     <dt><%= Trade::Order.human_attribute_name(:uuid) %></dt>
     <dd data-controller="clipboard">
-      <span data-clipboard-target="source"><%= model.uuid %></span>
+      <span data-clipboard-target="source"><%= order.uuid %></span>
       <span data-action="click->clipboard#copy" class="tag is-badge is-danger">复制</span>
       <div data-clipboard-target="toast" class="tag is-badge is-success display-none">
         <%= svg_tag 'check', class: 'icon is-small' %>
@@ -11,65 +11,65 @@
   </div>
   <div>
     <dt><%= Trade::Order.human_attribute_name(:state) %></dt>
-    <dd><%= model.state_i18n %></dd>
+    <dd><%= order.state_i18n %></dd>
   </div>
-  <% if model.serial_number.present? %>
+  <% if order.serial_number.present? %>
     <div>
       <dt><%= Trade::Order.human_attribute_name(:serial_number) %></dt>
-      <dd><%= model.serial_number %></dd>
+      <dd><%= order.serial_number %></dd>
     </div>
   <% end %>
-  <% if model.contact.present? %>
+  <% if order.contact.present? %>
     <div>
       <dt><%= Trade::Order.human_attribute_name(:contact_id) %></dt>
       <dd>
-        <%= link_to model.contact.name, { controller: 'crm/admin/orders', contact_id: model.contact_id } %>
+        <%= link_to order.contact.name, { controller: 'crm/admin/orders', contact_id: order.contact_id } %>
       </dd>
     </div>
   <% end %>
-  <% if model.client.present? %>
+  <% if order.client.present? %>
     <div>
       <dt><%= Trade::Order.human_attribute_name(:client_id) %></dt>
       <dd>
-        <%= link_to model.client.name, { controller: 'crm/admin/client/orders', client_id: model.client_id } %>
+        <%= link_to order.client.name, { controller: 'crm/admin/client/orders', client_id: order.client_id } %>
       </dd>
     </div>
   <% end %>
   <div>
     <dt><%= Trade::Order.human_attribute_name(:created_at) %></dt>
-    <dd><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></dd>
+    <dd><time data-controller="time" data-format="human"><%= order.created_at.to_fs(:iso8601) %></time></dd>
   </div>
   <div>
     <dt><%= Trade::Order.human_attribute_name(:item_amount) %></dt>
-    <dd><%= model.item_amount.to_money.format.html_safe %></dd>
+    <dd><%= order.item_amount.to_money.format.html_safe %></dd>
   </div>
-  <% if model.overall_additional_amount > 0 %>
+  <% if order.overall_additional_amount > 0 %>
   <div>
     <dt><%= Trade::Order.human_attribute_name(:overall_additional_amount) %></dt>
-    <dd><%= model.overall_additional_amount.to_money.format.html_safe %></dd>
+    <dd><%= order.overall_additional_amount.to_money.format.html_safe %></dd>
   </div>
   <% end %>
-  <% if model.overall_reduced_amount > 0 %>
+  <% if order.overall_reduced_amount > 0 %>
   <div>
     <dt><%= Trade::Order.human_attribute_name(:overall_reduced_amount) %></dt>
-    <dd><%= model.overall_reduced_amount.to_money.format.html_safe %></dd>
+    <dd><%= order.overall_reduced_amount.to_money.format.html_safe %></dd>
   </div>
   <% end %>
-  <% if model.advance_amount.to_d > 0 %>
+  <% if order.advance_amount.to_d > 0 %>
     <div>
       <dt><%= Trade::Order.human_attribute_name(:advance_amount) %></dt>
-      <dd class="text-danger"><%= model.advance_amount.to_money.format.html_safe %></dd>
+      <dd class="text-danger"><%= order.advance_amount.to_money.format.html_safe %></dd>
     </div>
   <% end %>
-  <% if model.adjust_amount.to_d != 0 %>
+  <% if order.adjust_amount.to_d != 0 %>
     <div>
       <dt><%= Trade::Order.human_attribute_name(:adjust_amount) %></dt>
-      <dd class="text-danger"><%= model.adjust_amount.to_money.format.html_safe %></dd>
+      <dd class="text-danger"><%= order.adjust_amount.to_money.format.html_safe %></dd>
     </div>
   <% end %>
   <div>
     <dt><%= Trade::Order.human_attribute_name(:amount) %></dt>
-    <dd class="text-danger"><%= model.amount.to_money.format.html_safe %></dd>
+    <dd class="text-danger"><%= order.amount.to_money.format.html_safe %></dd>
   </div>
   <div>
     <dt><%= Trade::Order.human_attribute_name(:note) %></dt>
@@ -77,14 +77,13 @@
       <%=
         text_field_tag(
           'order[note]',
-          model.note,
+          order.note,
           class: 'input',
           placeholder: '添加备注',
           form: 'show-form',
           data: { single_input_target: 'input' }
         )
       %>
-      <%# model.note %>
     </dd>
   </div>
 </dl>

@@ -34,6 +34,7 @@
         model: @item.good,
         item: @item,
         cart: @item.current_cart,
+        order: @item.order,
         item_con: controller_path,
         renew: params[:replace],
         renew_options: params.fetch(:renew_options, {}).permit!.to_h,
