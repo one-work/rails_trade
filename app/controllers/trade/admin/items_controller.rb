@@ -130,6 +130,7 @@ module Trade
     def item_params
       params.permit(
         :number,
+        :single_price,
         :desk_id,
         :rent_estimate_finish_at
       )
