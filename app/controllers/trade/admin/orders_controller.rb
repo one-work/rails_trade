@@ -212,7 +212,7 @@ module Trade
     end
 
     def set_count(q_params)
-      counter_cache = OrderCounterCache.find_by_params(q_params)
+      counter_cache = OrderCounterCache.where(default_params).find_by_params(q_params)
       @count = counter_cache.get_today_count
     end
 
