@@ -9,9 +9,8 @@
     ) do |f|
   %>
     <%= f.hidden_field :current_cart_id, value: @cart.id %>
-    <label class="weui-cells_checkbox">
-      <%= f.checkbox :status, { checked: model.status_checked?, data: { action: 'change->input#form' }, class: 'weui-check', id: nil }, model.id %>
-      <i class="weui-icon-checked"></i>
+    <label>
+      <%= f.checkbox :status, { checked: model.status_checked?, data: { action: 'change->input#form' }, class: 'check', id: nil }, model.id %>
     </label>
   <% end %>
   <% if model.good.logo.attached? %>
