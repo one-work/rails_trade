@@ -18,7 +18,10 @@ module Trade
     end
 
     def show
-      @items = @cart.items.includes(:desk, :delivery, :agent, produce_plan: :scene).order(id: :asc).page(params[:page])
+      includes = [:delivery, :agent, produce_plan: :scene]
+      includes << :desk if Item.reflections.key?('desk')
+
+      @items = @cart.items.includes(includes).order(id: :asc).page(params[:page])
     end
 
     def invest
