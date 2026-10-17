@@ -1,18 +1,22 @@
 <div id="item_<%= model.id %>" class="<%= model.status_expired? ? 'media as-boxed background-light' : 'media as-boxed' %>">
-  <%= form_with theme: nil, model: model, url: { controller: 'items', action: 'toggle', id: model.id }, data: { controller: 'input' }, class: 'media-left' do |f| %>
+  <%=
+    form_with(
+      theme: nil,
+      model: model,
+      url: { controller: 'items', action: 'toggle', id: model.id },
+      data: { controller: 'input' },
+      class: 'media-left'
+    ) do |f|
+  %>
     <%= f.hidden_field :current_cart_id, value: @cart.id %>
     <label class="weui-cells_checkbox">
       <%= f.checkbox :status, { checked: model.status_checked?, data: { action: 'change->input#form' }, class: 'weui-check', id: nil }, model.id %>
       <i class="weui-icon-checked"></i>
     </label>
   <% end %>
-  <% if model.good.respond_to?(:logo) && model.good.logo&.attached? %>
+  <% if model.good.logo.attached? %>
     <div class="media-left">
-      <%= image_tag model.good.logo, class: 'image is-64x64' %>
-    </div>
-  <% elsif model.good.respond_to?(:cover) && model.good.cover&.attached? %>
-    <div class="media-left">
-      <%= image_tag model.good.cover, class: 'image is-64x64' %>
+      <%= image_tag model.good.logo.variant(resize_to_limit: [64, 64]), class: 'image is-64x64' %>
     </div>
   <% end %>
   <div class="media-content">
