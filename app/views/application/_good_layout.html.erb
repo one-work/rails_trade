@@ -9,9 +9,7 @@
     ) do |f|
   %>
     <%= f.hidden_field :current_cart_id, value: @cart.id %>
-    <label>
-      <%= f.checkbox :status, { checked: model.status_checked?, data: { action: 'change->input#form' }, class: 'check', id: nil }, model.id %>
-    </label>
+    <%= f.checkbox :status, { checked: model.status_checked?, data: { action: 'change->input#form' }, class: 'checkbox', id: nil }, model.id %>
   <% end %>
   <% if model.good.logo.attached? %>
     <div class="media-left">
