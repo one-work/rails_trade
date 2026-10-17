@@ -2,7 +2,7 @@ module Trade
   class OrderCounterCache < ApplicationRecord
     include Statis::Ext::Config
 
-    attribute :state, :string
+    attribute :state, :json
     attribute :payment_status, :string
     attribute :agent_id, :uuid, index: true
 
