@@ -1,4 +1,4 @@
-<%= form_with theme: 'default_phone', model: @item, scope: '', url: { action: 'update' } do |f| %>
+<%= form_with theme: 'phone_default', model: @item, scope: '', url: { action: 'update' } do |f| %>
   <%= f.number_field :number, step: 0.01, autofocus: true %>
   <%= f.number_field :single_price, step: 0.01 %>
   <%= f.submit %>
