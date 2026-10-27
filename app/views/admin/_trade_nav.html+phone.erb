@@ -24,6 +24,10 @@
         <%= svg_tag 'cash-register', class: 'icon is-medium text-primary' %>
         <div class="text-grey size-7 mt-1"><%= t('trade.admin.scan_payments.new.title') %></div>
       <% end %>
+      <%= link_to({ controller: 'trade/admin/card_templates' }, class: 'cell has-column-centered') do %>
+        <%= svg_tag 'crown', class: 'icon is-medium text-primary' %>
+        <div class="text-grey size-7 mt-1"><%= t('trade.admin.card_templates.index.title') %></div>
+      <% end %>
     </div>
   </div>
 </div>
