@@ -8,13 +8,13 @@
       <div class="bar-title">优惠明细</div>
       <span class="right"></span>
     </header>
-    <section id="modal-card-body" class="modal-card-body">
-      <dl class="as-show as-boxed is-striped">
-        <div>
+    <section id="modal-card-body" class="modal-card-body p-0">
+      <dl class="as-show is-striped">
+        <div class="px-3">
           <dt><%= Trade::Cart.human_attribute_name(:original_amount) %></dt>
           <dd class="text-danger"><%= @cart.original_amount.to_money.format.html_safe %></dd>
         </div>
-        <div>
+        <div class="px-3">
           <dt><%= Trade::Cart.human_attribute_name(:overall_reduced_amount) %></dt>
           <dd class="text-danger"><%= @cart.overall_reduced_amount.to_money.format.html_safe %></dd>
         </div>
@@ -24,7 +24,7 @@
           <dd class="text-grey"><%= cart_promote.amount.to_money.format.html_safe %></dd>
         </div>
         <% end %>
-        <div>
+        <div class="px-3">
           <dt><%= Trade::Cart.human_attribute_name(:amount) %></dt>
           <dd class="text-danger"><%= @cart.amount.to_money.format.html_safe %></dd>
         </div>
