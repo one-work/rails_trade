@@ -1,11 +1,1 @@
-
-
-  <td>
-    <div data-show-target="item" class="visibility-hidden">
-      <%= link_to({ action: 'show', id: model.id }, data: { turbo_frame: 'modal' }, class: 'button is-small is-borderless') do %>
-        <%= svg_tag 'eye', class: 'icon text-info' %>
-        <span class="pl-1"><%= t('trade.admin.carts.show.title') %></span>
-      <% end %>
-    </div>
-  </td>
-
+<%= tr_tag(model, icons: ['show']) { yield } %>
