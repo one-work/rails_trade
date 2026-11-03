@@ -8,7 +8,7 @@
         </div>
         <div>
           <span><%= item.number.to_human %></span>
-          <i class="fa-solid fa-xs fa-xmark text-grey"></i>
+          <%= svg_tag 'xmark' %>
           <span class="text-danger"><%= item.single_price.to_money.format.html_safe %></span>
         </div>
       </div>
@@ -20,7 +20,7 @@
   </div>
   <div>
     <div style="margin-right: -5px; margin-left: 5px">
-      <%= link_to({ controller: cart_con, action: 'show', id: cart.id }, class: 'button is-fullwidth is-primary radius right-badge') do %>
+      <%= link_to({ controller: cart_con, action: 'show', id: cart.id }, class: 'button is-rounded is-fullwidth is-primary right-badge') do %>
         <span class="mr-1">去购物车</span>
         <%= svg_tag 'angle-right' %>
         <span class="tag is-badge is-danger"><%= cart.cart_items.count %></span>
