@@ -17,14 +17,14 @@
       <% end %>
       </ul>
     <% end %>
-    <div class="has-v-centered">
+    <div class="flex flex-direction-column">
       <% if model.vip_code.present? %>
-        <div class="tags has-addons is-price control m-0" style="display: inline-flex">
+        <div class="tags has-addons is-price control mb-0">
           <div class="tag is-danger">
             <%= svg_tag 'badge-check' %>
-            <span style="padding-left: 1px"><%= model.vip_code %></span>
+            <span><%= model.vip_code %></span>
           </div>
-          <span class="tag is-right"><%= model.single_price.to_money.format.html_safe %></span>
+          <span class="tag"><%= model.single_price.to_money.format.html_safe %></span>
         </div>
         <span class="text-through"><%= model.good.price.to_money.format.html_safe %></span>
       <% else %>
@@ -40,7 +40,7 @@
           item: model,
           cart: @cart,
           item_con: controller_path.sub('carts', 'items'),
-          removes: ["item_#{model.id}", 'ss']
+          removes: ["item_#{model.id}"]
         }
       )
     %>
