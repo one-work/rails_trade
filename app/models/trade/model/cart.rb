@@ -342,11 +342,6 @@ module Trade
       item
     end
 
-    def find_items_except_provide(provide_ids, **options)
-      args = attr_options(**options)
-      cart_items.select { |i| i.attributes.slice(*args.keys) == args && i.provide_id && provide_ids.exclude?(i.provide_id) }
-    end
-
     def find_item(**options)
       args = attr_options(**options)
       logger.debug "\e[35m  Find Item, Cart: #{id}, Options: #{options}, Args: #{args}  \e[0m"
@@ -357,6 +352,11 @@ module Trade
       args = attr_options(**options)
       logger.debug "\e[35m  Find Items, Cart: #{id}, Options: #{options}, Args: #{args}  \e[0m"
       cart_items.select { |i| i.attributes.slice(*args.keys) == args && good_ids.include?(i.good_id) }
+    end
+
+    def find_items_except_provide(provide_ids, **options)
+      args = attr_options(**options)
+      cart_items.select { |i| i.attributes.slice(*args.keys) == args && i.provide_id && provide_ids.exclude?(i.provide_id) }
     end
 
     def find_purchase_items(purchase_ids, **options)
