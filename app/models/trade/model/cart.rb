@@ -348,19 +348,21 @@ module Trade
       cart_items.find(&->(i){ i.attributes.slice(*args.keys) == args })
     end
 
-    def find_items(good_ids, **options)
+    def find_items(**options)
+      args = attr_options(**options)
+      logger.debug "\e[35m  Find Items, Cart: #{id}, Options: #{options}, Args: #{args}  \e[0m"
+      cart_items.select { |i| i.attributes.slice(*args.keys) == args }
+    end
+
+    def find_good_items(good_ids, **options)
       args = attr_options(**options)
       logger.debug "\e[35m  Find Items, Cart: #{id}, Options: #{options}, Args: #{args}  \e[0m"
       cart_items.select { |i| i.attributes.slice(*args.keys) == args && good_ids.include?(i.good_id) }
     end
 
-    def find_items_except_provide(provide_ids, **options)
-      args = attr_options(**options)
-      cart_items.select { |i| i.attributes.slice(*args.keys) == args && i.provide_id && provide_ids.exclude?(i.provide_id) }
-    end
-
     def find_purchase_items(purchase_ids, **options)
       args = attr_options(**options)
+      logger.debug "\e[35m  Find Items, Cart: #{id}, Options: #{options}, Args: #{args}  \e[0m"
       cart_items.select { |i| i.attributes.slice(*args.keys) == args && purchase_ids.include?(i.purchase_id) }
     end
 
