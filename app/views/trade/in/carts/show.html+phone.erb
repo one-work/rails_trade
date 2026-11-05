@@ -1,6 +1,7 @@
 <%= render 'head' %>
 <%= render 'address' if @cart.need_address? %>
 
+<%=  %>
 <%= render partial: 'item', collection: @items, as: :model %>
 
 <%= render 'cart_promotes' %>
