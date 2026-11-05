@@ -1,1 +1,9 @@
-<%= tr_tag(model) { yield } %>
+<%=
+  tr_tag(
+    model,
+    {
+      action: url_for(controller: 'holds', action: 'new', item_id: model.id),
+      title: t('.holds.new.title')
+    }
+  ) { yield }
+%>

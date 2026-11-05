@@ -132,6 +132,9 @@ zh:
       home:
         index:
           title: 采购订单
+      holds:
+        new:
+          title: 收货
       items:
         edit_price:
           title: 采购价
