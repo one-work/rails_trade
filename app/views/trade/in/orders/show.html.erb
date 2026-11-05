@@ -2,7 +2,10 @@
 
 <table class="table is-fullwidth as-boxed">
   <thead>
-    <%= render 'index_thead' %>
+    <tr>
+      <%= render 'index_thead' %>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <%= render partial: 'index_tbody', layout: 'index_tr', collection: @order.items, as: :model %>
