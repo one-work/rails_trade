@@ -1,0 +1,17 @@
+<div class="card as-transparent">
+  <div class="card-header">
+    <span class="size-7 text-grey has-border-left-primary"><%= t('trade.in.title') %></span>
+  </div>
+  <div class="card-content fixed-grid has-4-cols">
+    <div class="grid">
+      <%= link_to({ controller: 'trade/in/orders' }, class: 'cell has-column-centered') do %>
+        <%= svg_tag 'list', class: 'icon is-medium text-primary' %>
+        <div class="text-grey size-7 mt-1"><%= t('trade.in.orders.index.title') %></div>
+      <% end %>
+      <%= link_to({ controller: 'trade/in/payments' }, class: 'cell has-column-centered') do %>
+        <%= svg_tag 'receipt', class: 'icon is-medium text-primary' %>
+        <div class="text-grey size-7 mt-1"><%= t('trade.in.payments.index.title') %></div>
+      <% end %>
+    </div>
+  </div>
+</div>
