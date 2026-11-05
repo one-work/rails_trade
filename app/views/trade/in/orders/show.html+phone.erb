@@ -9,7 +9,7 @@
   <%= render partial: 'package_buttons', locals: { model: @order } %>
 <% end %>
 
-<%= render partial: 'items', locals: { model: @order } %>
+<%= render partial: 'order_detail', locals: { order: @order } %>
 
 <div class="box">
   <div class="box-header">服务/促销</div>
