@@ -1,0 +1,33 @@
+<div id="item_<%= item.id %>" class="media">
+  <% if item.good && item.good.logo.attached? %>
+    <div class="media-left">
+      <%= image_tag item.good.logo.variant(resize_to_limit: [64, 64]), class: 'image is-64x64' %>
+    </div>
+  <% end %>
+  <div class="media-content as-body" style="background-color: initial">
+    <div>
+      <span><%= item.good_name %></span>
+    </div>
+    <div>
+      <p>
+        <span class="text-danger"><%= item.single_price.to_money.format.html_safe %></span>
+        <span class="text-grey-lighter">x</span>
+        <span><%= item.number.to_human %></span>
+        <% if item.unit %>
+          <span class="tag"><%= item.unit.name %></span>
+        <% end %>
+      </p>
+      <% if item.delivery %>
+      <p>
+        <span class="tag"><%= item.delivery.fetch_oneself_i18n %></span>
+        <span><%= item.delivery.produce_on %></span>
+      </p>
+      <% end %>
+    </div>
+  </div>
+  <div class="media-right as-x">
+    <%= link_to({ controller: 'trade/in/holds', item_id: item.id }, class: 'button is-small is-default') do %>
+      <span><%= t('.holds.index.title') %></span>
+    <% end %>
+  </div>
+</div>
