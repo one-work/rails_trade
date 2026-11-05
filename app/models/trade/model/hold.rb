@@ -12,7 +12,8 @@ module Trade
     }.freeze
 
     included do
-      attribute :amount, :decimal, comment: '价格小计'
+      attribute :number, :decimal
+      attribute :produce_on, :date
       # 时间
       attribute :rent_start_at, :datetime
       attribute :rent_finish_at, :datetime, comment: '实际结束时间'
@@ -24,11 +25,10 @@ module Trade
       attribute :rent_estimate_duration, :integer
 
       # 费用
-      attribute :amount, :decimal
+      attribute :amount, :decimal, comment: '价格小计'
       attribute :wallet_amount, :json, default: {}
       attribute :estimate_amount, :decimal
       attribute :estimate_wallet_amount, :json, default: {}
-
 
       attribute :invest_amount, :decimal, comment: '投资分成'
       attribute :extra, :json, default: {}
