@@ -1,3 +1,16 @@
-<td><%= model.good_name %></td>
+<td>
+  <p><%= model.good_name %></p>
+  <% if item.good.respond_to?(:parts) %>
+  <ul class="media-info text-grey">
+    <% item.good.production_parts.includes(:part).each do |production_part| %>
+      <li>
+        <span><%= production_part.part.title_short %></span>
+        <span>x</span>
+        <span><%= production_part.number %></span>
+      </li>
+    <% end %>
+  </ul>
+  <% end %>
+</td>
 <td><%= model.number.to_human %></td>
 <td><%= model.amount.to_money.format.html_safe %></td>
