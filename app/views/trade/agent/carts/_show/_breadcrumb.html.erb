@@ -1,2 +1,12 @@
-<li><%= link_to t('.carts.index.title'), { controller: 'carts', anchor: "tr_#{@cart.id}" } %></li>
+<% if @cart.contact_id %>
+  <li><%= link_to t('crm.admin.productions.index.title'), { controller: 'crm/admin/productions', contact_id: @cart.contact_id } %></li>
+<% elsif @cart.client_id %>
+  <li>
+    <%= link_to({ controller: 'crm/admin/client/productions', client_id: @cart.client_id }) do %>
+      <span><%= t('crm.admin.client.productions.index.title') %></span>
+    <% end %>
+  </li>
+<% else %>
+  <li><%= link_to t('factory.agent.productions.index.title'), { controller: 'factory/agent/productions' } %></li>
+<% end %>
 <li class="is-active"><%= @cart.agent.name %></li>
