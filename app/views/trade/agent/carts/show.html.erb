@@ -26,8 +26,13 @@
     <%= button_to({ controller: 'crm/admin/contacts', action: 'new' }, class: 'button is-rounded is-fullwidth is-primary') do %>
       <span><%= t('crm.admin.contacts.new.title') %></span>
     <% end %>
-    <%= button_to({ controller: 'ship/admin/addresses', action: 'new' }, class: 'button is-rounded is-fullwidth is-primary') do %>
-      <span><%= t('ship.admin.addresses.new.title') %></span>
+    <%=
+      button_to(
+        { controller: 'ship/agent/cart/addresses', action: 'new', cart_id: @cart.id },
+        class: 'button is-rounded is-fullwidth is-primary'
+      ) do
+    %>
+      <span><%= t('ship.agent.cart.addresses.new.title') %></span>
     <% end %>
   </div>
 </div>
