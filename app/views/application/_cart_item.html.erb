@@ -33,6 +33,7 @@
         f.text_field(
           :number,
           value: item.number.to_human,
+          autocomplete: 'off',
           data: { action: 'change->input#form focus->input#blank', modify_target: 'input' },
           class: 'background-light text-centered',
           style: 'width: 3em'
