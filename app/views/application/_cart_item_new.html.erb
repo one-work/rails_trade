@@ -58,6 +58,7 @@
         f.text_field(
           :number,
           value: item.number.to_human,
+          autocomplete: 'off',
           step: 0.01,
           data: { action: 'change->input#form focus->input#blank', modify_target: 'input' },
           class: 'background-light text-centered',
