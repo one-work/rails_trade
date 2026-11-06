@@ -5,7 +5,18 @@
         <%= render 'index_thead' %>
       </thead>
       <tbody>
-        <%= render partial: 'cart_item_show', layout: 'cart_item_show_layout', collection: @items, as: :item, locals: { cart: @cart, item_con: 'trade/agent/items' } %>
+        <%=
+          render(
+            partial: 'cart_item_show',
+            layout: 'cart_item_show_layout',
+            collection: @items,
+            as: :item,
+            locals: {
+              cart: @cart,
+              item_con: 'trade/agent/items'
+            }
+          )
+        %>
         <%= render partial: 'cart_promote', layout: 'cart_promote_tr', collection: @cart.cart_promotes, as: :model %>
       </tbody>
       <%= render 'cart_footer' %>
