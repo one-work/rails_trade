@@ -1,6 +1,16 @@
 <li>
 <% if @cart.good_type == 'Factory::Production' %>
-  <%= link_to t('factory.agent.productions.index.title'), { controller: 'factory/agent/productions', desk_id: @cart.desk_id } %>
+  <% if @cart.contact_id %>
+    <li><%= link_to t('crm.admin.productions.index.title'), { controller: 'crm/admin/productions', contact_id: @cart.contact_id } %></li>
+  <% elsif @cart.client_id %>
+    <li>
+      <%= link_to({ controller: 'crm/admin/client/productions', client_id: @cart.client_id }) do %>
+        <span><%= t('crm.admin.client.productions.index.title') %></span>
+      <% end %>
+    </li>
+  <% else %>
+    <li><%= link_to t('factory.agent.productions.index.title'), { controller: 'factory/agent/productions', desk_id: @cart.desk_id } %></li>
+  <% end %>
 <% end %>
 </li>
 <li class="is-active"><%= t('.title') %></li>
