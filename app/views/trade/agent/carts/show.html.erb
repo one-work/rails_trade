@@ -37,6 +37,9 @@
         <span><%= @cart.address.station&.name %></span>
         <span><%= @cart.address.detail %></span>
       </p>
+      <%= button_to({ controller: 'ship/agent/cart/addresses', action: 'edit', cart_id: @cart.id, id: @cart.address_id }) do %>
+        <%= svg_tag 'pencil' %>
+      <% end %>
     <% else %>
       <%=
         button_to(
