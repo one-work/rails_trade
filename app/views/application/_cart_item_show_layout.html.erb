@@ -9,13 +9,15 @@
     <p><%= item.good_name %></p>
     <% if item.good.respond_to?(:parts) %>
       <ul class="media-info text-grey">
-        <% item.good.production_parts.includes(:part).each do |production_part| %>
-          <li>
-            <span><%= production_part.part.title_short %></span>
+      <% item.good.production_parts.includes(:part, :component).each do |production_part| %>
+        <li>
+          <span><%= production_part.part.title_short %></span>
+          <% if production_part.component.multiple %>
             <span>x</span>
             <span><%= production_part.number %></span>
-          </li>
-        <% end %>
+          <% end %>
+        </li>
+      <% end %>
       </ul>
     <% end %>
   </td>

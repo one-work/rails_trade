@@ -2,13 +2,15 @@
   <p><%= model.good_name %></p>
   <% if model.good.respond_to?(:parts) %>
   <ul class="media-info text-grey">
-    <% model.good.production_parts.includes(:part).each do |production_part| %>
-      <li>
-        <span><%= production_part.part.title_short %></span>
-        <span>x</span>
-        <span><%= production_part.number %></span>
-      </li>
-    <% end %>
+  <% model.good.production_parts.includes(:part, :component).each do |production_part| %>
+    <li>
+      <span><%= production_part.part.title_short %></span>
+      <% if production_part.component.multiple %>
+      <span>x</span>
+      <span><%= production_part.number %></span>
+      <% end %>
+    </li>
+  <% end %>
   </ul>
   <% end %>
 </td>
