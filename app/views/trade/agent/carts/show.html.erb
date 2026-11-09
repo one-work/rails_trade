@@ -28,18 +28,7 @@
     <% end %>
     <div class="mt-3">
     <% if @cart.address %>
-      <p>
-        <span><%= @cart.address.contact_person %></span>
-        <span><%= @cart.address.tel %></span>
-      </p>
-      <p class="size-7">
-        <span><%= @cart.address.area.full_name %></span>
-        <span><%= @cart.address.station&.name %></span>
-        <span><%= @cart.address.detail %></span>
-      </p>
-      <%= button_to({ controller: 'ship/agent/cart/addresses', action: 'edit', cart_id: @cart.id, id: @cart.address_id }) do %>
-        <%= svg_tag 'pencil' %>
-      <% end %>
+      <%= render partial: 'address_detail', locals: { cart_id: @cart.id, address: @cart.address } %>
     <% else %>
       <%=
         button_to(
