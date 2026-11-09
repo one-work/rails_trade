@@ -26,19 +26,29 @@
     <%= button_to({ controller: 'crm/admin/contacts', action: 'new' }, class: 'button is-rounded is-fullwidth is-primary', form: { class: 'is-fullwidth' }) do %>
       <span><%= t('crm.admin.contacts.new.title') %></span>
     <% end %>
+    <div class="mt-3">
     <% if @cart.address %>
-      <p><%= @cart.address.detail %></p>
+      <p>
+        <span><%= @cart.address.contact_person %></span>
+        <span><%= @cart.address.tel %></span>
+      </p>
+      <p class="size-7">
+        <span><%= @cart.address.area.full_name %></span>
+        <span><%= @cart.address.station&.name %></span>
+        <span><%= @cart.address.detail %></span>
+      </p>
     <% else %>
       <%=
         button_to(
           { controller: 'ship/agent/cart/addresses', action: 'new', cart_id: @cart.id },
           class: 'button is-rounded is-fullwidth is-primary',
-          form: { class: 'is-fullwidth mt-3' }
+          form: { class: 'is-fullwidth' }
         ) do
       %>
         <span><%= t('ship.agent.cart.addresses.new.title') %></span>
       <% end %>
     <% end %>
+    </div>
   </div>
 </div>
 
