@@ -1,6 +1,10 @@
 <%= form_with url: { action: 'cart_create' }, id: 'new_order' do |f| %>
 <% end %>
 
+<% if @cart.address %>
+  <%= render partial: 'address_detail', locals: { address: @cart.address, cart_id: @cart.id } %>
+<% end %>
+
 <%= render layout: 'index_table_without_actions' do %>
   <%= render partial: 'index_tbody', layout: 'index_tr', collection: @cart.checked_all_items, as: :model %>
 <% end %>
