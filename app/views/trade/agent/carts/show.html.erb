@@ -39,6 +39,15 @@
       %>
         <span><%= t('ship.agent.cart.addresses.new.title') %></span>
       <% end %>
+      <%=
+        button_to(
+          { controller: 'ship/agent/cart/addresses', action: 'new_ai', cart_id: @cart.id },
+          class: 'button is-rounded is-fullwidth is-primary',
+          form: { class: 'is-fullwidth mt-3' }
+        ) do
+      %>
+        <span><%= t('ship.agent.cart.addresses.new_ai.title') %></span>
+      <% end %>
     <% end %>
     </div>
   </div>
