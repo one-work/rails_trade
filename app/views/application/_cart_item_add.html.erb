@@ -28,14 +28,17 @@
     <% refer_options.each do |key, value| %>
       <%= hidden_field_tag "refer_options[#{key}]", value, id: nil %>
     <% end if defined?(refer_options) && refer_options %>
-    <button
-      type="submit"
-      name="replace[cart_item_add_<%= item.cart_identity %>][partial]"
-      value="cart_item_add"
-      class="button is-small is-rounded is-warning"
-    >
+    <%=
+      button_tag(
+        type: 'submit',
+        name: "replace[cart_item_add_#{item.cart_identity}][partial]",
+        value: 'cart_item_add',
+        class: 'button is-small is-rounded is-warning',
+        disabled: !item.good
+      ) do
+    %>
       <%= svg_tag 'cart-plus' %>
       <span>加入购物车</span>
-    </button>
+    <% end %>
   <% end %>
 <% end %>
