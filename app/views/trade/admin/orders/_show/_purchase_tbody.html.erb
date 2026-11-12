@@ -3,12 +3,12 @@
     <% if model.good_type == 'Factory::Production' %>
       <%= image_tag model.purchase.logo.variant(resize_to_limit: [32, 32]), class: 'image is-32x32' if model.purchase && model.purchase.logo&.attached? %>
       <%= link_to({ controller: 'factory/admin/purchase_items', production_id: model.purchase_id }, target: '_blank') do %>
-        <span><%= model.purchase.name %></span>
+        <span><%= model.good_name %></span>
       <% end %>
     <% elsif model.purchase %>
       <%= image_tag model.purchase.logo.variant(resize_to_limit: [32, 32]), class: 'image is-32x32' if model.purchase && model.purchase.logo&.attached? %>
       <%= link_to model.purchase, target: '_blank' do %>
-        <span><%= model.purchase.name %></span>
+        <span><%= model.good_name %></span>
       <% end %>
     <% end %>
     <% if ['rent', 'invest'].include?(model.aim) %>
@@ -17,7 +17,7 @@
   </div>
 </td>
 <td>
-  <span><%= model.purchase.price.to_money.format.html_safe %></span>
+  <span><%= model.single_price.to_money.format.html_safe %></span>
   <%= svg_tag 'xmark' %>
   <span><%= model.number.to_human %></span>
 </td>
