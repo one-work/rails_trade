@@ -5,8 +5,7 @@
   <div>
     <dt></dt>
     <dd class="p-0">
-      <%= render layout: 'index_table' do %>
-        <%= render 'purchase_thead' %>
+      <%= render layout: 'purchase_table' do %>
         <%= render partial: 'purchase_tbody', layout: 'index_tr', collection: @order.items, as: :model %>
       <% end %>
     </dd>
