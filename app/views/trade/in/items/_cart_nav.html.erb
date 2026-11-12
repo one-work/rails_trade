@@ -1,6 +1,0 @@
-<div id="cart_nav">
-  <%= link_to({ controller: 'trade/in/carts', action: 'show', id: cart.id }) do %>
-    <%= svg_tag 'cart-shopping' %>
-  <% end %>
-  <%= @item.current_cart.amount.to_money.format.html_safe %>
-</div>
