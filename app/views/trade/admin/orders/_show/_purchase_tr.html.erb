@@ -1,0 +1,13 @@
+<%=
+  tr_tag(
+    model,
+    {
+      action: url_for(controller: 'items', action: 'deliver', id: model.id),
+      icon: 'person-carry-box',
+      title: t('.items.deliver.title')
+    },
+    param: { controller: 'items', id: model.id }
+  ) { yield }
+%>
+
+<%= render partial: 'promote_tbody', collection: model.item_promotes, as: :item_promote %>

@@ -16,11 +16,8 @@
     <% end %>
   </div>
 </td>
-<td>
-  <span><%= model.single_price.to_money.format.html_safe %></span>
-  <%= svg_tag 'xmark' %>
-  <span><%= model.number.to_human %></span>
-</td>
+<td><%= model.number.to_human %></td>
+<td><%= model.single_price.to_money.format.html_safe %></td>
 <td>
   <p><%= model.additional_amount.to_money.format.html_safe %></p>
   <p><%= model.reduced_amount.to_money.format.html_safe %></p>
