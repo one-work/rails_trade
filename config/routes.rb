@@ -95,6 +95,23 @@ Rails.app.routes.draw do
   end
 
   concern :order_admin do
+    resources :carts, except: [:new] do
+      collection do
+        get :total
+        get :doc
+        get :only
+        get :member_organ
+        get :member
+        get :user
+        get 'user/:user_id' => :user_show
+      end
+      resources :promote_goods, controller: 'cart/promote_goods' do
+        collection do
+          post :user_search
+          get :user
+        end
+      end
+    end
     resources :orders do
       collection do
         get :payments
@@ -261,23 +278,6 @@ Rails.app.routes.draw do
         post :good_search
         post :part_search
       end
-      resources :carts, except: [:new] do
-        collection do
-          get :total
-          get :doc
-          get :only
-          get :member_organ
-          get :member
-          get :user
-          get 'user/:user_id' => :user_show
-        end
-        resources :promote_goods, controller: 'cart/promote_goods' do
-          collection do
-            post :user_search
-            get :user
-          end
-        end
-      end
       resources :cart_promotes
       resources :payment_strategies
       resources :payment_methods do
@@ -407,7 +407,7 @@ Rails.app.routes.draw do
           patch :update_price
         end
       end
-      concerns :orderable
+      concerns :order_admin
     end
 
     namespace :my, defaults: { namespace: 'my' } do
