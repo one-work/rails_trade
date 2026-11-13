@@ -360,12 +360,6 @@ module Trade
       cart_items.select { |i| i.attributes.slice(*args.keys) == args && good_ids.include?(i.good_id) }
     end
 
-    def find_purchase_items(purchase_ids, **options)
-      args = attr_options(**options)
-      logger.debug "\e[35m  Find Items, Cart: #{id}, Options: #{options}, Args: #{args}  \e[0m"
-      cart_items.select { |i| i.attributes.slice(*args.keys) == args && purchase_ids.include?(i.purchase_id) }
-    end
-
     def attr_options(**options)
       options.symbolize_keys!
       options.transform_values! { |i| i.presence }

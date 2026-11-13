@@ -8,6 +8,7 @@ module Trade
       attr_accessor :commit
 
       attribute :uuid, :string, default: -> { UidUtil.nsec_uuid('ITEM') }, index: true
+      attribute :collect_id, :uuid, index: true
       attribute :good_name, :string
       attribute :number, :decimal, default: 1, comment: '数量'
       attribute :done_number, :decimal, default: 0, comment: '已达成交易数量'
