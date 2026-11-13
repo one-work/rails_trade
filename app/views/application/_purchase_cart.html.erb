@@ -1,5 +1,10 @@
 <% if item.persisted? %>
-  <div id="<%= item.cart_identity %>" data-controller="modify" data-modify-submit-value="true" class="has-inline-centered">
+  <div
+    id="<%= item.cart_identity %>"
+    data-controller="modify"
+    data-modify-submit-value="true"
+    class="has-inline-centered"
+  >
     <%= button_to({ controller: item_con, action: 'destroy', id: item.id }, method: :delete, params: { current_cart_id: cart.id }, class: 'mr-1') do %>
       <%= svg_tag 'circle-xmark', class: 'icon' %>
     <% end %>
@@ -15,7 +20,16 @@
     </button>
   </div>
 <% else %>
-  <%= form_with theme: nil, model: item, scope: '', url: { controller: item_con, action: 'create' }, id: item.cart_identity, class: 'button_to' do |f| %>
+  <%=
+    form_with(
+      theme: nil,
+      model: item,
+      scope: '',
+      url: { controller: item_con, action: 'create' },
+      id: item.cart_identity,
+      class: 'button_to'
+    ) do |f|
+  %>
     <%= f.hidden_field :current_cart_id, value: cart.id %>
     <%= f.hidden_field :good_type %>
     <%= f.hidden_field :purchase_id %>
