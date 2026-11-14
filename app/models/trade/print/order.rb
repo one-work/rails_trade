@@ -20,7 +20,7 @@ module Trade
     def print_delivery_prepare
       if organ
         printer = organ.get_printer('prepare')
-        if printer
+        if printer&.dev_type_esc?
           printer.inner_tasks.create(gid: to_gid.to_s, aim: 'delivery_prepare')
         end
       end
