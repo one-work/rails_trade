@@ -339,7 +339,7 @@ module Trade
         if good_id
           [purchase_id, good_id].join('_')
         else
-          [purchase_id, provide_id].join('_')
+          [purchase_id, id].join('_')
         end
       else
         if user_id
