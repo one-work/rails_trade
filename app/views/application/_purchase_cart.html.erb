@@ -1,6 +1,6 @@
 <% if item.persisted? %>
   <div
-    id="<%= item.cart_identity %>"
+    id="purchase_cart_<%= item.cart_identity %>"
     data-controller="modify"
     data-modify-submit-value="true"
     class="has-inline-centered"
@@ -13,7 +13,15 @@
     </button>
     <%= form_with(theme: nil, scope: '', url: { controller: item_con, action: 'update', id: item.id }, method: :patch, data: { controller: 'input' }) do |f| %>
       <%= f.hidden_field :current_cart_id, value: cart.id %>
-      <%= f.text_field :number, value: item.number.to_human, data: { action: 'change->input#form', modify_target: 'input' }, class: 'background-light text-centered', style: 'width: 3em' %>
+      <%=
+        f.text_field(
+          :number,
+          value: item.number.to_human,
+          data: { action: 'change->input#form', modify_target: 'input' },
+          class: 'background-light text-centered',
+          style: 'width: 3em'
+        )
+      %>
     <% end %>
     <button data-action="modify#plus" class="button_to ml-1">
       <%= svg_tag 'circle-plus', class: 'icon' %>
@@ -26,7 +34,7 @@
       model: item,
       scope: '',
       url: { controller: item_con, action: 'create' },
-      id: item.cart_identity,
+      id: "purchase_cart_#{item.cart_identity}",
       class: 'button_to'
     ) do |f|
   %>
