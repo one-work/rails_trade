@@ -19,6 +19,19 @@
       <%= svg_tag 'chair' %>
       <span>绑定桌台</span>
     <% end %>
+    <% if @cart.address %>
+      <%= render partial: 'address_detail', locals: { cart_id: @cart.id, address: @cart.address } %>
+    <% else %>
+      <%=
+        button_to(
+          { controller: 'ship/agent/cart/addresses', action: 'new', cart_id: @cart.id },
+          class: 'button is-fullwidth',
+          form: { class: 'cell' }
+        ) do
+      %>
+        <span><%= t('ship.agent.cart.addresses.new.title') %></span>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
