@@ -2,6 +2,13 @@
 <%= render partial: 'payment', locals: { model: @payment } %>
 
 <%= render layout: 'index_list' do %>
-  <%= render partial: 'index_item', layout: 'index_item_actions', collection: @payment_orders, as: :model %>
+  <%=
+    render(
+      partial: 'payment_order_item',
+      layout: 'payment_order_item_actions',
+      collection: @payment_orders,
+      as: :model
+    )
+  %>
   <%= render partial: 'order_tbody', layout: 'order_tr', collection: @payment.to_check_orders, as: :model unless @payment.state_all_checked? %>
 <% end %>

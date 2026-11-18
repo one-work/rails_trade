@@ -13,5 +13,8 @@
   <tbody id="show_total">
     <%= render partial: 'order_total', locals: { model: @order } %>
   </tbody>
+</table>
+
+<table class="table is-fullwidth as-boxed">
   <%= render partial: 'show_payment', collection: @order.payment_orders, as: :model %>
 </table>

@@ -1,0 +1,16 @@
+<td>
+  <%= button_to model.order.uuid, { controller: 'orders', action: 'show', id: model.order_id }, class: 'family-monospace text-link' %>
+</td>
+<td><%= Trade::PaymentOrder.enum_i18n(:state, model.state) %></td>
+<td><%= model.order_amount.to_money.format.html_safe %></td>
+<td>
+<% if model.payment.is_a?(Trade::WalletPayment) && model.payment.wallet.is_a?(Trade::CustomWallet) %>
+  <span><%= model.payment_amount.to_fs(:rounded, precision: model.payment.wallet.wallet_template.digit) %></span>
+  <span><%= model.payment.wallet.wallet_template.unit %></span>
+<% else %>
+  <%= model.payment_amount.to_money.format.html_safe %>
+<% end %>
+</td>
+<td>
+ 
+</td>
