@@ -157,6 +157,8 @@ zh:
           title: 退款
         confirm:
           title: 核销
+        cancel:
+          title: 取消核销
       payment_methods:
         index_layout:
           remove: 移除
