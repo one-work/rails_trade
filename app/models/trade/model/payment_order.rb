@@ -44,6 +44,21 @@ module Trade
       ['init', 'pending'].include?(state)
     end
 
+    def cancel
+      self.state = 'pending'
+      payment.compute_checked_amount
+      order.compute_received_amount
+    end
+
+    def cancel!
+      cancel
+      self.class.transaction do
+        self.save
+        payment.save
+        order.save
+      end
+    end
+
     def confirm
       self.state = 'confirmed'
       payment.compute_checked_amount

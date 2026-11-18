@@ -39,8 +39,7 @@ module Trade
     end
 
     def cancel
-      @payment_order.state = 'pending'
-      @payment_order.save
+      @payment_order.cancel!
     end
 
     private
