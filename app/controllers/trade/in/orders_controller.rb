@@ -25,6 +25,16 @@ module Trade
       @order.save
     end
 
+    def payment_pending
+      @order.batch_pending_payments(payment_params)
+      if params['commit']
+        @order.save
+      else
+        @order.init_wallet_payments
+        @order.init_hand_payment(state: 'pending')
+      end
+    end
+
     def batch_receive
       @order.items.where(id: params[:ids]).each do |i|
         i.purchase_status = 'received'
