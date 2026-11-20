@@ -1,5 +1,9 @@
 <%=
   tr_tag(
-    model
+    model,
+    param: {
+      controller: 'items'
+    },
+    icons: ['show', 'edit']
   ) { yield }
 %>

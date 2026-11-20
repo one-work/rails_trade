@@ -32,7 +32,7 @@
   <% if model.default_production_provide&.cost_price %>
     <%= f.number_field :single_price, value: model.default_production_provide.cost_price, disabled: true, form: 'purchase_order' %>
   <% else %>
-    <%= f.number_field :single_price, value: model.single_price, disabled: true, form: 'purchase_order' %>
+    <%= f.number_field :single_price, value: model.good.cost_price, disabled: true, form: 'purchase_order' %>
   <% end %>
   </div>
 </td>
