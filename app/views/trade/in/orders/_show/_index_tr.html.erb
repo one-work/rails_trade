@@ -4,6 +4,7 @@
     {
       action: url_for(controller: 'holds', action: 'new', item_id: model.id),
       title: t('.holds.new.title')
-    }
+    },
+    param: { controller: 'items' }
   ) { yield }
 %>
