@@ -1,4 +1,4 @@
-<%= form.fields :items, model: model.purchase_items.build do |f| %>
+<%= form.fields :items, theme: 'inline', model: model.purchase_items.build do |f| %>
 <td><%= f.checkbox 'xx', form: 'purchase_order', data: { action: 'show#toggle' } %></td>
 <td>
   <div class="is-several">
