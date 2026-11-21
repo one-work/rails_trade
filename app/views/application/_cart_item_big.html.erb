@@ -20,6 +20,7 @@
           :number,
           value: item.number.to_human,
           step: 0.01,
+          autocomplete: 'off',
           data: { action: 'change->input#form focus->input#blank', modify_target: 'input' },
           class: 'input background-light text-centered',
           style: 'width: 60px; height: 100%; font-size: x-large'
@@ -67,7 +68,7 @@
     <% end %>
     <button
       type="submit"
-      class="button is-rounded is-small is-primary"
+      class="button is-small is-primary"
       name="replace[cart_item_big_<%= item.cart_identity %>][partial]"
       value="cart_item_big"
     >
