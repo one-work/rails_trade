@@ -1,4 +1,10 @@
-<%= button_to({ controller: 'ship/my/addresses', action: 'order_from', from_address_id: @order.from_address_id }, class: 'media') do %>
+<%=
+  button_to(
+    { controller: 'ship/my/addresses', action: 'order_from', from_address_id: @order.from_address_id },
+    class: 'media',
+    form: { class: 'button_to is-fullwidth' }
+  ) do
+%>
   <div class="media-left">
     <%= svg_tag 'location-dot' %>
   </div>
