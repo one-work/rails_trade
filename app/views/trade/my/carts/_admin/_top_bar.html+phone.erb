@@ -1,7 +1,4 @@
-<div class="as-bar">
-  <%= link_to({ action: 'show' }, class: 'px-4') do %>
-    <%= svg_tag 'angle-left', kind: 'regular' %>
-  <% end %>
-  <div class="bar-title"></div>
-  <i class="px-5"></i>
-</div>
+<%= render 'top_bar_left' do %>
+  <span class="bar-title"></span>
+  <i class="right"></i>
+<% end %>
