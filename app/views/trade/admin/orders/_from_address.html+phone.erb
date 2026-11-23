@@ -11,7 +11,7 @@
   <div class="media-content">
   <% if @order.from_address %>
     <p>
-      <strong><%= @order.from_address.contact %></strong>
+      <strong><%= @order.from_address.contact_person %></strong>
       <span><%= @order.from_address.tel %></span>
       <% if @order.from_address.station %>
         <span class="tag"><%= @order.from_address.station.name %></span>
