@@ -2,8 +2,7 @@
 
 [![测试](https://github.com/work-design/rails_trade/actions/workflows/test.yml/badge.svg)](https://github.com/work-design/rails_trade/actions/workflows/test.yml)
 
-[打包下载所有组件](https://github.com/work-design/engine)
-[![Engine Collect](https://github.com/one-work/rails_trade/actions/workflows/engine.yml/badge.svg)](https://github.com/one-work/rails_trade/actions/workflows/engine.yml)
+[![所有组件](https://github.com/one-work/rails_trade/actions/workflows/engine.yml/badge.svg)](https://github.com/one-work/engine)
 
 [![Gem](https://github.com/work-design/rails_trade/actions/workflows/gempush.yml/badge.svg)](https://github.com/work-design/rails_trade/actions/workflows/gempush.yml)
 
